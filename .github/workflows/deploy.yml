@@ -1,0 +1,49 @@
+name: Deploy site preview
+
+# git.soma Pages serves the gh-pages branch directly (branch mode). Push or
+# merge to development rebuilds site/ and publishes the output to gh-pages.
+# git.soma currently has GitHub Actions disabled for this org; until that is
+# on, run `npm run deploy:preview` from site/ to publish the same way.
+on:
+  push:
+    branches: [development]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    if: github.server_url == 'https://git.soma.salesforce.com'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: site
+        run: npm ci
+
+      - name: Build site
+        working-directory: site
+        run: npm run build
+        env:
+          # Resolve links under the git.soma Pages origin/subpath, e.g.
+          # https://git.soma.salesforce.com/pages/cx-labs/studio-skills/
+          GITHUB_ORIGIN: ${{ github.server_url }}
+          GITHUB_BASE_PATH: /pages/${{ github.repository }}
+
+      - name: Publish built output to gh-pages
+        working-directory: site
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node ../scripts/run-tsx.cjs ../scripts/publish-gh-pages.ts

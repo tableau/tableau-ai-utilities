@@ -1,0 +1,43 @@
+name: Deploy public site
+
+# Merging to main on github.com/tableau/tableau-ai-utilities builds the site
+# with live links and force-pushes the result to gh-pages. The job does not
+# run on git.soma. An admin still has to set Pages to the gh-pages branch.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: public-pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    if: github.repository == 'tableau/tableau-ai-utilities'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: site
+        run: npm ci
+
+      - name: Build site
+        working-directory: site
+        run: npm run build:prod
+
+      - name: Publish built output to gh-pages
+        working-directory: site
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_PAGES_TARGET: github
+        run: node ../scripts/run-tsx.cjs ../scripts/publish-gh-pages.ts

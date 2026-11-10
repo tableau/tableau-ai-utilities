@@ -1,0 +1,25 @@
+name: "New skill request"
+description: "Propose a new skill for the catalog."
+labels: ["new-skill", "needs-triage"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Proposed title
+      placeholder: Data Quality Review
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Proposed folder / frontmatter name
+      placeholder: data-quality-review
+    validations:
+      required: true
+  - type: textarea
+    id: when
+    attributes:
+      label: When should an agent use this skill?
+      description: One or two sentences. Becomes the frontmatter `description`.
+    validations:
+      required: true
