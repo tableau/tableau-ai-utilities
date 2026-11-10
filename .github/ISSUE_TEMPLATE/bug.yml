@@ -1,0 +1,39 @@
+name: "Skill bug"
+description: "A skill produces wrong, unsafe, or non-working guidance."
+labels: ["bug", "needs-triage"]
+body:
+  - type: input
+    id: skill_id
+    attributes:
+      label: Skill id
+      description: The skill folder / frontmatter `name`.
+      placeholder: data-quality-review
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Tableau surface
+      options: [desktop, cloud, server, public, prep]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Tableau version
+      placeholder: "2024.2"
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Reproducible prompt / transcript
+      description: The prompt you gave the agent and the (wrong) result.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true

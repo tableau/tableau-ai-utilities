@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tableau.github.io/tableau-ai-utilities/schema/skill.schema.json",
+  "title": "Agent Skill frontmatter",
+  "description": "Portable Agent Skills contract: YAML frontmatter of tableau-studio-skills/**/SKILL.md and tableau-mcp-skills/**/SKILL.md. Only name and description are required; other keys are ignored by this catalog.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["name", "description"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Kebab-case skill id; must match the folder name.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "description": "When to use this skill. Loaded as the agent's trigger."
+    }
+  }
+}

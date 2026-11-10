@@ -1,0 +1,119 @@
+# Desktop Spellcheck allow-list
+# One term per line. Case-sensitive matching. Lines starting with # are comments.
+# Add your own terms below. Keep this file in the skill's skill-expertise folder.
+# Keep a copy of your added terms before updating the skill; a new version replaces this file.
+
+# --- Tableau product & function names ---
+Tableau
+Tableau Cloud
+Tableau Server
+Tableau Desktop
+Tableau Pulse
+Tableau Prep
+VizQL
+LOD
+LODs
+COUNTD
+DATEDIFF
+DATEADD
+DATEPART
+DATETRUNC
+DATENAME
+MAKEPOINT
+MAKELINE
+FIXED
+INCLUDE
+EXCLUDE
+IFNULL
+ISNULL
+ZN
+ATTR
+RUNNING_SUM
+RUNNING_AVG
+RUNNING_MIN
+RUNNING_MAX
+WINDOW_SUM
+WINDOW_AVG
+LOOKUP
+INDEX
+FIRST
+LAST
+RANK
+RANK_DENSE
+PREVIOUS_VALUE
+TOTAL
+
+# --- Salesforce ecosystem ---
+Salesforce
+Slack
+MuleSoft
+Heroku
+Einstein
+CRM
+CDP
+Data Cloud
+Agentforce
+Trailhead
+Trailblazer
+Dreamforce
+CCO
+CTA
+
+# --- Common business acronyms ---
+KPI
+KPIs
+YoY
+QoQ
+MoM
+WoW
+YTD
+QTD
+MTD
+FY
+Q1
+Q2
+Q3
+Q4
+ARR
+MRR
+LTV
+CAC
+NPS
+CSAT
+SKU
+SKUs
+ID
+IDs
+UUID
+CSV
+JSON
+XML
+API
+SQL
+UI
+UX
+URL
+URLs
+
+# --- Time & date units ---
+AM
+PM
+UTC
+EST
+PST
+CST
+MST
+
+# --- Common jargon that's frequently mistaken for typos ---
+dashboarding
+drilldown
+drilldowns
+rollup
+rollups
+crosstab
+crosstabs
+extract
+extracts
+publisher
+subscriber
+subscribers

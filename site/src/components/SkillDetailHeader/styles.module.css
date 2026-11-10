@@ -1,0 +1,61 @@
+.banner {
+  margin: 0 0 1.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+}
+
+.name {
+  font-size: 0.9rem;
+}
+
+.tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.tagProtected {
+  background: #f5d000;
+  color: #3d3200;
+}
+
+.tagOverridable {
+  background: rgba(46, 133, 85, 0.16);
+  color: #1f7a4d;
+}
+
+[data-theme='dark'] .tagOverridable {
+  color: #6fdda0;
+}
+
+.download {
+  margin-left: auto;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.downloadIcon {
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
+
+.blurb {
+  margin: 0.55rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ifm-color-emphasis-700);
+}

@@ -1,0 +1,39 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci
+      - name: Schema + lint
+        run: npm run validate
+      - name: Evals
+        run: npm run run-evals
+      - name: Build index + site
+        run: npm run build:prod
+      - name: Public llms corpus matches the build
+        run: |
+          if ! git -C .. diff --ignore-cr-at-eol --quiet -- llms; then
+            git -C .. diff --ignore-cr-at-eol -- llms
+            echo "llms/ drifted from a public build. From site/, run npm run build:prod and commit llms/."
+            exit 1
+          fi
+          if git -C .. ls-files --others --exclude-standard -- llms | grep -q .; then
+            git -C .. ls-files --others --exclude-standard -- llms
+            echo "llms/ has untracked files from a public build. Commit them."
+            exit 1
+          fi

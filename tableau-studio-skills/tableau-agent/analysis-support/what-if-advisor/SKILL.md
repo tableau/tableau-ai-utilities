@@ -1,0 +1,175 @@
+---
+name: what-if-advisor
+description: "Use when the user says 'What if we doubled marketing spend?', 'add a scenario', 'projection on this trend', 'run a what-if'. Recommends the right built-in approach for a hypothetical (reference line, band, trend extension, set, scenario calc) with Desktop steps. Read-only."
+---
+
+# Tableau What-If Advisor
+
+Reads the author's what-if question, maps to a locked 6-mechanism catalog of non-parameter approaches, and emits numbered Desktop steps. Works around the Studio parameter-authoring weakness by routing to mechanisms the platform does support (reference lines, reference bands, trend-line extensions, set actions, dual-axis overlays, scenario calcs).
+
+## When to use (full trigger detail)
+
+Recommend the right non-parameter mechanism for a what-if analysis in Tableau. Author describes the hypothetical ("what if we doubled marketing spend", "what if churn dropped 10%"); skill maps to a locked 6-mechanism catalog (W1 reference line, W2 reference band, W3 trend line extension, W4 set-based scenario, W5 dual-axis overlay, W6 scenario calc) and delivers numbered Desktop steps. Explicitly avoids parameter authoring (platform-weak in Studio). Read-only advisory. Trigger on "what if analysis", "add a scenario", "double this number", "projection on this trend", "hypothetical scenario", "run a what if". Do NOT trigger for. parameter authoring (parameter work is deferred portfolio-wide), calc writing itself (route to calc-writer for W6 scenario calcs), dashboard interaction design (route to viz-planner), authoring or editing anything in Desktop (out of scope).
+
+## Reference files
+
+- **`skill-expertise/mechanism-catalog.md`.** The locked W1-W6 mechanism definitions with per-mechanism evidence signals and Desktop step blocks.
+- **`skill-expertise/question-classification.md`.** How to map an author's natural-language what-if question to the right W-mechanism, with example classifications.
+
+## When to use
+
+Author wants to add a scenario, hypothetical, or projection to a worksheet. Does not want to be routed to parameter authoring.
+
+## Hard Constraints
+
+- **HC-1 Read-only advisory.** The W6 scenario calc is handed off to calc-writer; this skill never writes a calc itself.
+- **HC-2 Locked W1-W6 catalog.** No ad-hoc mechanisms invented mid-run.
+- **HC-3 Never recommend parameter authoring.** Platform constraint. If a question genuinely requires a parameter (e.g., user-driven value selection with slider UI), say so plainly and route to the manual Desktop parameter path with the caveat that parameter authoring is unreliable in the current agent.
+- **HC-4 Honest "cannot do this within scope" verdict.** If the question requires a mechanism outside W1-W6, state the limitation.
+- **HC-5 Author declares the hypothetical value.** The skill does not invent business-realistic hypothetical values.
+- **HC-6 Trend extensions explicitly flagged as projections, not predictions.** No causality or forecasting claims.
+- **HC-7 Numbered Desktop steps per recommendation.**
+- **HC-8 Standalone-safe routing (W6 → calc-writer).**
+- **HC-9 No pasted URLs to community resources.**
+
+## Workflow
+
+**Tools used.** `list-dashboards` (to enumerate dashboards), `list-worksheets` (to confirm the target sheet exists), `list-available-fields` (to resolve the measures and dimensions on the target sheet), `get-worksheet-xml` (to read per-sheet shelf composition: Rows pills, Columns pills, Marks card, continuous-axis presence; the load-bearing read for W1 and W2 continuous-axis prerequisite, W3 time-dimension-on-Columns prerequisite, and W5 continuous-measure prerequisite). Note: `get-dashboard-xml` returns zone layout only, not shelf-level data, and cannot be used to confirm continuous-axis or time-dimension prerequisites.
+
+Steps:
+
+1. Ask the author to state the what-if question in plain language.
+2. Ask the author to name the target sheet. Sheet declaration is optional for all W1-W6 mechanisms, not just W6: if the author wants a general mechanism recommendation first, proceed on the question text alone and flag prerequisites as unverified (same wording as the `get-worksheet-xml` failure row below). Only block on a named sheet when the author asks for a verified fit.
+3. If a target sheet is named: call `list-worksheets` to confirm it exists, then `list-available-fields` to resolve its measures and dimensions, then `get-worksheet-xml` on the target sheet to read its shelf composition. Do not rely on `get-dashboard-xml` for prerequisite checks; it carries zone layout only.
+4. Classify the question against W1-W6 using the rules in `question-classification.md`.
+5. If the question maps to parameter authoring (not W1-W6), emit the HC-3 honest-limitation verdict with the manual Desktop parameter path.
+6. If the question maps to W1-W6, emit the mechanism recommendation and numbered Desktop steps.
+7. For W6, emit the handoff to calc-writer with seed values (field, aggregation, hypothetical value from the author).
+
+## Error Handling
+
+Every recovery path below delivers partial value, never a bare refusal. Name the failure plainly, deliver what the skill can still do, and flag anything downgraded so the author knows the output is incomplete.
+
+| Failure | Cause | Recovery |
+|---|---|---|
+| No workbook open (`list-dashboards` or `list-worksheets` returns empty or errors) | No workbook open, Studio tool failure, or workbook has zero worksheets | State plainly that no workbook or worksheets were found. Offer to walk through `mechanism-catalog.md` and `question-classification.md` as reading reference until a workbook is open. Do not fabricate a classification. |
+| Author declines to name the target sheet | Author wants a mechanism recommendation without declaring the sheet | Call `list-worksheets` and offer the first candidate sheets with continuous axes (based on `get-worksheet-xml` reads). State plainly: "You did not name a target sheet. Candidates with continuous axes: [Sheet A], [Sheet B], [Sheet C]. Say 'use [name]' and I will proceed. If no candidate fits, name a different sheet." Do not pick for the author on W1-W5. For a general W6 scenario calc question (reusable field), the sheet declaration is optional; proceed to the calc-writer handoff. |
+| Target sheet has no continuous axis | W1 or W2 prerequisite fails | State plainly: "[Sheet name] has no continuous axis, so W1 (reference line) and W2 (reference band) cannot apply. Based on the sheet's structure, I can offer W4 (set-based scenario on a dimension), W5 (dual-axis overlay with a hypothetical calc), or W6 (scenario calc as a reusable field). Which would you like?" Deliver the viable mechanisms; do not refuse. |
+| Target sheet has no time dimension on Columns | W3 prerequisite fails | State plainly: "[Sheet name] has no time dimension on Columns, so W3 (trend line extension) cannot project forward. Alternatives: W1 (reference line at a hypothetical value), W5 (dual-axis overlay with a hypothetical calc), or W6 (scenario calc). Which fits?" Do not force W3 onto a non-time viz. |
+| Author declines to declare the hypothetical value | HC-5 forbids inventing values | State plainly: "I will not invent a business-realistic hypothetical value (HC-5). Options: (1) state a value and I will use it in the Desktop steps, (2) proceed with a placeholder `[VALUE]` in the steps and you replace it before executing, or (3) tell me the baseline (e.g., current revenue) and the shift (e.g., +10%) and I will calculate the hypothetical." Default to option 2 if the author does not choose; announce the placeholder plainly. |
+| Author's question is ambiguous (matches 2 or more classification rules) | Rule-overlap in question-classification.md | Ask exactly one clarifying question per the "Ambiguous questions" section of question-classification.md. Example: "Do you want a line at a specific value (W1), or the projected trend extended into the future (W3)?" Classify based on the answer. Do not pick for the author. |
+| Author's question maps to parameter-authoring (Rule 7) | Platform constraint (HC-3) | Honest-limitation verdict: "This question needs user-driven value selection, which requires a parameter. Parameter authoring is unreliable in the current agent. Manual Desktop path: Data pane right-click, Create Parameter, set data type and allowable values, OK; then right-click the parameter, Show Parameter, and reference it in a calc with `[Parameter Name]`. If a close-enough W1-W6 fit would unblock you (fixed value instead of adjustable), say so and I will offer it." Deliver the manual path; never refuse. |
+| Author's question is Monte Carlo (Rule 8) | Out of scope | Honest-limitation: "Monte Carlo simulation is out of scope. Options: (1) model externally in R, Python, or Excel and import the result set back into Tableau as a datasource, or (2) run a single-point W6 scenario calc for the midpoint of your range as a partial answer." Offer the W6 fallback explicitly. |
+| Author's question is predictive (Rule 9) | Out of scope | Honest-limitation: "The skill does not support predictive modeling. Tableau's Forecast feature on the Analytics pane is the closest in-platform option. Right-click the viz, Forecast, Show Forecast; then edit forecast model and confidence bounds. I can also offer W3 (trend line extension) as a projection, which is weaker than Forecast but faster to apply. Which fits?" Point to the right native feature; deliver the W3 fallback as an option. |
+| Author asks the skill to write the W6 calc itself | HC-1 (read-only advisory) | Convert the request: "I recommend; I do not write calcs. Here is the formula template seeded with your values: `[Base Measure] * (1 + [Hypothetical Rate])`. If `calc-writer` is installed, hand off to it with these seed values; otherwise paste into Tableau's calc editor manually (Data pane right-click, Create Calculated Field, paste, name, OK)." Deliver the template; do not block the author on calc-writer availability. |
+| `get-worksheet-xml` returns empty or errors on the target sheet | Studio tool error, sheet not saved after last change, or sheet is a dashboard-bound sheet with no standalone XML | Fall back to classification based on the author's declared field names and the question's natural-language shape. State plainly: "Could not read shelf composition for [sheet]. Classification will be based on your question wording only; prerequisite checks (continuous axis, time dimension on Columns) are not verified. Verify fit before executing Desktop steps." Degrade; do not fabricate a verified-fit confirmation. |
+| Opt-in file save fails | Filesystem permissions, path collision, disk full, or user cancels | Emit the full mechanism recommendation and Desktop steps inline in chat regardless of save status. State the save failure plainly with path and error. Never gate the output on the save succeeding. Default save location is the user's Downloads folder. |
+| Author asks for a mechanism not in W1-W6 ("do a what-if with a slider widget", "run a sensitivity table") | HC-4 scope-boundary | Honest-limitation per HC-4: "Mechanism outside W1-W6. [For slider: route to parameter-authoring honest-limitation path above. For sensitivity table: suggest external modeling or a hand-built matrix in a worksheet with multiple W6 calc fields.] If one of W1-W6 would partially satisfy, I can offer it; just say the word." Convert the gap into a scoped offer; do not refuse flat. |
+
+## Mechanism catalog summary (full catalog in mechanism-catalog.md)
+
+- **W1 Reference line.** Static value drawn as a line on a continuous axis. Use for "target line," "break-even," "last-year baseline."
+- **W2 Reference band.** Range drawn as a shaded band. Use for "acceptable zone," "quartile range," "forecast corridor."
+- **W3 Trend line extension.** Linear or non-linear trend projection via Analytics pane. Use for "where will this be in 6 months at current rate." Must be flagged as projection, not prediction (HC-6).
+- **W4 Set-based scenario.** Membership comparison via sets and set actions. Use for "customers who would move into the top-N if their revenue grew 10%."
+- **W5 Dual-axis overlay.** Actual vs. hypothetical as two measures on the same chart. Use for "actual revenue vs. revenue if we hit target."
+- **W6 Scenario calc.** Fixed-value calc field encoding a one-off hypothetical. Use for "revenue if every customer spent 20% more." Handed off to calc-writer for actual authoring.
+
+## Output format
+
+1. **What-if question confirmed and classified.** State the question back and the W-mechanism it maps to.
+2. **Why this mechanism.** 1-2 sentences explaining why W-N is the right fit.
+3. **Numbered Desktop steps.** From the catalog.
+4. **If W6: handoff block.** Seed values (field, aggregation, hypothetical value, calc-name suggestion) for calc-writer.
+5. **Caveat section.** What this analysis does NOT prove. Especially critical for W3 (projection, not prediction) and W4 (membership, not causation).
+6. **If parameter-only: honest limitation.** State that W1-W6 cannot answer this question in-scope. Provide the manual Desktop parameter path with the caveat about agent reliability.
+
+## Worked example
+
+**Author's question.** "If we doubled marketing spend, where would revenue land in 6 months at the current rate?"
+
+**Target sheet.** "Monthly Revenue Trend" (continuous time dimension on Columns, SUM(Revenue) on Rows).
+
+**Skill output.**
+
+```
+What-if question confirmed: "If we doubled marketing spend, where would
+revenue land in 6 months at the current rate."
+Classification: W3 trend line extension (projection, not prediction).
+Target sheet: Monthly Revenue Trend (continuous time on Columns,
+SUM(Revenue) on Rows). Prerequisites verified via get-worksheet-xml.
+
+Why W3. The question asks where revenue lands under a continued-rate
+assumption, which maps to extending the current slope forward. Note:
+this does not model the causal effect of doubling marketing spend; it
+only extends the trend you already have. If you want the hypothetical
+spend to influence the slope, that is a W6 scenario calc instead.
+
+Desktop steps.
+1. On Monthly Revenue Trend, click the Analytics pane.
+2. Drag Trend Line onto the viz. Choose Linear.
+3. Right-click the X-axis, Edit Axis. Set Range to Fixed and extend
+   the "to" value forward 6 months past the last data point.
+4. Add an annotation at the extended point naming the projected value
+   and the method ("Linear projection, +6 months").
+
+Caveats.
+This is a projection, not a prediction (HC-6). The trend line extends
+the current slope under the assumption that no conditions change. The
+hypothetical "doubled marketing spend" is NOT encoded in this trend
+extension; it is a background intent, not a modeled input. Use this to
+orient the conversation about whether the current rate hits your 6-month
+target. If you need the hypothetical to actually influence the slope,
+switch to W6 and I will set up the scenario calc.
+
+File save: .md, .txt, or chat only?
+```
+
+## Validation Gate
+
+- **V1.** Author's question is restated before classification.
+- **V2.** Classified against W1-W6 (or explicitly flagged as parameter-only).
+- **V3.** If the author asked for a verified-fit recommendation, the target sheet is named and prerequisites are read via `get-worksheet-xml`. If the author asked for a general mechanism recommendation first (sheet declaration optional per Workflow Step 2), V3 passes when the output explicitly announces "prerequisites unverified" and names which prerequisites would need checking before executing Desktop steps.
+- **V4.** Numbered Desktop steps match the catalog block for the recommended mechanism.
+- **V5.** W3 output flags "projection, not prediction" explicitly (HC-6).
+- **V6.** Caveat section present on every output.
+- **V7.** No URLs pasted.
+- **V8.** No parameter-authoring recommendation outside the honest-limitation path (HC-3).
+
+## Anti-patterns
+
+- Routing to parameter authoring without the honest-limitation framing.
+- Inventing a W7+ mechanism not in the catalog.
+- Fabricating a business-realistic hypothetical value (HC-5).
+- Claiming W3 trend extensions predict the future.
+- Skipping the caveat section.
+- Running W6 without the calc-writer handoff.
+- Emitting a mechanism recommendation without numbered Desktop steps.
+
+## Composability
+
+Standalone-safe.
+
+| Situation | Route target (if installed) | Manual fallback |
+|---|---|---|
+| W6 scenario calc authoring | `calc-writer` | Author writes the calc manually using the seed values; the skill provides the formula template |
+| Author wants to debug the W6 calc after | `calc-debugger` | Author tests the calc on a small subset manually |
+| Author wants to optimize the W6 calc | `calc-optimizer` | Author checks the Performance Hierarchy manually |
+| Author wants the full dashboard redesign | `viz-planner` | Author plans the dashboard change manually |
+
+## Standalone use
+
+The W1-W5 Desktop steps are fully self-contained. W6 degrades to a formula template the author pastes into Tableau's calc editor manually.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.

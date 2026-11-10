@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://anthropic.com/claude-code/plugin.schema.json",
+  "title": "Claude plugin manifest",
+  "description": "Contract for a plugin's .claude-plugin/plugin.json, following the Claude Code plugin architecture.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["name", "version", "description"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": {
+      "type": "string",
+      "description": "Unique plugin name (kebab-case). Mirrors the plugin folder name.",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "SemVer for the plugin.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "homepage": { "type": "string" },
+    "repository": { "type": "string" },
+    "license": { "type": "string" },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "skills": { "type": "string", "description": "Path override for the skills/ directory." },
+    "commands": { "type": "string", "description": "Path override for the commands/ directory." },
+    "agents": { "type": "string", "description": "Path override for the agents/ directory." },
+    "hooks": { "type": "string", "description": "Path override for the hooks config." },
+    "mcpServers": { "type": "string", "description": "Path override for the MCP server config." }
+  }
+}

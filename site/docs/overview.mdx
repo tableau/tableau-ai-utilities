@@ -1,0 +1,80 @@
+---
+id: overview
+slug: /
+sidebar_label: Overview
+sidebar_position: 0
+title: "%site_title%"
+description: Skills that change how Tableau Agent authors, checks, and ships workbooks — and how you customize that default behavior.
+---
+
+# %site_title%
+
+This site and its open source repo contain Tableau skills for enhancing your agent's use of [Tableau MCP](ext://mcp/docs/intro) and desktop [Tableau Studio](ext://studio/tableau-studio-basics.html) capabilities. Skills are what give it judgment: when to use which approach, what to verify before moving on, and how to recover when something does not apply.
+
+A skill is a folder with a `SKILL.md` file and a `skill-expertise/` subfolder that can contain key context for the skill. Each skill has an overview page with useful information for humans about what the skill does and how to use and troubleshoot it. The skill file has a short description at the top tells the agent **when** to use it. The body tells it **how**. The skill expertise contains supporting notes that an agent only spends tokens to open them when the skill says to.
+
+Every approved skill passes the same six discipline checks: locked thresholds, spelled-out tool sequences, documented platform gaps, explicit separation of agent action from user action, verification after every change, and short SKILL.md with details moved to references.
+
+### Tableau Studio Skills
+
+Tableau Studio is a feature of Tableau Desktop that adds a harness for Tableau MCP authoring skills to Tableau Agent. The feature is available to anyone with a Tableau + license and the creator role or above. The skills under this category are crafted specifically to work with the Tableau Agent harness.
+
+You can install the skills in this repo through the Tableau Exchange from within the Tableau Agent UI. Alternatively, you can download them from this repo and use that UI to place them in the`My Tableau Repository/Tableau Agent/Skills/` directory, open Tableau Studio and run the `/reload-skill` skill, they become available to Tableau Agent in Tableau Studio.
+
+:::note
+
+While you can edit the details most skills you add to Tableau Studio to suit your needs, some skills in this repo are labelled **EDIT WITH CAUTION**. These skills are well tuned to the agent in Tableau Studio and changing them is not recommended.
+
+:::
+
+### Tableau MCP skills
+
+Download and use the Tableau MCP Skills in this repo to enhance your Claude or Codex agent's ability to use the MCP's Tableau authoring tools. 
+
+:::note 
+
+You can also find the Tableau Plugin for enhancing use of a range of Tableau MCP tools, including authoring, in the Claude Marketplace and Codex Marketplace, or [directly in Git Hub](https://github.com/tableau/tableau-plugin).
+
+:::
+
+### Finding skills
+
+[Search Skills](/skills) lists the skills available for download from this site. 
+
+### Tableau Studio vendored skills
+
+Vendored skills are shipped in the Tableau Studio product that define key default behaviors of the agent. You can find them in `My Tableau Repository/Tableau Agent/Skills/.vendored` directory under the `Overridable/` and  `Protected/` folders.
+
+Protected skill files hold core Tableau Agent behavior and are rebuild at the start of every session. These cannot be overridden or modified.
+
+Overrideable skills are ones that you can modify to change default Tableau Agent behavior to suit your needs. When you place a well-formed skill in the `My Tableau Repository/Tableau Agent/Skills/` root, with it's top-level folder name matching an overrideable skill, it will be used instead of the one in the `Overrideable/` folder.
+
+To change an overridable skill:
+
+- Edit the description if it should fire on different phrases.
+- Edit the body to change steps, thresholds, or naming rules.
+- Add supporting files under `references/` and point to them from the body instead of pasting long specs into `SKILL.md`.
+- Reload skills in Tableau Agent so the running session picks up the override.
+
+You can also add a **new** skill the same way: a new folder name, a `SKILL.md` with a clear description of when to use it, and a short body. In Tableau Agent, Skill Creator walks you through that, or you can write the files by hand.
+
+## Contribute
+
+This catalog is the shared, public set. To add or change a skill here, open a pull request against `tableau-studio-skills/` or `tableau-mcp-skills/`.
+
+Patterns that keep a skill reliable:
+
+1. **Lock thresholds.** "Flag if more than 10% of values look like dates" beats "look for issues."
+2. **Spell out the steps.** Name the tools and order, then verify.
+3. **Document what does not work**, and what to do instead.
+4. **Separate what the agent does from what you do in the product.** If a step cannot be applied automatically, say so and give the menu path.
+5. **Verify after every change.** If verification is not possible, say "Unable to verify" rather than continuing silently.
+6. **Keep `SKILL.md` short.** Move long catalogs, examples, and schemas into `references/` and link them.
+7. **[Run skill-testing-matrix](./tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix).** Get a guided 20 to 30 prompt matrix and walk your skill through it on Desktop. Fix anything that breaks. Behavioral evidence lifts your grade and lands your skill faster in review. 
+8. **Copy the chat** and include it as a txt file in your PR root folder.
+
+## Related documentation
+
+- [Get started with Tableau Agent](ext://studio/get-started-with-tableau-agent.html)
+- [Customize Tableau Agent](ext://studio/customize-tableau-agent.html)
+- [Tableau MCP](ext://mcp/docs/intro)

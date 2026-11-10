@@ -1,0 +1,22 @@
+name: "Skill improvement"
+description: "Suggest an enhancement to an existing skill."
+labels: ["improvement", "needs-triage"]
+body:
+  - type: input
+    id: skill_id
+    attributes:
+      label: Skill id
+      placeholder: data-quality-review
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: What should change and why?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / example
+      description: A prompt + transcript showing the current behavior fall short.

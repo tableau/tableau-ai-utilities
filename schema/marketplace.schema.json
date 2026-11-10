@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "title": "Claude plugin marketplace",
+  "description": "Contract for a marketplace's .claude-plugin/marketplace.json, following the Claude Code plugin architecture. Each entry categorizes and locates a plugin.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["name", "owner", "plugins"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "owner": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["name", "source", "description", "category"],
+        "properties": {
+          "name": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "source": { "type": "string", "description": "Relative path (or object) locating the plugin." },
+          "description": { "type": "string", "minLength": 10 },
+          "category": {
+            "type": "string",
+            "description": "Single marketplace category the plugin is filed under.",
+            "enum": [
+              "authoring",
+              "data-modeling",
+              "configuration",
+              "management",
+              "administration",
+              "analytics",
+              "troubleshooting"
+            ]
+          },
+          "keywords": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true
+          },
+          "author": {
+            "type": "object",
+            "properties": { "name": { "type": "string" }, "email": { "type": "string" } }
+          },
+          "homepage": { "type": "string" }
+        }
+      }
+    }
+  }
+}
