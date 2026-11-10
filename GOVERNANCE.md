@@ -24,7 +24,7 @@ restores that public blob, plus `LICENSE.txt`, `CODE_OF_CONDUCT.md`,
 
 - git.soma `development`, or `npm run deploy:preview` from `site/`, publishes the internal preview to git.soma `gh-pages` with stage links.
 - A push to git.soma `main` runs [`scripts/publish-public.ts`](./scripts/publish-public.ts). It pushes branch `from-soma-main` on the public repo and opens or updates a pull request. It does not merge that pull request.
-- Merging the public pull request runs [`.github/workflows/pages.yml`](./.github/workflows/pages.yml), which builds `https://tableau.github.io/tableau-ai-utilities/` (live Help links) and force-pushes public `gh-pages`.
+- Merging the public pull request runs [`.github/workflows/pages.yml`](./.github/workflows/pages.yml), which force-pushes public `gh-pages` with live Help links. While `tableau/tableau-ai-utilities` is private, that build uses base path `/` so the private Pages host can load it. A public repository keeps `/tableau-ai-utilities/`. Making the repository public runs the workflow again.
 
 [`scripts/publish-gh-pages.ts`](./scripts/publish-gh-pages.ts) copies the checkout's `CODEOWNERS` into the Pages tree. The git.soma target requires the EAR99 header. The github.com target requires the Open Source header and refuses the EAR99 header.
 
