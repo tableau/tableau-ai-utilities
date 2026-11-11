@@ -16,8 +16,6 @@
     "prebuild": "npm run build-indexes",
     "build": "docusaurus build",
     "build:prod": "node ../scripts/run-tsx.cjs ../scripts/build-prod.ts",
-    "deploy:preview": "node ../scripts/run-tsx.cjs ../scripts/deploy-preview.ts",
-    "publish:public": "node ../scripts/run-tsx.cjs ../scripts/publish-public.ts",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

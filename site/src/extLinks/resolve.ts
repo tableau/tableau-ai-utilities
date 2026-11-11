@@ -11,18 +11,8 @@ import {VARIABLES} from '../remark/variables.mjs';
 
 export const OFFICIAL_ORIGIN = 'https://tableau.github.io';
 export const OFFICIAL_REPO_URL = 'https://github.com/tableau/tableau-ai-utilities';
-export const PREVIEW_REPO_HOST = 'https://git.soma.salesforce.com';
-export const PREVIEW_REPO_SLUG = 'cx-labs/studio-skills';
-export const PREVIEW_REPO_URL = `${PREVIEW_REPO_HOST}/${PREVIEW_REPO_SLUG}`;
 /** Public GitHub Pages base path. Also the default when GITHUB_BASE_PATH is unset. */
 export const PUBLIC_BASE_PATH = '/tableau-ai-utilities';
-/**
- * deploy-preview sentinel. Callers pass this instead of the git.soma Pages path
- * so the resolved base stays in one place.
- */
-export const PREVIEW_BASE_SENTINEL = 'preview';
-/** git.soma Pages path for this repo. */
-export const PREVIEW_BASE_PATH = `/pages/${PREVIEW_REPO_SLUG}`;
 export const EXT_COMING_RELEASE = VARIABLES.coming_release;
 
 export const EXT_SITES = ['studio', 'eca', 'mcp', 'extensions', 'packages'] as const;
@@ -74,12 +64,11 @@ function stripTrailingSlash(path: string): string {
 }
 
 /**
- * Base path for this build. `preview` is the git.soma Pages sentinel.
+ * Base path for this build.
  * Unset or empty defaults to the public GitHub Pages path.
  */
 export function siteBasePathFromEnv(githubBasePath: string | undefined): string {
   if (githubBasePath === undefined || githubBasePath === '') return PUBLIC_BASE_PATH;
-  if (githubBasePath === PREVIEW_BASE_SENTINEL) return PREVIEW_BASE_PATH;
   const withSlash = githubBasePath.startsWith('/') ? githubBasePath : `/${githubBasePath}`;
   return stripTrailingSlash(withSlash);
 }
@@ -111,28 +100,6 @@ export function isPublicCorpusBuild(githubOrigin: string | undefined, githubBase
   );
 }
 
-/**
- * Source-repo URL for navbar / footer / edit links.
- * Official GitHub Pages builds point at github.com; preview (unset
- * GITHUB_ORIGIN, git.soma CI, local start) points at the git.soma repo.
- */
-export function githubRepoUrlFromGithubOrigin(
-  githubOrigin: string | undefined,
-  serverUrl?: string,
-  repository?: string,
-): string {
-  if (githubOrigin === OFFICIAL_ORIGIN) return OFFICIAL_REPO_URL;
-  const server = (serverUrl ?? PREVIEW_REPO_HOST).replace(/\/$/, '');
-  const repo = repository ?? PREVIEW_REPO_SLUG;
-  return `${server}/${repo}`;
-}
-
-export function githubRepoUrlForViewer(viewer: ViewerEnv, baked: string): string {
-  if (viewer === 'prod') return OFFICIAL_REPO_URL;
-  if (viewer === 'stage') return PREVIEW_REPO_URL;
-  return baked;
-}
-
 export function classifyHostname(hostname: string, pathname = ''): ViewerEnv {
   const host = hostname.toLowerCase();
   if (isHelpV0Stage(host, pathname)) {
@@ -140,12 +107,6 @@ export function classifyHostname(hostname: string, pathname = ''): ViewerEnv {
   }
   if (PROD_HOSTS.has(host)) return 'prod';
   if (host === 'localhost' || host === '127.0.0.1') return 'stage';
-  if (host === 'git.soma.salesforce.com' || host.endsWith('.git.soma.salesforce.com')) {
-    return 'stage';
-  }
-  if (host === 'tabint.net' || host.endsWith('.tabint.net')) {
-    return 'stage';
-  }
   return 'unknown';
 }
 
