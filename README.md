@@ -24,11 +24,7 @@ Local preview is served under `/tableau-ai-utilities/` (the public GitHub Pages 
 - Download links on each skill page use this site's origin and base path
 - Plugins appear in the left nav only when `plugins/` contains a plugin
 
-Publishing has two remotes. Commands run from `site/` and work on Windows, macOS, and Linux.
-
-- Internal preview: `npm run deploy:preview` builds stage links and pushes git.soma `gh-pages` ([git.soma Pages](https://git.soma.salesforce.com/pages/cx-labs/studio-skills/)). A push to `development` does not publish by itself while GitHub Actions is unavailable on git.soma.
-- Public source: a merge to git.soma `main` opens or updates a pull request on [tableau/tableau-ai-utilities](https://github.com/tableau/tableau-ai-utilities). Until Actions and `PUBLIC_GITHUB_TOKEN` are available, run `npm run publish:public` from this clone. It fetches `origin/main` and publishes that commit.
-- Public site: merging that pull request builds live links and pushes the public `gh-pages` branch, served at [tableau.github.io/tableau-ai-utilities](https://tableau.github.io/tableau-ai-utilities/).
+Merging to `main` builds the site with live links and pushes the `gh-pages` branch, served at [tableau.github.io/tableau-ai-utilities](https://tableau.github.io/tableau-ai-utilities/).
 
 ## Validate
 

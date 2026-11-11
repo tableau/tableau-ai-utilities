@@ -1,7 +1,7 @@
 /**
  * Navbar GitHub link whose href follows the viewer environment:
  * github.io → github.com/tableau/tableau-ai-utilities;
- * local / git.soma preview → git.soma.salesforce.com/cx-labs/studio-skills.
+ * local / internal preview → the internal preview repo.
  */
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
