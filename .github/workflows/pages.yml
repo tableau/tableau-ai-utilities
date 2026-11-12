@@ -1,8 +1,8 @@
 name: Deploy public site
 
 # Merging to main on github.com/tableau/tableau-ai-utilities builds the site
-# with live links and force-pushes the result to gh-pages. The job does not
-# run on git.soma. An admin still has to set Pages to the gh-pages branch.
+# with live links and force-pushes the result to gh-pages. An admin still has
+# to set Pages to the gh-pages branch.
 # A private repository is served at the root of its *.pages.github.io host, so
 # that build uses base path /. Making the repository public rebuilds with
 # /tableau-ai-utilities/, which build:prod uses when GITHUB_BASE_PATH is unset.

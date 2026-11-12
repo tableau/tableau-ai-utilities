@@ -2,8 +2,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import {
-  githubRepoUrlFromGithubOrigin,
   OFFICIAL_ORIGIN,
+  OFFICIAL_REPO_URL,
   outboundEnvFromGithubOrigin,
   siteBaseUrlFromEnv,
   siteOriginFromEnv,
@@ -12,9 +12,8 @@ import remarkExtLinks from './src/remark/extLinks.mjs';
 import remarkVariables, {applyVariables, VARIABLES} from './src/remark/variables.mjs';
 
 // The official public GitHub Pages origin. Any build whose GITHUB_ORIGIN is not
-// this value is treated as an unofficial (e.g. an internal enterprise preview)
-// build: it is served under a different base path and marked noIndex so it
-// cannot be crawled or mistaken for the public site. Defaults preserve the
+// this value is treated as an unofficial build (e.g. a fork): it is served
+// under a different base path and marked noIndex so it cannot be crawled or mistaken for the public site. Defaults preserve the
 // public build at https://tableau.github.io/tableau-ai-utilities/.
 const githubOrigin = siteOriginFromEnv(process.env.GITHUB_ORIGIN);
 const isOfficial = githubOrigin === OFFICIAL_ORIGIN;
@@ -22,13 +21,8 @@ const baseUrl = siteBaseUrlFromEnv(process.env.GITHUB_BASE_PATH);
 // Outbound sibling-docs env is independent of chrome: unset GITHUB_ORIGIN
 // (local start/build) selects stage bases, even though chrome defaults official.
 const extLinkEnv = outboundEnvFromGithubOrigin(process.env.GITHUB_ORIGIN);
-// Navbar/footer/edit "GitHub" links: official origin → github.com; preview
-// (unset GITHUB_ORIGIN, git.soma CI, local start) → git.soma repo.
-const githubRepoUrl = githubRepoUrlFromGithubOrigin(
-  process.env.GITHUB_ORIGIN,
-  process.env.GITHUB_SERVER_URL,
-  process.env.GITHUB_REPOSITORY,
-);
+// Navbar/footer/edit "GitHub" links always point at the public repo.
+const githubRepoUrl = OFFICIAL_REPO_URL;
 const [githubOrg, githubProject] = githubRepoUrl.replace(/\/$/, '').split('/').slice(-2);
 
 const config: Config = {
@@ -134,7 +128,7 @@ const config: Config = {
       },
       items: [
         {
-          type: 'custom-github',
+          href: githubRepoUrl,
           label: 'GitHub',
           position: 'right',
         },

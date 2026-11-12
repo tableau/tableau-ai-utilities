@@ -518,7 +518,7 @@ def test_check_report_dir_writes_bundle(tmp: Path):
 
 
 def test_check_reports_list_every_hit(tmp: Path):
-    # W-24599017: the chat reply caps each severity group at 5; the saved
+    # Regression: the chat reply caps each severity group at 5; the saved
     # reports must still list every issue, with no "...and N more" line.
     path = _write_twb(tmp)
     usage = wbo.build_usage(path.read_text())

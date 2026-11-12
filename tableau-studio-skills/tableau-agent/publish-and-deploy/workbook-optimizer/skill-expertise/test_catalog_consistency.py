@@ -369,7 +369,7 @@ def test_session_working_dir_and_naming():
 
 
 def test_chat_reply_keeps_actions_section():
-    # W-24599017: Actions was dropped once when the reply was shortened.
+    # Regression: Actions was dropped once when the reply was shortened.
     m = OUTPUT_FORMAT_RE.search(skill_text())
     assert m, "SKILL.md must contain an Output Format (Chat) section"
     section = m.group(1)
@@ -483,7 +483,7 @@ def test_chat_reply_keeps_actions_section():
 
 
 def test_chat_overview_is_capped_but_pick_lists_are_full():
-    # W-24599017: a complex workbook made the reply too long to read.
+    # Regression: a complex workbook made the reply too long to read.
     text = skill_text()
     m = OUTPUT_FORMAT_RE.search(text)
     assert m, "SKILL.md must contain an Output Format (Chat) section"
