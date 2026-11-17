@@ -1,0 +1,337 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Construct Pattern Library | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Construct Pattern Library | Tableau AI Utilities"/><meta data-rh=true name=description content="Reference lookup for Tableau construction patterns. Two sections:"/><meta data-rh=true property=og:description content="Reference lookup for Tableau construction patterns. Two sections:"/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/","name":"Logic Explainer","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library","name":"construct_pattern_library.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.fc7a4f13.js defer></script><script src=/tableau-ai-utilities/assets/js/main.526af1e5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Logic Explainer" class=categoryLinkLabel_W154>Logic Explainer</span></a><button aria-label="Collapse sidebar category 'Logic Explainer'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library><span title=construct_pattern_library.md class=linkLabel_WmDU>construct_pattern_library.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/output_template><span title=output_template.md class=linkLabel_WmDU>output_template.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/worked_examples><span title=worked_examples.md class=linkLabel_WmDU>worked_examples.md</span></a></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator><span title="Calc Orchestrator" class=categoryLinkLabel_W154>Calc Orchestrator</span></a><button aria-label="Expand sidebar category 'Calc Orchestrator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/dashboard-walkthrough-generator><span title="Tableau Dashboard Walkthrough Generator" class=categoryLinkLabel_W154>Tableau Dashboard Walkthrough Generator</span></a><button aria-label="Expand sidebar category 'Tableau Dashboard Walkthrough Generator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/inheritance-triage><span title="Tableau Inheritance Triage" class=categoryLinkLabel_W154>Tableau Inheritance Triage</span></a><button aria-label="Expand sidebar category 'Tableau Inheritance Triage'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/stakeholder-translator><span title="Tableau Stakeholder Translator" class=categoryLinkLabel_W154>Tableau Stakeholder Translator</span></a><button aria-label="Expand sidebar category 'Tableau Stakeholder Translator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/what-if-advisor><span title="Tableau What-If Advisor" class=categoryLinkLabel_W154>Tableau What-If Advisor</span></a><button aria-label="Expand sidebar category 'Tableau What-If Advisor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/workbook-summary-onepager><span title="Workbook Summary Onepager" class=categoryLinkLabel_W154>Workbook Summary Onepager</span></a><button aria-label="Expand sidebar category 'Workbook Summary Onepager'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Analysis Support</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span>Logic Explainer</span></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Skill Expertise</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>construct_pattern_library.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Logic Explainer catalog details"><div class=row_T3bp><code class=name_A6OT>logic-explainer</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/logic-explainer.zip download=logic-explainer.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Construct Pattern Library</h1></header>
+<p>Reference lookup for Tableau construction patterns. Two sections:</p>
+<ul>
+<li class=""><strong>Section A — Chart-Shape Idioms.</strong> Three-layer hierarchy for recognizing what a view is <em>doing</em> visually. Identify Layer 0 first, always; Layers 1 and 2 modify or extend that backbone.</li>
+<li class=""><strong>Section B — Construct Patterns.</strong> Common LOD, table calc, filter, action, set, and dynamic zone visibility shapes and their typical "why." Consult after Section A to explain the mechanics behind the idiom.</li>
+</ul>
+<p>Match idioms by <strong>structural fingerprint</strong> (mark type, shelf contents, function combinations), never by field name. Names vary too much across authors to fingerprint reliably. A calc named <code>Keep Companies</code> is a <em>narrative seed</em>, not a match key.</p>
+<p>When a view matches nothing below, say so plainly and fall back to a literal shelf description. A low-confidence honest answer beats a confident wrong one.</p>
+<p>When a real pattern is missing, add it here in the same format rather than solving it inline.</p>
+<hr/>
+<h1>Section A — Chart-Shape Idioms</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=layer-0--foundational-chart-types>Layer 0 — Foundational chart types<a href=#layer-0--foundational-chart-types class=hash-link aria-label="Direct link to Layer 0 — Foundational chart types" title="Direct link to Layer 0 — Foundational chart types" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=bar--column-chart>Bar / column chart<a href=#bar--column-chart class=hash-link aria-label="Direct link to Bar / column chart" title="Direct link to Bar / column chart" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> One discrete dimension on one axis (rows or columns), one continuous measure on the other, mark type Bar.
+<strong>Reads as:</strong> Ranks or compares a measure across discrete categories. Orientation just follows which shelf holds the dimension.
+<strong>Template:</strong> "compares [measure] across each [category]" (+ ", sorted by [sort basis]" if a sort is applied)</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=single-trend-line>Single trend line<a href=#single-trend-line class=hash-link aria-label="Direct link to Single trend line" title="Direct link to Single trend line" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> One continuous date/period on one axis, one continuous measure on the other, mark type Line, no color-splitting dimension (or a single member only).
+<strong>Reads as:</strong> How one measure moved over time. No cross-entity comparison.
+<strong>Template:</strong> "shows how [measure] has changed over [timeframe]"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=multi-line-trend-raw-not-normalized>Multi-line trend (raw, not normalized)<a href=#multi-line-trend-raw-not-normalized class=hash-link aria-label="Direct link to Multi-line trend (raw, not normalized)" title="Direct link to Multi-line trend (raw, not normalized)" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Same as single trend, plus a color-legend dimension producing multiple lines, and <em>no</em> normalization formula (raw SUM/AVG, not divided by window min/max).
+<strong>Reads as:</strong> Direct side-by-side trend comparison across entities at raw magnitude.
+<strong>Template:</strong> "compares [measure] trends across [entities] directly, at actual scale"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=scatter-plot>Scatter plot<a href=#scatter-plot class=hash-link aria-label="Direct link to Scatter plot" title="Direct link to Scatter plot" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Two continuous measures, one per axis, mark type Circle/Shape, typically with a dimension on Detail or Color for point identity.
+<strong>Reads as:</strong> Relationship between two measures at the individual [entity] level. Looks for correlation, clusters, outliers.
+<strong>Template:</strong> "plots [measure A] against [measure B] for each [entity], to surface relationships or outliers"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=cleveland-dot-plot>Cleveland dot plot<a href=#cleveland-dot-plot class=hash-link aria-label="Direct link to Cleveland dot plot" title="Direct link to Cleveland dot plot" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Categorical dimension on rows, continuous measure via point/circle marks (not bars), sometimes two point series per row (before/after).
+<strong>Reads as:</strong> Bar-chart intent decluttered for many categories, or emphasizing precise point values. Two series shows two values per category at once.
+<strong>Template:</strong> "compares [measure] across [category] using point position rather than bar length" (+ ", showing [A] versus [B] per category" if two series)</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=area-chart>Area chart<a href=#area-chart class=hash-link aria-label="Direct link to Area chart" title="Direct link to Area chart" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Mark type Area/Polygon, continuous date/period axis, measure, often with a color dimension producing stacking.
+<strong>Reads as:</strong> Shows a total's trend over time and how each component contributes to it simultaneously.
+<strong>Template:</strong> "shows how [measure] has changed over [timeframe], broken into [components]" (drop component clause if not stacked)</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=table--crosstab>Table / crosstab<a href=#table--crosstab class=hash-link aria-label="Direct link to Table / crosstab" title="Direct link to Table / crosstab" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> No shape/line/bar mark encoding. Dimensions on both rows and columns, measures rendered as Text, mark type Automatic/Text.
+<strong>Reads as:</strong> Built for precise value lookup and cross-referencing exact numbers, not visual pattern recognition.
+<strong>Template:</strong> "a lookup table of [measure] by [row dimension] and [column dimension], for exact values rather than visual comparison"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=geographic-map-single-layer>Geographic map (single layer)<a href=#geographic-map-single-layer class=hash-link aria-label="Direct link to Geographic map (single layer)" title="Direct link to Geographic map (single layer)" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A field with a Geographic role (or generated Latitude/Longitude), mark type Map/Automatic, measure encoded via color or size.
+<strong>Reads as:</strong> Spatial distribution of a measure across a geography.
+<strong>Template:</strong> "shows the spatial distribution of [measure] across [geography]"</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=layer-1--composite-idioms-modify-a-layer-0-base>Layer 1 — Composite idioms (modify a Layer 0 base)<a href=#layer-1--composite-idioms-modify-a-layer-0-base class=hash-link aria-label="Direct link to Layer 1 — Composite idioms (modify a Layer 0 base)" title="Direct link to Layer 1 — Composite idioms (modify a Layer 0 base)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=trellis--small-multiples>Trellis / small multiples<a href=#trellis--small-multiples class=hash-link aria-label="Direct link to Trellis / small multiples" title="Direct link to Trellis / small multiples" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Two calculated fields on rows and columns built from index()/size() (e.g. <code>int((index()-1)/round(sqrt(size())))</code> and <code>(index()-1)%(round(sqrt(size())))</code>), arranging one entity per panel.
+<strong>Reads as:</strong> The Layer 0 chart repeated once per entity in a grid, for side-by-side scanning instead of overlay.
+<strong>Template:</strong> "...shown as a grid of one panel per [entity], for side-by-side comparison"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=shape-normalized-trend-comparison>Shape-normalized trend comparison<a href=#shape-normalized-trend-comparison class=hash-link aria-label="Direct link to Shape-normalized trend comparison" title="Direct link to Shape-normalized trend comparison" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Measure computed as <code>SUM([value]) / (WINDOW_MIN(SUM([value])) + WINDOW_MAX(SUM([value])))</code> or similar division against the window's own min/max.
+<strong>Reads as:</strong> Rescaled so viewers compare trajectory and shape, not absolute magnitude. Useful when entities differ by orders of magnitude.
+<strong>Template:</strong> "...normalized so trajectory is comparable despite [entities] differing widely in scale"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=sparkline-endpoint-labeling>Sparkline endpoint labeling<a href=#sparkline-endpoint-labeling class=hash-link aria-label="Direct link to Sparkline endpoint labeling" title="Direct link to Sparkline endpoint labeling" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A label field gated by <code>WINDOW_MIN(MIN([date]))=MIN([date])</code> OR <code>WINDOW_MAX(MAX([date]))=MAX([date]))</code> so only first/last points get a value label.
+<strong>Reads as:</strong> Minimal sparkline convention. Uncluttered line, start/end values readable without a full axis.
+<strong>Template:</strong> "only start and end values are labeled, so net change is readable without a full axis"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=reference--anchor-entity>Reference / anchor entity<a href=#reference--anchor-entity class=hash-link aria-label="Direct link to Reference / anchor entity" title="Direct link to Reference / anchor entity" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Categorical/color-legend calc with a hardcoded branch pinning one specific member to a fixed bucket, distinct from the logic governing every other member.
+<strong>Reads as:</strong> One entity (often the author's own org, or a benchmark) is always shown regardless of filter/selection state. Fixed point the rest of the comparison is measured against.
+<strong>Template:</strong> "[anchor entity] is always shown as the reference point, regardless of what else is selected"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=selectable-peer--comparison-set>Selectable peer / comparison set<a href=#selectable-peer--comparison-set class=hash-link aria-label="Direct link to Selectable peer / comparison set" title="Direct link to Selectable peer / comparison set" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A string parameter/calc using CONTAINS/REPLACE to toggle delimited membership (e.g. <code>|BAC||WFC||</code>), often with a selection-count cap.
+<strong>Reads as:</strong> Interactive peer comparison. The viewer adds/removes entities up to some limit, rather than a fixed list.
+<strong>Template:</strong> "the viewer can choose which [entities] to compare, up to [N] at a time"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=growth--net-change-badge>Growth / net-change badge<a href=#growth--net-change-badge class=hash-link aria-label="Direct link to Growth / net-change badge" title="Direct link to Growth / net-change badge" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> FIXED LOD computing (value at max period − value at min period) / value at min period, formatted with directional glyphs, shown as text on a shape/annotation mark.
+<strong>Reads as:</strong> Headline growth-rate number per entity, alongside (not replacing) the trend line.
+<strong>Template:</strong> "headlined by total percent change over the period, with the trend line showing the shape behind it"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=percent-of-total>Percent-of-total<a href=#percent-of-total class=hash-link aria-label="Direct link to Percent-of-total" title="Direct link to Percent-of-total" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Measure divided by a TOTAL() or <code>{FIXED : SUM(...)}</code> grand-total expression, usually formatted as a percentage, often on a bar or stacked mark.
+<strong>Reads as:</strong> Each category's share of a whole, not its absolute value.
+<strong>Template:</strong> "shows each [category]'s share of total [measure], not the absolute amount"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=top-n-with-other-bucket>Top-N with "Other" bucket<a href=#top-n-with-other-bucket class=hash-link aria-label='Direct link to Top-N with "Other" bucket' title='Direct link to Top-N with "Other" bucket' translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A RANK()/INDEX() table calc gating which member names display, with an IF rank > N THEN 'Other' collapsing the remainder.
+<strong>Reads as:</strong> Focuses attention on the leading N entities while still accounting for the full total via a catch-all.
+<strong>Template:</strong> "highlights the top [N] [entities] by [measure], with everything else rolled into an Other bucket"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=reference-line--band-statistical>Reference line / band (statistical)<a href=#reference-line--band-statistical class=hash-link aria-label="Direct link to Reference line / band (statistical)" title="Direct link to Reference line / band (statistical)" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A reference line, band, or distribution band defined on the axis (target, average, std-dev), independent of any specific member. This is a statistical marker, not the pinned-member anchor idiom above.
+<strong>Reads as:</strong> Gives the viewer a threshold or benchmark to judge values against without needing a second full comparison series.
+<strong>Template:</strong> "values are shown against a [target/average/band] reference so you can judge them without a separate comparison series"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=parameter-driven-measure-swap>Parameter-driven measure swap<a href=#parameter-driven-measure-swap class=hash-link aria-label="Direct link to Parameter-driven measure swap" title="Direct link to Parameter-driven measure swap" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A parameter feeding a CASE/IF that changes which underlying measure is displayed. Same chart shape, swappable subject.
+<strong>Reads as:</strong> One chart shape built to answer several related questions. Viewer picks the measure via a control rather than the author building separate sheets.
+<strong>Template:</strong> "the viewer can swap which measure this shows via a control, using the same chart shape for [list of swappable measures]"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=tiered-classification--status-badge>Tiered classification / status badge<a href=#tiered-classification--status-badge class=hash-link aria-label="Direct link to Tiered classification / status badge" title="Direct link to Tiered classification / status badge" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A CASE/IF chain sorting entities into named segments (not raw values) shown via color or shape, often 3-5 discrete tiers.
+<strong>Reads as:</strong> Segments entities into named performance/status tiers rather than showing continuous values directly.
+<strong>Template:</strong> "classifies each [entity] into a status tier ([tier names]) based on [measure/logic], rather than showing raw values"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=heatmap--matrix>Heatmap / matrix<a href=#heatmap--matrix class=hash-link aria-label="Direct link to Heatmap / matrix" title="Direct link to Heatmap / matrix" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Two dimensions (rows and columns) with a measure encoded purely via color/shading intensity, mark type Square/Automatic, no bar or line marks.
+<strong>Reads as:</strong> Surfaces magnitude patterns across two dimensions at a glance. Meant to be scanned for hot/cold spots, not read for exact values.
+<strong>Template:</strong> "shows [measure] intensity across [row dimension] by [column dimension], for spotting patterns rather than reading exact values"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=waterfall--bridge>Waterfall / bridge<a href=#waterfall--bridge class=hash-link aria-label="Direct link to Waterfall / bridge" title="Direct link to Waterfall / bridge" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> A running-total calc (RUNNING_SUM) combined with a Gantt/bar mark type, positive/negative segments colored distinctly, connecting a start value to an end value through intermediate steps.
+<strong>Reads as:</strong> Explains how a total moved from a starting point to an ending point through discrete contributing changes.
+<strong>Template:</strong> "bridges from [starting value] to [ending value], showing each contributing change along the way"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=dual-axis--bullet--variance-actual-vs-target-vs-budget>Dual-axis / bullet / variance (actual vs. target vs. budget)<a href=#dual-axis--bullet--variance-actual-vs-target-vs-budget class=hash-link aria-label="Direct link to Dual-axis / bullet / variance (actual vs. target vs. budget)" title="Direct link to Dual-axis / bullet / variance (actual vs. target vs. budget)" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> Two measures on the same axis via dual-axis or a bullet-graph construction (bar + reference line/tick for target), often with a variance calc (actual − target) driving color.
+<strong>Reads as:</strong> Directly compares an actual result against a target or budget, with the gap itself often the point.
+<strong>Template:</strong> "compares actual [measure] against [target/budget], with color highlighting whether it's ahead or behind"</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=geographic-map-multiple-layers>Geographic map, multiple layers<a href=#geographic-map-multiple-layers class=hash-link aria-label="Direct link to Geographic map, multiple layers" title="Direct link to Geographic map, multiple layers" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> More than one map layer (background/reference plus point plus polygon), via Tableau's map-layers feature or a dual-axis map construction.
+<strong>Reads as:</strong> Combines spatial distribution of a primary measure with additional context layers (branch points over regional shading, etc.).
+<strong>Template:</strong> "shows [primary measure/entity] positioned over [context layer], so location relative to [regional context] is visible"</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=layer-2--kpi-family-base--modifier>Layer 2 — KPI family (base + modifier)<a href=#layer-2--kpi-family-base--modifier class=hash-link aria-label="Direct link to Layer 2 — KPI family (base + modifier)" title="Direct link to Layer 2 — KPI family (base + modifier)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=kpi-base>KPI base<a href=#kpi-base class=hash-link aria-label="Direct link to KPI base" title="Direct link to KPI base" translate=no>​</a></h3>
+<p><strong>Fingerprint:</strong> No dimension breakdown on rows/columns, a single aggregated measure on Text, minimal or no axis.
+<strong>Reads as:</strong> A headline number meant to be scanned in under a second. Usually one tile in a larger dashboard.
+<strong>Template:</strong> "a single headline number for [measure]"</p>
+<p>Modifiers below extend the KPI base rather than replacing it. Combine the base template with the relevant modifier clause.</p>
+<ul>
+<li class=""><strong>+ trend line</strong> — small embedded line mark alongside the number. Adds: "..., backed by its recent trend so you see trajectory as well as the current value"</li>
+<li class=""><strong>+ bar chart</strong> — small embedded bar marks (period-over-period or category comparison) alongside the number. Adds: "..., with a quick bar comparison against [periods/categories]"</li>
+<li class=""><strong>+ shape indicator</strong> — a shape encoding tied to a sign/threshold calc (up/down arrow driven by <code>IF [delta] > 0</code>). Adds: "..., with a directional indicator showing whether it's up or down"</li>
+<li class=""><strong>+ reference band/shading</strong> — background shading or distribution bands driven by thresholds (traffic-light convention), condensing a bullet-graph-style read into one tile. Adds: "..., shaded to show whether the value falls in an acceptable range"</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=adding-a-new-idiom>Adding a new idiom<a href=#adding-a-new-idiom class=hash-link aria-label="Direct link to Adding a new idiom" title="Direct link to Adding a new idiom" translate=no>​</a></h2>
+<p>State which layer it belongs in (Layer 0 if nothing else could describe the chart without it, Layer 1 if it modifies a Layer 0 base, Layer 2 if it's a KPI variant), then use the same Fingerprint / Reads as / Template format. Favor fingerprints built from function combinations and shelf structure over field names.</p>
+<hr/>
+<h1>Section B — Construct Patterns</h1>
+<p>Match the construct's <em>shape</em> (syntax pattern) before applying a stock rationale. A <code>RANK()</code> used for a color threshold, not a leaderboard, still needs its own explanation. Adapt every stock rationale to the actual field names and view context on the sheet. Never paste a row from this table verbatim as the explanation.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=lod-calculations>LOD Calculations<a href=#lod-calculations class=hash-link aria-label="Direct link to LOD Calculations" title="Direct link to LOD Calculations" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pattern<th>Shape<th>Typical Why<tbody><tr><td>FIXED at coarser grain than the view<td><code>{FIXED [Dim]: AGG(...)}</code> where <code>[Dim]</code> is coarser than what's on Rows/Cols<td>Computes a value independent of the view's filters/grain. Common for "grand total," "customer lifetime value," or a flag that shouldn't dilute when a date/detail filter is applied.<tr><td>INCLUDE<td><code>{INCLUDE [Dim]: AGG(...)}</code><td>Temporarily adds granularity the view doesn't show, usually to compute a per-unit value (avg order value per customer) before re-aggregating up to the view's grain.<tr><td>EXCLUDE<td><code>{EXCLUDE [Dim]: AGG(...)}</code><td>Removes a dimension present on the view to compute a coarser aggregate alongside detail rows. Common for "% of parent category" or comparing a row to its group total.<tr><td>Nested FIXED (LOD referencing another LOD)<td><code>{FIXED A: ...{FIXED B: ...}...}</code><td>Multi-step aggregation, often building a cohort or segment flag before a second aggregation layer. Verify dependency order. Flag if it looks unnecessarily deep.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=table-calculations>Table Calculations<a href=#table-calculations class=hash-link aria-label="Direct link to Table Calculations" title="Direct link to Table Calculations" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pattern<th>Shape<th>Typical Why<tbody><tr><td>Running total<td><code>RUNNING_SUM(...)</code><td>Cumulative trend view. Answers "how much so far," not "how much this period."<tr><td>Rank<td><code>RANK(...)</code> / <code>RANK_UNIQUE(...)</code><td>Leaderboard/Top-N framing. Ordering matters more than the raw value.<tr><td>Percent of total<td><code>SUM(...)/TOTAL(SUM(...))</code> or <code>WINDOW_SUM</code> variant<td>Shows share within a partition (whole view, or a partition set by "Compute Using") rather than absolute magnitude.<tr><td>Moving average<td><code>WINDOW_AVG(...)</code><td>Smooths period-to-period noise to reveal an underlying trend.<tr><td>Difference / % difference from prior<td><code>ZN(SUM(...)) - LOOKUP(ZN(SUM(...)), -1)</code><td>Period-over-period comparison. Growth/decline framing.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=filters--by-visibility>Filters — by visibility<a href=#filters--by-visibility class=hash-link aria-label="Direct link to Filters — by visibility" title="Direct link to Filters — by visibility" translate=no>​</a></h2>
+<p><strong>Filter-visibility is a first-class classification.</strong> For each filter on the view, decide whether it is Visible (viewer can see and change) or Hidden (viewer sees narrowed data with no on-canvas control). Section B's pattern column below classes the mechanism; the visibility call is separate and must be made per filter, per view.</p>
+<p><strong>Visible</strong> = quick filter card exposed, parameter control on the dashboard, dashboard filter action target, or a legend acting as a filter (legend-based range filter).</p>
+<p><strong>Hidden</strong> = context filter with no card, data source filter, extract filter, or a True/False calc-based filter with no exposed control. Hidden filters must be disclosed in the output; silence reads as "nothing is hidden," which is only true when confirmed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pattern<th>Shape<th>Typical Why<tbody><tr><td>Context filter<td>Filter shelf item marked as context (grey pill)<td>Either a performance optimization (pre-filters before other computations) or intentionally makes a downstream filter/Top-N dependent on it.<tr><td>Parameter-driven quick filter<td>Calc referencing <code>[Parameters].[...]</code> used as a filter<td>Lets the end user dynamically change scope without editing the view.<tr><td>Top-N filter<td><code>RANK</code>-based filter or a Top-N set used as a filter<td>Focuses attention on highest/lowest performers rather than showing the full member list.<tr><td>Filter on a calc, not a raw field<td>Filter references a calculated field<td>Usually encodes business logic into the filter itself ("Active Customers" flag) rather than a raw dimension value.<tr><td>Hardcoded True/False gate<td>Calc resolving to True/False (e.g. <code>[Source] = [Source Parameter]</code>) placed on Filters shelf keeping only True<td>Scope-narrowing that isn't exposed to the viewer. Common on inherited dashboards. Always disclose.<tr><td>Data source filter<td>Filter on the data source itself, not the sheet<td>Applies workbook-wide before any sheet-level filters. Highest-scope Hidden filter. Almost never visible to end users.<tr><td>Extract filter<td>Filter baked into the extract at extract time<td>Only in extract-backed workbooks. Data not in the extract can't be recovered by the viewer at all.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=actions-dashboard-level>Actions (dashboard-level)<a href=#actions-dashboard-level class=hash-link aria-label="Direct link to Actions (dashboard-level)" title="Direct link to Actions (dashboard-level)" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pattern<th>Shape<th>Typical Why<tbody><tr><td>Filter action<td>Source sheet -> target sheet(s), filters on select<td>Drill from a summary view into supporting detail. The classic "click a bar, see the detail table update."<tr><td>Highlight action<td>Source -> target, highlight on hover/select<td>Draws visual attention to related marks without changing what data is shown. Used when losing context (via filtering) would hurt comparison.<tr><td>Parameter action<td>Source sheet sets a parameter value on select/hover<td>Drives a dynamic swap elsewhere (axis measure switch, viz-in-tooltip content, dynamic zone visibility). The sheet is acting as a control, not just a display.<tr><td>URL action<td>Source sheet -> external URL, often with field values interpolated<td>External drill-through (to a source system record) beyond what Tableau itself can show.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=sets>Sets<a href=#sets class=hash-link aria-label="Direct link to Sets" title="Direct link to Sets" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pattern<th>Shape<th>Typical Why<tbody><tr><td>Condition-based dynamic set<td>Set defined by a calculated condition (e.g. <code>SUM([Sales]) > 10000</code>)<td>Membership recalculates as data changes. Used for a rolling cohort ("customers active in trailing 90 days") rather than a fixed list.<tr><td>Top-N set<td>Set defined by Top/Bottom N on a measure<td>Same intent as a Top-N filter, but reusable as a set across multiple sheets/calcs.<tr><td>Manually curated set<td>Set with an explicit fixed member list<td>Deliberate comparison group ("key accounts") that shouldn't drift automatically as data changes.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=dynamic-zone-visibility-dashboard-level>Dynamic Zone Visibility (dashboard-level)<a href=#dynamic-zone-visibility-dashboard-level class=hash-link aria-label="Direct link to Dynamic Zone Visibility (dashboard-level)" title="Direct link to Dynamic Zone Visibility (dashboard-level)" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pattern<th>Shape<th>Typical Why<tbody><tr><td>Boolean parameter toggle<td>Zone visibility bound to a boolean parameter<td>View-switcher pattern. User toggles between two layouts/chart types without navigating away.<tr><td>Set-membership toggle<td>Zone visibility bound to set membership<td>Shows/hides a zone based on whether the current selection/filter state falls into a defined set (alert banner that only appears when a threshold set is non-empty).</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=using-this-library>Using This Library<a href=#using-this-library class=hash-link aria-label="Direct link to Using This Library" title="Direct link to Using This Library" translate=no>​</a></h2>
+<ul>
+<li class="">Section A first (chart-shape idiom, backbone before modifiers), Section B second (mechanics behind the idiom).</li>
+<li class="">Match structural fingerprint, never field name. Author-chosen names are a <em>narrative seed</em>, not a match key.</li>
+<li class="">Adapt every stock rationale to actual fields/context. Never paste a row verbatim as an explanation.</li>
+<li class="">If a construct partially matches multiple patterns, say which parts came from where.</li>
+<li class="">This library does not replace confidence-tagging: pattern-matching raises confidence, it does not eliminate ambiguity. Every uncertain inference still gets a <code>[Confidence: Low]</code> or <code>[Confidence: Medium]</code> tag per SKILL.md Hard Constraint #3.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/construct_pattern_library.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/SKILL><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>SKILL.md</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/resources/output_template><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>output_template.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#layer-0--foundational-chart-types class="table-of-contents__link toc-highlight">Layer 0 — Foundational chart types</a><ul><li><a href=#bar--column-chart class="table-of-contents__link toc-highlight">Bar / column chart</a><li><a href=#single-trend-line class="table-of-contents__link toc-highlight">Single trend line</a><li><a href=#multi-line-trend-raw-not-normalized class="table-of-contents__link toc-highlight">Multi-line trend (raw, not normalized)</a><li><a href=#scatter-plot class="table-of-contents__link toc-highlight">Scatter plot</a><li><a href=#cleveland-dot-plot class="table-of-contents__link toc-highlight">Cleveland dot plot</a><li><a href=#area-chart class="table-of-contents__link toc-highlight">Area chart</a><li><a href=#table--crosstab class="table-of-contents__link toc-highlight">Table / crosstab</a><li><a href=#geographic-map-single-layer class="table-of-contents__link toc-highlight">Geographic map (single layer)</a></ul><li><a href=#layer-1--composite-idioms-modify-a-layer-0-base class="table-of-contents__link toc-highlight">Layer 1 — Composite idioms (modify a Layer 0 base)</a><ul><li><a href=#trellis--small-multiples class="table-of-contents__link toc-highlight">Trellis / small multiples</a><li><a href=#shape-normalized-trend-comparison class="table-of-contents__link toc-highlight">Shape-normalized trend comparison</a><li><a href=#sparkline-endpoint-labeling class="table-of-contents__link toc-highlight">Sparkline endpoint labeling</a><li><a href=#reference--anchor-entity class="table-of-contents__link toc-highlight">Reference / anchor entity</a><li><a href=#selectable-peer--comparison-set class="table-of-contents__link toc-highlight">Selectable peer / comparison set</a><li><a href=#growth--net-change-badge class="table-of-contents__link toc-highlight">Growth / net-change badge</a><li><a href=#percent-of-total class="table-of-contents__link toc-highlight">Percent-of-total</a><li><a href=#top-n-with-other-bucket class="table-of-contents__link toc-highlight">Top-N with "Other" bucket</a><li><a href=#reference-line--band-statistical class="table-of-contents__link toc-highlight">Reference line / band (statistical)</a><li><a href=#parameter-driven-measure-swap class="table-of-contents__link toc-highlight">Parameter-driven measure swap</a><li><a href=#tiered-classification--status-badge class="table-of-contents__link toc-highlight">Tiered classification / status badge</a><li><a href=#heatmap--matrix class="table-of-contents__link toc-highlight">Heatmap / matrix</a><li><a href=#waterfall--bridge class="table-of-contents__link toc-highlight">Waterfall / bridge</a><li><a href=#dual-axis--bullet--variance-actual-vs-target-vs-budget class="table-of-contents__link toc-highlight">Dual-axis / bullet / variance (actual vs. target vs. budget)</a><li><a href=#geographic-map-multiple-layers class="table-of-contents__link toc-highlight">Geographic map, multiple layers</a></ul><li><a href=#layer-2--kpi-family-base--modifier class="table-of-contents__link toc-highlight">Layer 2 — KPI family (base + modifier)</a><ul><li><a href=#kpi-base class="table-of-contents__link toc-highlight">KPI base</a></ul><li><a href=#adding-a-new-idiom class="table-of-contents__link toc-highlight">Adding a new idiom</a><li><a href=#lod-calculations class="table-of-contents__link toc-highlight">LOD Calculations</a><li><a href=#table-calculations class="table-of-contents__link toc-highlight">Table Calculations</a><li><a href=#filters--by-visibility class="table-of-contents__link toc-highlight">Filters — by visibility</a><li><a href=#actions-dashboard-level class="table-of-contents__link toc-highlight">Actions (dashboard-level)</a><li><a href=#sets class="table-of-contents__link toc-highlight">Sets</a><li><a href=#dynamic-zone-visibility-dashboard-level class="table-of-contents__link toc-highlight">Dynamic Zone Visibility (dashboard-level)</a><li><a href=#using-this-library class="table-of-contents__link toc-highlight">Using This Library</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

@@ -1,0 +1,331 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Check Definitions | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Check Definitions | Tableau AI Utilities"/><meta data-rh=true name=description content="Checks are ordered by analytic impact — the degree to which an undetected issue corrupts aggregations, joins, filters, or visual encodings in Tableau. Higher-impact checks run first and produce higher default severities."/><meta data-rh=true property=og:description content="Checks are ordered by analytic impact — the degree to which an undetected issue corrupts aggregations, joins, filters, or visual encodings in Tableau. Higher-impact checks run first and produce higher default severities."/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/","name":"Data Quality Review","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks","name":"checks.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.fc7a4f13.js defer></script><script src=/tableau-ai-utilities/assets/js/main.526af1e5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data Quality Review" class=categoryLinkLabel_W154>Data Quality Review</span></a><button aria-label="Collapse sidebar category 'Data Quality Review'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks><span title=checks.md class=linkLabel_WmDU>checks.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/fixes><span title=fixes.md class=linkLabel_WmDU>fixes.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks><span title=metadata_checks.md class=linkLabel_WmDU>metadata_checks.md</span></a></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-scribe><span title="Data Scribe" class=categoryLinkLabel_W154>Data Scribe</span></a><button aria-label="Expand sidebar category 'Data Scribe'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-source-connector><span title="Data Source Connector" class=categoryLinkLabel_W154>Data Source Connector</span></a><button aria-label="Expand sidebar category 'Data Source Connector'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder><span title="Esri Map Builder" class=categoryLinkLabel_W154>Esri Map Builder</span></a><button aria-label="Expand sidebar category 'Esri Map Builder'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/join-and-relationship-advisor><span title="Join and Relationship Advisor" class=categoryLinkLabel_W154>Join and Relationship Advisor</span></a><button aria-label="Expand sidebar category 'Join and Relationship Advisor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/geocoding-auditor><span title="Geocoding Auditor" class=categoryLinkLabel_W154>Geocoding Auditor</span></a><button aria-label="Expand sidebar category 'Geocoding Auditor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/extract-optimizer><span title="Extract Optimizer" class=categoryLinkLabel_W154>Extract Optimizer</span></a><button aria-label="Expand sidebar category 'Extract Optimizer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Data and Model</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span>Data Quality Review</span></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Skill Expertise</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>checks.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Data Quality Review catalog details"><div class=row_T3bp><code class=name_A6OT>data-quality-review</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/data-quality-review.zip download=data-quality-review.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Check Definitions</h1></header>
+<p>Checks are ordered by <strong>analytic impact</strong> — the degree to which an undetected issue corrupts aggregations, joins, filters, or visual encodings in Tableau. Higher-impact checks run first and produce higher default severities.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=severity-levels>Severity Levels<a href=#severity-levels class=hash-link aria-label="Direct link to Severity Levels" title="Direct link to Severity Levels" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Level<th>Meaning<th>When to assign<tbody><tr><td><strong>Critical</strong><td>Actively corrupts calculations, joins, or aggregations. Analysis built on this field is unreliable until fixed.<td>Nulls in join keys, duplicate rows, type mismatches in measure fields, referential orphans.<tr><td><strong>Warning</strong><td>Degrades accuracy or usability but doesn't silently break things. User may get misleading (not wrong) results.<td>Nulls in non-key dimensions, inconsistent casing, leading/trailing whitespace, moderate cardinality inflation.<tr><td><strong>Info</strong><td>Cosmetic or low-impact. Worth knowing but unlikely to produce incorrect answers.<td>Minor whitespace, singleton outliers in low-importance fields, sparse fields that are rarely used.</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=check-categories-priority-order>Check Categories (Priority Order)<a href=#check-categories-priority-order class=hash-link aria-label="Direct link to Check Categories (Priority Order)" title="Direct link to Check Categories (Priority Order)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=1-duplicate-rows>1. Duplicate Rows<a href=#1-duplicate-rows class=hash-link aria-label="Direct link to 1. Duplicate Rows" title="Direct link to 1. Duplicate Rows" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Inflates every SUM, COUNT, and AVG. Breaks uniqueness assumptions in LOD calcs.</p>
+<p><strong>Logic:</strong></p>
+<ul>
+<li class=""><strong>Pick the right key before you start.</strong> In a line-item/order-grain datasource, a header-level key (e.g. <code>Order ID</code>) is EXPECTED to repeat once per line item — that repetition is normal business structure, not a duplicate-row signal. Before treating any repeated key as a finding, identify the field that should be unique per row (a transaction/row-level ID, e.g. <code>Transaction UUID</code>, <code>Row ID</code>) and run the CNT vs CNTD comparison on THAT field, not on a header-level key that legitimately repeats.</li>
+<li class=""><strong>Known tooling gap in this environment: fast-path worksheet-building tools (<code>kpi-text</code>, <code>magnitude-simple-bar</code>, <code>bind-template</code>'s templates) cannot bind a <code>CNT</code>/<code>CNTD</code> aggregation onto a dimension field</strong> — they reject it as a type/kind mismatch even though <code>COUNTD(field)</code> is valid Tableau. See SKILL.md Step 3 for the confirmed gap. Do not substitute a visual scan of a sample for the real comparison and do not report "no duplicates" from that workaround alone.</li>
+<li class=""><strong>Confirmed working alternative — the row-count-helper calc.</strong> Since <code>SUM</code> derivations bind reliably even when <code>CNT</code>/<code>CNTD</code> don't, author a trivial calc whose formula is the literal <code>1</code> (e.g. <code>DQ Check: Row Count Helper</code>, integer measure), then build the candidate key (rows) + <code>SUM()</code> of that helper (measure) via any bar-type template. The summed value per key IS the true row count for that key — no <code>CNT</code>/<code>CNTD</code> binding needed. Sum every returned per-key count across the pull; it must equal the confirmed true population size (if it doesn't, the pull itself is still truncated — go back to the truncation check above). Any key with a summed count <code>> 1</code> is a real, confirmed duplicate. This is a workbook change (a new calc), so it needs the same propose-then-approve step as any other fix per SKILL.md's verify-before-apply rule. There is no ability to delete a calculated field once created — it remains in the datasource permanently unless the user removes it themselves in Desktop; be upfront about that when proposing it, even though it's diagnostic-only and has no ongoing analytical purpose. Only fall back to asking the user to check <code>COUNT</code> vs <code>COUNTD</code> directly in Desktop (drag the field on twice; right-click the second instance → Measure → Count Distinct) if this workaround isn't viable (e.g. user declines the extra calc).</li>
+<li class=""><strong>Before checking for dupes, verify the sample isn't silently truncated — and don't stop checking just because the first pull "looks" complete.</strong> <code>get-summary-data</code> caps at the configured sample size (default 1,000 rows). A dataset with more rows than that cap will have some rows dropped from the read — and dropped rows can hide the very duplicates you're checking for, because a row and its duplicate can land on opposite sides of the cut. A truncated pull can still look like a full scan: contiguous/sequential key values (e.g. ORD-00001...ORD-01000) can fill exactly <code>maxRows</code> rows, giving the false impression of a complete, orderly dataset when the true population is larger. Treat "the returned row count equals the requested <code>maxRows</code>" as an unconfirmed-truncation signal on its own, regardless of how clean or complete the visible rows look.</li>
+<li class="">Confirm true population size with an aggregate read that carries no row-level grain: put a non-key measure or <code>COUNT</code> of a candidate key field alone on the view (no dimensions) and read that single aggregated value. Compare it against the row count returned by the Detail-shelf pull.</li>
+<li class="">If total population size > the sample size used for the Detail-shelf pull, do NOT conclude "no duplicates" from that pull alone. Instead:
+<ol>
+<li class="">For each candidate key field (Order ID, Transaction ID, primary ID, etc.), get <code>CNTD(field)</code> (distinct count) and <code>CNT(field)</code> (non-null count) as a single aggregated pair, no dimensions.</li>
+<li class="">If <code>CNT(field) > CNTD(field)</code> for any key field, duplicates exist — the gap size (<code>CNT - CNTD</code>) is the number of duplicate rows for that key.</li>
+<li class="">Identify which specific key values are duplicated by grouping on that key field with a <code>CNT</code> of another field as the aggregate; any group where the count is > 1 is a duplicate key. Do this at the aggregated grain (key field on rows, count as a measure) rather than pulling all raw rows, since the grouped read summarizes correctly regardless of the sample cap on ungrouped Detail pulls.</li>
+<li class="">If multiple independent-seeming key fields (e.g. Order ID and Transaction ID) show the exact same duplicate count and it isn't a coincidence of business logic (e.g. one legitimately repeats per header/line-item structure), treat this as evidence of true row-level duplication (the same record re-inserted), not independent key collisions.</li>
+</ol>
+</li>
+<li class="">Group rows by all field values (once dropped-row risk is ruled out or the check is done at the correct grain). Any group with count > 1 is a duplicate.</li>
+<li class="">Report: number of duplicate rows, which row/key values are repeated, and the duplication count.</li>
+</ul>
+<p><strong>Severity:</strong> Critical (always).</p>
+<p><strong>Notes:</strong> This checks exact row duplicates only (all fields identical) plus exact key-duplicate detection (same primary/business key repeated). Near-dupes (same entity, slightly different field values) are out of scope for the default run.</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-null-values>2. Null Values<a href=#2-null-values class=hash-link aria-label="Direct link to 2. Null Values" title="Direct link to 2. Null Values" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Nulls break joins (NULL != NULL), skew aggregations (excluded from AVG/COUNT), and create misleading filter behavior.</p>
+<p><strong>Logic per field:</strong></p>
+<ul>
+<li class="">Count rows where the field value is Null.</li>
+<li class="">Calculate null percentage: <code>null_count / total_rows * 100</code>.</li>
+<li class="">Thresholds:
+<ul>
+<li class="">0% nulls → pass (no finding)</li>
+<li class="">
+<blockquote>
+<p>0% and &lt;=5% → Info (unless the field is a join key or primary key, then Warning)</p>
+</blockquote>
+</li>
+<li class="">
+<blockquote>
+<p>5% and &lt;=25% → Warning</p>
+</blockquote>
+</li>
+<li class="">
+<blockquote>
+<p>25% → Critical</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Severity modifiers:</strong></p>
+<ul>
+<li class="">If the field is a known join/relationship key (per the workbook's relationship or join configuration) OR its name contains any of these substrings (case-insensitive): <code>_id</code>, <code>id_</code>, <code>uuid</code>, <code>_key</code>, <code>key_</code>, <code>_code</code>, <code>code_</code>, <code>fk_</code>, <code>pk_</code> — bump severity one level up.</li>
+<li class="">If the field is a measure (numeric, aggregatable): bump to at least Warning at any null rate above 0%, because nulls silently drop from aggregations.</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=3-data-type-mismatches-mixed-types>3. Data Type Mismatches (Mixed Types)<a href=#3-data-type-mismatches-mixed-types class=hash-link aria-label="Direct link to 3. Data Type Mismatches (Mixed Types)" title="Direct link to 3. Data Type Mismatches (Mixed Types)" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Causes silent aggregation failures, broken filters, and incorrect sort orders. A "number stored as string" won't SUM.</p>
+<p><strong>Logic:</strong></p>
+<ul>
+<li class="">For string fields, test each non-null value against these locked detection patterns:</li>
+</ul>
+<p><strong>"Looks Numeric" patterns (test in order, use first match):</strong></p>
+<p>Flexible (handles currency, percentages, thousands separators):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">^-?\$?\d{1,3}(,?\d{3})*(\.\d+)?%?$</span><br/></div></code></pre></div></div>
+<p>Matches: 123, -45.67, $1,000.50, 99.9%, -0.01</p>
+<p>Strict scientific (for engineering/ML data):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">^-?\d+(\.\d+)?([eE][-+]?\d+)?$</span><br/></div></code></pre></div></div>
+<p>Matches: 100, -3.14, 1.5e-10, 6.022E23</p>
+<p><strong>"Looks Date-Like" pattern:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">^(\d{4}[-/.]\d{2}[-/.]\d{2}|\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4})([ T]\d{2}:\d{2}(:\d{2})?(\.\d+)?)?$</span><br/></div></code></pre></div></div>
+<p>Matches: 2026-03-15, 03/15/2026, 2026.03.15, 2026-03-15T14:30:00</p>
+<p><strong>Detection thresholds:</strong></p>
+<ul>
+<li class="">If >=10% of non-null values in a string field match a numeric pattern → flag "likely numeric stored as string."</li>
+<li class="">If >=10% of non-null values in a string field match the date pattern → flag "likely date stored as string."</li>
+<li class="">For numeric fields: check for sentinel values that suggest categorical encoding. Flag if the field contains 3 or fewer distinct values from this set: {-1, 0, 1, 99, 999, 9999, -999}.</li>
+</ul>
+<p><strong>Severity:</strong> Critical (numeric-as-string or date-as-string); Warning (sentinel values in numeric fields).</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=4-leadingtrailing-whitespace>4. Leading/Trailing Whitespace<a href=#4-leadingtrailing-whitespace class=hash-link aria-label="Direct link to 4. Leading/Trailing Whitespace" title="Direct link to 4. Leading/Trailing Whitespace" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Breaks exact-match filters, inflates dimension cardinality (duplicates that look identical in viz but differ by invisible chars), and breaks joins.</p>
+<p><strong>Logic per string field:</strong></p>
+<ul>
+<li class="">Compare each value to its trimmed form: <code>value != TRIM(value)</code>.</li>
+<li class="">Count affected rows.</li>
+<li class="">Threshold: any occurrence above 0 is a finding.</li>
+</ul>
+<p><strong>Severity:</strong></p>
+<ul>
+<li class="">Field is a join key or used in filters → Warning</li>
+<li class="">Field is a general dimension → Info (unless cardinality inflation exceeds 5%, then Warning)</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=5-inconsistent-casing>5. Inconsistent Casing<a href=#5-inconsistent-casing class=hash-link aria-label="Direct link to 5. Inconsistent Casing" title="Direct link to 5. Inconsistent Casing" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Inflates dimension cardinality. "New York", "new york", "NEW YORK" become three separate marks/filter values.</p>
+<p><strong>Logic per string field:</strong></p>
+<ul>
+<li class="">Group values by their lowercase form.</li>
+<li class="">Any group with multiple original casings is a finding.</li>
+<li class="">Report: the distinct casing variants and how many rows each covers.</li>
+</ul>
+<p><strong>Severity:</strong></p>
+<ul>
+<li class="">If inconsistent casing causes cardinality inflation >10% for that field → Warning</li>
+<li class="">Otherwise → Info</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=6-outliers--implausible-values>6. Outliers / Implausible Values<a href=#6-outliers--implausible-values class=hash-link aria-label="Direct link to 6. Outliers / Implausible Values" title="Direct link to 6. Outliers / Implausible Values" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Skews averages, stretches axes, and can mask real patterns. A single $1B row in a $10K-average dataset dominates every viz.</p>
+<p><strong>Prerequisite:</strong> Do NOT run this check on fields already flagged as "sentinel values in numeric field" by Check #3. Those fields have categorical encoding issues, not outlier problems.</p>
+<p><strong>Logic per numeric measure:</strong></p>
+<ul>
+<li class="">Calculate Q1, Q3, IQR from the sample.</li>
+<li class="">Flag values below Q1 - 3<em>IQR or above Q3 + 3</em>IQR (extreme outliers).</li>
+<li class="">For the negative-value sub-check, use this explicit list of field-name substrings that imply non-negative values (case-insensitive match):</li>
+</ul>
+<p><strong>Non-negative field-name patterns:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category<th>Substrings<tbody><tr><td>Counts & Totals<td>count, qty, quantity, num_, number_of, total_<tr><td>Identifiers & Keys<td><em>id, id</em>, uuid, _key, _code, index, zip<tr><td>Physical Quantities<td>age, height, width, length, depth, weight, size, distance<tr><td>Durations & Time Spans<td>duration, seconds, minutes, hours, days, latency, ttl<tr><td>Unit Prices & Rates<td>price, cost, fee, rate</table>
+<p><strong>Explicitly NOT non-negative</strong> (do not flag negatives in these): amount, balance, profit, revenue, delta, change, difference, margin, net, variance.</p>
+<p>If a numeric field's name contains any substring from the non-negative table AND the field contains values &lt; 0, flag those negative values.</p>
+<p><strong>Severity:</strong></p>
+<ul>
+<li class="">Extreme outliers (>3x IQR) in key measures → Warning</li>
+<li class="">Negative values in non-negative fields → Warning</li>
+<li class="">Mild outliers (1.5x-3x IQR) → Info</li>
+</ul>
+<p><strong>Notes:</strong> Do not flag outliers as Critical. They may be legitimate data. The user decides whether to filter or investigate.</p>
+<p><strong>Duplicate-row contamination warning:</strong> if Check #1 (Duplicate Rows) found duplicate keys/rows in this datasource, re-run outlier detection AFTER accounting for them, or verify suspected outliers against a per-record read rather than the aggregated view total. A worksheet grouped by all dimensions collapses true duplicate rows onto one mark, and <code>SUM</code> on that mark silently doubles (or N-tuples) the displayed measure value — producing a value that looks like an extreme outlier but is actually two (or more) normal records folded together. Before reporting a numeric outlier as a finding, check whether the affected row's key also appears in the duplicate-row finding; if so, verify the true per-record value (e.g. via a boolean test calc placed at row grain, or by isolating one copy) before concluding the value itself is implausible.</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=7-high-cardinality-dimensions>7. High Cardinality Dimensions<a href=#7-high-cardinality-dimensions class=hash-link aria-label="Direct link to 7. High Cardinality Dimensions" title="Direct link to 7. High Cardinality Dimensions" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Dimensions with very high cardinality relative to row count produce unreadable vizzes, slow performance, and often indicate a field that should be a measure or needs binning.</p>
+<p><strong>Logic per string/dimension field:</strong></p>
+<ul>
+<li class="">Count distinct values in the sample.</li>
+<li class="">Calculate cardinality ratio: <code>distinct_values / sample_size</code>.</li>
+<li class="">Thresholds:
+<ul>
+<li class="">Ratio > 0.9 (nearly unique per row) → flag as "potential identifier/key, not useful as dimension"</li>
+<li class="">Ratio > 0.5 → flag as "high cardinality, consider grouping or filtering"</li>
+</ul>
+</li>
+</ul>
+<p><strong>Severity:</strong></p>
+<ul>
+<li class="">Ratio > 0.9 → Warning (likely a row-level ID being used as a dimension)</li>
+<li class="">Ratio > 0.5 → Info</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=8-date-field-issues>8. Date Field Issues<a href=#8-date-field-issues class=hash-link aria-label="Direct link to 8. Date Field Issues" title="Direct link to 8. Date Field Issues" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Broken date hierarchies, incorrect trend analysis, failed date filters.</p>
+<p><strong>Logic per date field:</strong></p>
+<ul>
+<li class="">Check for future dates beyond today + 1 year (possible data entry errors).</li>
+<li class="">Check for dates before a reasonable floor (before 1900-01-01).</li>
+<li class="">Check for suspicious clustering (truncation detection): if >90% of date values have day-of-month = 1, flag as "likely truncated to month-start." This suggests the source system is rounding dates, which masks daily patterns.</li>
+</ul>
+<p><strong>Severity:</strong></p>
+<ul>
+<li class="">Future dates > 1 year out → Warning</li>
+<li class="">Pre-1900 dates → Warning</li>
+<li class="">Truncation pattern (>90% on day 1) → Info</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=9-constant--zero-variance-fields>9. Constant / Zero-Variance Fields<a href=#9-constant--zero-variance-fields class=hash-link aria-label="Direct link to 9. Constant / Zero-Variance Fields" title="Direct link to 9. Constant / Zero-Variance Fields" translate=no>​</a></h3>
+<p><strong>Impact:</strong> No analytic value. Adds clutter, confuses users, may indicate a broken ETL pipeline.</p>
+<p><strong>Logic per field:</strong></p>
+<ul>
+<li class="">Count distinct non-null values in the sample.</li>
+<li class="">If distinct count = 1 (constant) → finding.</li>
+<li class="">For numeric fields: if standard deviation = 0 → finding.</li>
+</ul>
+<p><strong>Severity:</strong></p>
+<ul>
+<li class="">Constant field → Info (unless it's a measure that should vary, then Warning)</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=10-sparse-fields>10. Sparse Fields<a href=#10-sparse-fields class=hash-link aria-label="Direct link to 10. Sparse Fields" title="Direct link to 10. Sparse Fields" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Low fill rate means the field is unreliable for analysis. Users may build calcs on it without realizing 80% of values are missing.</p>
+<p><strong>Logic per field:</strong></p>
+<ul>
+<li class="">This differs from the null check: a field can be "sparse" if it's mostly null OR mostly a single default/placeholder value (e.g., "N/A", "Unknown", "0", "-").</li>
+<li class="">Count rows where the value is null OR matches common placeholder patterns: "", "N/A", "n/a", "NA", "None", "null", "Unknown", "TBD", "0" (for strings).</li>
+<li class="">Calculate effective fill rate: <code>(total - placeholder_count) / total * 100</code>.</li>
+<li class="">Thresholds:
+<ul>
+<li class="">Fill rate &lt; 25% → finding</li>
+<li class="">Fill rate &lt; 50% → finding (lower severity)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Severity:</strong></p>
+<ul>
+<li class="">Fill rate &lt; 25% → Warning (field is mostly unusable without imputation)</li>
+<li class="">Fill rate 25%-50% → Info</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=running-checks-efficiently>Running Checks Efficiently<a href=#running-checks-efficiently class=hash-link aria-label="Direct link to Running Checks Efficiently" title="Direct link to Running Checks Efficiently" translate=no>​</a></h2>
+<p>To minimize tool calls:</p>
+<ol>
+<li class="">Batch related fields together on the scratch worksheet where possible.</li>
+<li class="">Pull a single <code>get-summary-data</code> read and run multiple checks against the same data.</li>
+<li class="">Remove fields and add the next batch after each round.</li>
+<li class="">If a field fails an early check (e.g., >50% nulls), still run later checks on the non-null values. Multiple issues can coexist.</li>
+</ol>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=reporting-findings>Reporting Findings<a href=#reporting-findings class=hash-link aria-label="Direct link to Reporting Findings" title="Direct link to Reporting Findings" translate=no>​</a></h2>
+<p>For each finding, record:</p>
+<ul>
+<li class=""><strong>Field name</strong> (resolved, exact)</li>
+<li class=""><strong>Check category</strong> (from the list above)</li>
+<li class=""><strong>Severity</strong> (Critical / Warning / Info)</li>
+<li class=""><strong>Evidence</strong> (specific values, counts, percentages from the actual data read)</li>
+<li class=""><strong>Affected row count / percentage</strong></li>
+<li class=""><strong>Recommended fix</strong> (reference to <code>fixes.md</code> recipe)</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=data-quality-score>Data Quality Score<a href=#data-quality-score class=hash-link aria-label="Direct link to Data Quality Score" title="Direct link to Data Quality Score" translate=no>​</a></h2>
+<p>Compute a score per datasource after all findings for that datasource are triaged. This is a weighted-deduction score, not a simple count — severity and breadth both matter.</p>
+<p><strong>Formula:</strong></p>
+<ol>
+<li class="">Start at 100 points.</li>
+<li class="">For each Critical finding: deduct 15 points. If the finding's affected-rows percentage is >=50%, deduct 22.5 points instead (15 x 1.5).</li>
+<li class="">For each Warning finding: deduct 6 points. If the finding's affected-rows percentage is >=50%, deduct 9 points instead (6 x 1.5).</li>
+<li class="">For each Info finding: deduct 1 point, capped at a combined maximum of 5 points deducted from Info findings regardless of how many exist.</li>
+<li class="">Sum all deductions and subtract from 100. Floor the result at 0 (score cannot go negative).</li>
+<li class="">This uses ALL findings from the full check run, not just the top-5 shown in the report — the score must reflect the true state of the data even when the report display is capped.</li>
+</ol>
+<p><strong>Grade bands:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Score<th>Grade<th>Meaning<tbody><tr><td>90-100<td>A<td>Production-ready<tr><td>75-89<td>B<td>Usable, minor cleanup<tr><td>60-74<td>C<td>Needs fixes before trusted analysis<tr><td>40-59<td>D<td>Significant integrity risk<tr><td>0-39<td>F<td>Not analysis-ready</table>
+<p><strong>Multi-datasource rollup:</strong> when reviewing more than one datasource in a session, report a score per datasource plus one overall figure computed as the unweighted average of the per-datasource scores (round to nearest whole number). If any single datasource scores F, call that out explicitly in the rollup even if the average lands in a higher band — a single F-grade datasource is a risk the average can hide.</p>
+<p><strong>Presentation:</strong> show the score as <code>Score: [N]/100 ([Grade])</code> directly under the Sample size line in the report header, before the Findings section.</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/SKILL><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>SKILL.md</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/fixes><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>fixes.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#severity-levels class="table-of-contents__link toc-highlight">Severity Levels</a><li><a href=#check-categories-priority-order class="table-of-contents__link toc-highlight">Check Categories (Priority Order)</a><ul><li><a href=#1-duplicate-rows class="table-of-contents__link toc-highlight">1. Duplicate Rows</a><li><a href=#2-null-values class="table-of-contents__link toc-highlight">2. Null Values</a><li><a href=#3-data-type-mismatches-mixed-types class="table-of-contents__link toc-highlight">3. Data Type Mismatches (Mixed Types)</a><li><a href=#4-leadingtrailing-whitespace class="table-of-contents__link toc-highlight">4. Leading/Trailing Whitespace</a><li><a href=#5-inconsistent-casing class="table-of-contents__link toc-highlight">5. Inconsistent Casing</a><li><a href=#6-outliers--implausible-values class="table-of-contents__link toc-highlight">6. Outliers / Implausible Values</a><li><a href=#7-high-cardinality-dimensions class="table-of-contents__link toc-highlight">7. High Cardinality Dimensions</a><li><a href=#8-date-field-issues class="table-of-contents__link toc-highlight">8. Date Field Issues</a><li><a href=#9-constant--zero-variance-fields class="table-of-contents__link toc-highlight">9. Constant / Zero-Variance Fields</a><li><a href=#10-sparse-fields class="table-of-contents__link toc-highlight">10. Sparse Fields</a></ul><li><a href=#running-checks-efficiently class="table-of-contents__link toc-highlight">Running Checks Efficiently</a><li><a href=#reporting-findings class="table-of-contents__link toc-highlight">Reporting Findings</a><li><a href=#data-quality-score class="table-of-contents__link toc-highlight">Data Quality Score</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

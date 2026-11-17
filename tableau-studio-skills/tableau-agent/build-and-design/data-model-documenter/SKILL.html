@@ -1,0 +1,323 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Data Model Documenter — SKILL.md | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Data Model Documenter — SKILL.md | Tableau AI Utilities"/><meta data-rh=true name=description content="Use when the user says 'Document this data model', 'export the tables and relationships', 'share this data model'. Exports a data source's model (tables, relationships, join conditions, calc dependencies) to a shareable markdown file. Read-only plus one file."/><meta data-rh=true property=og:description content="Use when the user says 'Document this data model', 'export the tables and relationships', 'share this data model'. Exports a data source's model (tables, relationships, join conditions, calc dependencies) to a shareable markdown file. Read-only plus one file."/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/","name":"Data Model Documenter","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL","name":"SKILL.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.fc7a4f13.js defer></script><script src=/tableau-ai-utilities/assets/js/main.526af1e5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Data Model Documenter" class=categoryLinkLabel_W154>Data Model Documenter</span></a><button aria-label="Collapse sidebar category 'Data Model Documenter'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/resources/output_template><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder><span title="Worksheet Builder" class=categoryLinkLabel_W154>Worksheet Builder</span></a><button aria-label="Expand sidebar category 'Worksheet Builder'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner><span title="Viz Planner" class=categoryLinkLabel_W154>Viz Planner</span></a><button aria-label="Expand sidebar category 'Viz Planner'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-critique-pro-studio><span title="VizCritique Pro Desktop" class=categoryLinkLabel_W154>VizCritique Pro Desktop</span></a><button aria-label="Expand sidebar category 'VizCritique Pro Desktop'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/phone-layout-blueprint><span title="Tableau Phone Layout Blueprint" class=categoryLinkLabel_W154>Tableau Phone Layout Blueprint</span></a><button aria-label="Expand sidebar category 'Tableau Phone Layout Blueprint'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Build and Design</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span>Data Model Documenter</span></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>SKILL.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Data Model Documenter catalog details"><div class=row_T3bp><code class=name_A6OT>data-model-documenter</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/data-model-documenter.zip download=data-model-documenter.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Data Model Documenter</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=when-to-use-full-trigger-detail>When to use (full trigger detail)<a href=#when-to-use-full-trigger-detail class=hash-link aria-label="Direct link to When to use (full trigger detail)" title="Direct link to When to use (full trigger detail)" translate=no>​</a></h2>
+<p>Export a Tableau data sources logical model (tables, relationships, join conditions, calc-to-field dependencies) to a shareable markdown file. Read-only plus one file write per run. Uses list-workbook-datasources, list-available-fields, get-workbook-inventory, and one get-summary-data sample per table for row-count estimation. Writes to a fresh filename (increments _v2, _v3 on collision) to match CSV BOM overwrite discipline. Triggers on document this data model, export data model, share this data model, document the data source structure, export the tables and relationships, make a data model doc, data model export. Do NOT trigger for field-meaning documentation (use data-scribe), change tracking over time (use workbook-auditor), model recommendations (use join-and-relationship-advisor), connection setup (use data-source-connector), or data-content audit (use data-quality-review).</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=purpose>Purpose<a href=#purpose class=hash-link aria-label="Direct link to Purpose" title="Direct link to Purpose" translate=no>​</a></h2>
+<p>Export a Tableau data sources logical model (tables, relationships, join conditions, calc-to-field dependencies) to a shareable markdown file. The model lives inside the workbook and cannot easily be shared with anyone who doesnt open Tableau. Read-only plus one file write per run.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=trigger-conditions>Trigger Conditions<a href=#trigger-conditions class=hash-link aria-label="Direct link to Trigger Conditions" title="Direct link to Trigger Conditions" translate=no>​</a></h2>
+<p>document this data model, export data model, share this data model, document the data source structure, export the tables and relationships, make a data model doc, data model export.</p>
+<p>Do NOT trigger on: documenting what individual fields mean (<code>data-scribe</code>); tracking what changed in the model over time (<code>workbook-auditor</code>); recommending changes to the model (<code>join-and-relationship-advisor</code>); connecting a new data source (<code>data-source-connector</code>); auditing the model for issues (<code>data-quality-review</code> or <code>join-and-relationship-advisor</code>).</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=scope-boundaries>Scope Boundaries<a href=#scope-boundaries class=hash-link aria-label="Direct link to Scope Boundaries" title="Direct link to Scope Boundaries" translate=no>​</a></h2>
+<ul>
+<li class="">IN: exporting the logical model of one data source per run: table inventory with row-count estimates, relationship map with cardinality and join conditions, calc-dependency graph, field-list per table with datatypes. Output as a single markdown file. One-to-one export (current state), no diff.</li>
+<li class="">OUT: field-meaning documentation (<code>data-scribe</code>); change-over-time diffing (<code>workbook-auditor</code>); model recommendations (<code>join-and-relationship-advisor</code>); connection setup (<code>data-source-connector</code>); data-content audit (<code>data-quality-review</code>); publishing the doc anywhere (Desktop-only file write); more than one data source per run; parameter reference resolution (parameters labeled Not Extractable, no reference tracing).</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=edge-case-boundaries>Edge-Case Boundaries<a href=#edge-case-boundaries class=hash-link aria-label="Direct link to Edge-Case Boundaries" title="Direct link to Edge-Case Boundaries" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Edge Case<th>Handling<tbody><tr><td>Multi-source workbook<td>Ask which source. Refuse HC#5 if user says all. One DS per run.<tr><td>Federated multi-source data source<td>Refuse.<tr><td>Blended data sources<td>Refuse. Blending is query-time, not model-time. Not applicable to Documenter scope.<tr><td>Partial <code>list-available-fields</code> failure<td>Proceed with returned fields. Flag failed tables as not extractable this run: tool failure.<tr><td>Calc-formula parse failure (syntax broken)<td>List the calc with formula text but empty References list. Note unable to parse.<tr><td>Target path unwritable (permissions, disk full)<td>Refuse: report the specific write failure. Ask user to specify alternate path.<tr><td>Sets, hierarchies, parameters<td>Labeled Not Extractable. Do NOT attempt reference resolution.<tr><td>Sample size below 1,000 rows per table<td>Report row count as estimate; flag as unverified: sample size below reliable threshold.<tr><td>Very wide workbook (>100 fields, >20 tables)<td>Batch <code>list-available-fields</code> in groups of ~10 with inline progress notes.<tr><td>Data source with >10 relationship pairs<td>Batch cardinality sampling (<code>get-summary-data</code> per pair) in groups of ~5 with inline progress notes.<tr><td>Logical table has zero shelf placements anywhere in the workbook<td>Row count and cardinality for that table are not extractable: no worksheet exposes this table for sampling. Do not place a field to force sampling.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=hard-constraints>Hard Constraints<a href=#hard-constraints class=hash-link aria-label="Direct link to Hard Constraints" title="Direct link to Hard Constraints" translate=no>​</a></h2>
+<ul>
+<li class="">HC#1: Read-only plus single write. Uses only read tools plus one <code>Write</code> call for the output file.</li>
+<li class="">HC#2: Fresh-filename discipline. If the target path exists, increment <code>_v2</code>, <code>_v3</code>.</li>
+<li class="">HC#3: Current-state export only. No diff, no snapshot, no history. Route to <code>workbook-auditor</code> for change tracking.</li>
+<li class="">HC#4: Locked output template in <code>skill-expertise/output_template.md</code>. Deterministic output.</li>
+<li class="">HC#5: One data source per run. Multi-source workbooks require repeated invocations.</li>
+<li class="">HC#6: Refuse out-of-scope questions by exact slug.</li>
+<li class="">HC#7: Validation Gate before delivery. Every export must pass V1 (template compliance), V2 (file write succeeded), V3 (row counts + Not Extractable section rendered).</li>
+<li class="">HC#8: Disagreement branch is scoped. If user disputes the output, offer one alternate (verbose vs. concise). Never chain a second alternate; route to Tableau documentation docs.</li>
+<li class="">HC#9: Parameters are out of scope for calc parsing. Detected calcs that reference parameters get the reference listed as <code>[parameter name] (parameter — out of scope)</code> rather than resolved.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=tools-used>Tools Used<a href=#tools-used class=hash-link aria-label="Direct link to Tools Used" title="Direct link to Tools Used" translate=no>​</a></h2>
+<ul>
+<li class=""><code>list-workbook-datasources</code> — Phase 0 (enumerate DS, identify target).</li>
+<li class=""><code>get-workbook-inventory</code> — Phase 1 (batched inventory).</li>
+<li class=""><code>list-available-fields</code> (verbosity: full) — Phase 1 (per-table field enumeration).</li>
+<li class=""><code>get-summary-data</code> — Phase 3 (one COUNT per table for row-count estimate; also one COUNTD/COUNT sample per candidate key pair for cardinality inference per relationship, per Cardinality Inference below).</li>
+<li class=""><code>Write</code> — Phase 5 (single file write to disk).</li>
+</ul>
+<p>Zero mutating tool calls on the workbook. One file write per run.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=sample-size-reliability-threshold>Sample-Size Reliability Threshold<a href=#sample-size-reliability-threshold class=hash-link aria-label="Direct link to Sample-Size Reliability Threshold" title="Direct link to Sample-Size Reliability Threshold" translate=no>​</a></h2>
+<p>Row-count estimates via <code>get-summary-data</code> are reliable when the sample includes at least <strong>1,000 rows</strong>. Below that threshold:</p>
+<ul>
+<li class="">Report the row count as an estimate.</li>
+<li class="">Flag as <strong>unverified: sample size below reliable threshold (1,000 rows).</strong></li>
+<li class="">Do not suppress the finding.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=cardinality-inference-locked>Cardinality Inference (Locked)<a href=#cardinality-inference-locked class=hash-link aria-label="Direct link to Cardinality Inference (Locked)" title="Direct link to Cardinality Inference (Locked)" translate=no>​</a></h2>
+<p>For every relationship pair reported in the Relationship Map, cardinality and referential integrity (RI) are empirically sampled, not guessed — this mirrors <code>join-and-relationship-advisor</code>s method:</p>
+<ul>
+<li class="">Compute <code>COUNTD(key) / COUNT(*)</code> via <code>get-summary-data</code> on each side of the candidate join key.</li>
+<li class="">Ratio close to 1.0 → that side is one. Ratio well below 1.0 → that side is many. Cardinality is the product (one-to-one, one-to-many, many-to-one, many-to-many).</li>
+<li class="">RI (referential integrity) is reported as Unknown unless the connector/model explicitly asserts it — this skill does not attempt to verify orphan keys; report Unknown rather than guessing Yes.</li>
+<li class="">Apply the same 1,000-row Sample-Size Reliability Threshold used for row counts. Below threshold, label the cardinality as unverified: sample size below reliable threshold (1,000 rows) rather than suppressing it.</li>
+<li class="">If no candidate key is detectable between two related tables (no name match, no user-resolvable key), report cardinality as not extractable: no candidate key identified rather than fabricating a value.</li>
+<li class="">This skill reports cardinality as a factual sample result only. It does not recommend a join-vs-relationship model choice — that recommendation, plus fanning-risk diagnosis, belongs to <code>join-and-relationship-advisor</code>; route there if the user asks should this be a join or relationship.</li>
+<li class=""><strong>Batching for many relationship pairs.</strong> For data sources with more than ~10 relationship pairs, batch cardinality sampling in groups of ~5 pairs with inline progress notes, mirroring the wide-workbook field-enumeration batching already used for <code>list-available-fields</code>. Never fire all pair samples in one unbatched burst on a wide multi-table model.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=calc-parsing-precedence-locked>Calc-Parsing Precedence (Locked)<a href=#calc-parsing-precedence-locked class=hash-link aria-label="Direct link to Calc-Parsing Precedence (Locked)" title="Direct link to Calc-Parsing Precedence (Locked)" translate=no>​</a></h2>
+<p>Parse calc formula text outer to inner. Never re-order. Deterministic output.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Order<th>Layer<th>Signature<th>Handling<tbody><tr><td>1<td>Nested calcs<td><code>[calc_name]</code> where calc_name is another calculated field<td>Resolve one level of nesting. Deeper nesting reports as <code>[calc_name] (nested)</code>.<tr><td>2<td>LOD-referenced dimensions<td>Inside <code>{FIXED [...] : ...}</code>, <code>{INCLUDE [...] : ...}</code>, <code>{EXCLUDE [...] : ...}</code><td>Track LOD-context dimensions separately from raw field refs. Report as <code>[dim_name] (LOD context)</code>.<tr><td>3<td>Table-calc referenced fields<td>Inside <code>WINDOW_*</code>, <code>RUNNING_*</code>, <code>PREVIOUS_VALUE</code><td>Report as <code>[field_name] (table calc)</code>.<tr><td>4<td>Raw field references<td>Bare <code>[field_name]</code> at row level<td>Report as <code>[field_name]</code>.<tr><td>5<td>Parameters (HC#9 out of scope)<td><code>[parameter_name]</code> where field is a parameter<td>Report as <code>[parameter_name] (parameter — out of scope)</code>. Do NOT resolve or trace.</table>
+<p><strong>Nested calc depth:</strong> Resolve one level. Deeper nesting is documented as (nested) without recursion. Prevents infinite loops and keeps output bounded.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=workflow-phases>Workflow Phases<a href=#workflow-phases class=hash-link aria-label="Direct link to Workflow Phases" title="Direct link to Workflow Phases" translate=no>​</a></h2>
+<ol>
+<li class=""><strong>Phase 0 Intake.</strong> Confirm target data source via <code>list-workbook-datasources</code>. Confirm output path (default: <code>{datasource-name}_model.md</code> next to the workbook). If multi-source, ask which; refuse all.</li>
+<li class=""><strong>Phase 1 Inventory.</strong> Batch-call <code>list-workbook-datasources</code>, <code>get-workbook-inventory</code>, <code>list-available-fields</code> (verbosity: full). Read tables, fields, relationships, calc formulas.</li>
+<li class=""><strong>Phase 2 Calc Dependency Graph.</strong> Parse formula text per Calc-Parsing Precedence table. Build <code>{calc name} → [ordered references list]</code> map.</li>
+<li class=""><strong>Phase 3 Row-Count and Cardinality Estimation.</strong> One <code>get-summary-data</code> COUNT per table for row counts. For every relationship pair, one COUNTD/COUNT sample per side per Cardinality Inference above. Cache both. Apply sample-size threshold labeling to each independently.</li>
+<li class=""><strong>Phase 4 Assembly.</strong> Fill <code>skill-expertise/output_template.md</code>. Sections: metadata, table inventory, relationship map, calc-dependency graph, appendix, Not Extractable.</li>
+<li class=""><strong>Phase 4.5 Validation Gate.</strong> Before write, confirm all three:
+<ul>
+<li class=""><strong>V1 Template compliance.</strong> Every locked section renders; no placeholder <code>{...}</code> remains; Not Extractable section renders even if empty.</li>
+<li class=""><strong>V2 File-write pre-check.</strong> Target path is writable (permissions, disk space). If not, refuse per Error Handling.</li>
+<li class=""><strong>V3 Row-count + Not-Extractable coverage.</strong> Row counts include verified/unverified labels; Not Extractable lists sets, hierarchies, parameters explicitly (with none surfaced if empty).
+Failing any gate blocks the write.</li>
+</ul>
+</li>
+<li class=""><strong>Phase 4.6 Disagreement Branch (conditional).</strong> If user disputes the output shape after delivery:
+<ul>
+<li class="">Offer one alternate rendering (typically verbose vs. concise, or with/without appendix).</li>
+<li class="">If rejected, route to Tableau documentation. Never a second alternate.</li>
+</ul>
+</li>
+<li class=""><strong>Phase 5 Write to Disk.</strong> Write to target path. If collision, increment <code>_v2</code>, <code>_v3</code>. Report actual output path.</li>
+<li class=""><strong>Phase 6 Handoff.</strong> Field-meaning → <code>data-scribe</code>. Change tracking → <code>workbook-auditor</code>. Model recommendation → <code>join-and-relationship-advisor</code>. Emit <code>model_doc_handoff/1</code> YAML if downstream skill requested.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=output-template>Output Template<a href=#output-template class=hash-link aria-label="Direct link to Output Template" title="Direct link to Output Template" translate=no>​</a></h2>
+<p>Every delivery follows <code>skill-expertise/output_template.md</code> (locked). Sections in fixed order: metadata, table inventory, relationship map, calc-dependency graph, appendix, Not Extractable. Validation Gate failures block the write per template fallback handling.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=downstream-handoff-contract>Downstream Handoff Contract<a href=#downstream-handoff-contract class=hash-link aria-label="Direct link to Downstream Handoff Contract" title="Direct link to Downstream Handoff Contract" translate=no>​</a></h2>
+<p>Downstream skills may request <code>model_doc_handoff/1</code>:</p>
+<ul>
+<li class=""><code>datasource_name</code> — the audited data source.</li>
+<li class=""><code>output_file_path</code> — actual path written (post-collision increment).</li>
+<li class=""><code>table_count</code> — integer.</li>
+<li class=""><code>relationship_count</code> — integer.</li>
+<li class=""><code>calc_count</code> — integer.</li>
+<li class=""><code>not_extractable</code> — object with <code>sets</code>, <code>hierarchies</code>, <code>parameters</code> arrays (each entry a name string; empty array if none surfaced).</li>
+<li class=""><code>row_counts_verified</code> — true if all row counts ≥ 1000 sample rows, false otherwise.</li>
+<li class=""><code>notes</code> — optional free text.</li>
+</ul>
+<p>Downstream skills refuse unknown schema versions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=error-handling>Error Handling<a href=#error-handling class=hash-link aria-label="Direct link to Error Handling" title="Direct link to Error Handling" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Situation<th>Response<tbody><tr><td>Multi-source workbook<td>Ask which source. Refuse HC#5 if user says all.<tr><td>Federated multi-source<td>Refuse per Edge-Case Boundary.<tr><td>Blended sources<td>Refuse per Edge-Case Boundary.<tr><td>Sampling returns zero rows<td>Note row-count unavailable; extract may be disconnected. Proceed with rest. Flag as unverified.<tr><td>No candidate key detectable for a relationship pair<td>Report cardinality as not extractable: no candidate key identified. Never guess.<tr><td>Cardinality sample below 1,000 rows per side<td>Report cardinality with unverified: sample size below reliable threshold (1,000 rows) label. Do not suppress.<tr><td>Logical table not referenced by any worksheet shelf<td>Report row count and cardinality for that table/pair as not extractable: no worksheet exposes this table for sampling. Never place a field solely to enable sampling.<tr><td>User asks for a join-vs-relationship recommendation<td>Route to <code>join-and-relationship-advisor</code> by exact slug. This skill reports sampled cardinality as fact, not a model recommendation.<tr><td>Partial <code>list-available-fields</code> failure<td>Proceed with returned fields. Flag failed tables.<tr><td>Calc-formula parse failure<td>List calc with formula; empty References; note unable to parse.<tr><td>Calc references a field that no longer exists in the data source<td>This state typically arises from legacy/imported workbooks where a referenced field was later deleted — Desktops own calc authoring validates field references and blocks creating such a calc fresh. When encountered (existing workbook), apply the standard rule: list the calc with its formula text, empty References, note unable to parse: referenced field not found.<tr><td>Target path exists<td>Increment filename. Report actual output path.<tr><td>Target path unwritable<td>Refuse with specific error (permissions, disk full). Ask user for alternate path.<tr><td>User asks for a diff<td>Refuse HC#3. Route to <code>workbook-auditor</code> by exact slug.<tr><td>User asks for field meaning<td>Route to <code>data-scribe</code> by exact slug.<tr><td>User asks for model recommendations<td>Route to <code>join-and-relationship-advisor</code> by exact slug.<tr><td>User asks to document all sources<td>Refuse HC#5. Ask which one.<tr><td>Validation Gate fails V1 (template incomplete)<td>Do NOT write. Report the specific missing section.<tr><td>Validation Gate fails V2 (path unwritable)<td>Do NOT write. Refuse per unwritable path row above.<tr><td>Validation Gate fails V3 (row counts or Not Extractable missing)<td>Complete the gap before writing.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=common-mistakes-to-avoid>Common Mistakes to Avoid<a href=#common-mistakes-to-avoid class=hash-link aria-label="Direct link to Common Mistakes to Avoid" title="Direct link to Common Mistakes to Avoid" translate=no>​</a></h2>
+<ul>
+<li class="">Overwriting an existing output path. Increment; never overwrite.</li>
+<li class="">Documenting more than one source per run. Refuse and ask which.</li>
+<li class="">Producing a diff. Thats <code>workbook-auditor</code> territory.</li>
+<li class="">Documenting field meaning beyond datatype. Thats <code>data-scribe</code> territory.</li>
+<li class="">Attempting to resolve parameter references. HC#9 out of scope.</li>
+<li class="">Recursing deeper than one level on nested calcs. Bounded by Calc-Parsing Precedence.</li>
+<li class="">Skipping the Validation Gate. Every write must pass V1, V2, V3.</li>
+<li class="">Chaining alternates past the first. HC#8 caps at one.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=known-limitations>Known Limitations<a href=#known-limitations class=hash-link aria-label="Direct link to Known Limitations" title="Direct link to Known Limitations" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>Row-count estimates on live connections may not equal true source count.</strong></li>
+<li class=""><strong>Cardinality is sampled (COUNTD/COUNT per key pair), not read from connector metadata.</strong> RI (referential integrity) is reported as Unknown unless explicitly asserted by the connector; this skill never verifies orphan keys.</li>
+<li class=""><strong>This skill reports cardinality as a fact, not a recommendation.</strong> It does not advise join-vs-relationship model choice or diagnose fanning risk; route to <code>join-and-relationship-advisor</code> for that.</li>
+<li class=""><strong>Cannot detect model changes over time</strong> (<code>workbook-auditor</code>).</li>
+<li class=""><strong>Cannot document field meaning beyond datatype and role</strong> (<code>data-scribe</code>).</li>
+<li class=""><strong>Sets, hierarchies, parameters labeled Not Extractable.</strong> Not resolved.</li>
+<li class=""><strong>Parameters in calcs listed as out-of-scope,</strong> not traced.</li>
+<li class=""><strong>Parameters created directly in Tableau Studios UI mid-session may not be visible to this skills tools</strong> until the workbook is reloaded/refreshed at the tool layer. This is a known environment gap, not a scope decision — if a user-created parameter cant be found, say so plainly rather than reporting it as absent from the model.</li>
+<li class=""><strong>Nested calcs resolved one level only.</strong> Deeper nesting labeled (nested).</li>
+<li class=""><strong>No publishing anywhere.</strong> Desktop file write only.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=mcp-skill-mapping>MCP Skill Mapping<a href=#mcp-skill-mapping class=hash-link aria-label="Direct link to MCP Skill Mapping" title="Direct link to MCP Skill Mapping" translate=no>​</a></h2>
+<p>No direct MCP equivalent. Desktop-agent-native model-export skill.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=graceful-degradation>Graceful Degradation<a href=#graceful-degradation class=hash-link aria-label="Direct link to Graceful Degradation" title="Direct link to Graceful Degradation" translate=no>​</a></h2>
+<p>These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.</p>
+<ul>
+<li class=""><strong>Nothing to work on.</strong> If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.</li>
+<li class=""><strong>Tool call fails, times out, or returns empty.</strong> Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.</li>
+<li class=""><strong>Partial results.</strong> If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.</li>
+<li class=""><strong>Reference file won't open.</strong> Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.</li>
+<li class=""><strong>Peer skill not installed.</strong> If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.</li>
+<li class=""><strong>Platform gap.</strong> If no tool can do something, say so plainly and give the manual Desktop path.</li>
+<li class=""><strong>Failure messages.</strong> Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.</li>
+<li class=""><strong>No fabrication.</strong> Never invent fields, values, findings, or results to fill a gap left by a failed read.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/SKILL.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>Data Model Documenter</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter/resources/output_template><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>output_template.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#when-to-use-full-trigger-detail class="table-of-contents__link toc-highlight">When to use (full trigger detail)</a><li><a href=#purpose class="table-of-contents__link toc-highlight">Purpose</a><li><a href=#trigger-conditions class="table-of-contents__link toc-highlight">Trigger Conditions</a><li><a href=#scope-boundaries class="table-of-contents__link toc-highlight">Scope Boundaries</a><ul><li><a href=#edge-case-boundaries class="table-of-contents__link toc-highlight">Edge-Case Boundaries</a></ul><li><a href=#hard-constraints class="table-of-contents__link toc-highlight">Hard Constraints</a><li><a href=#tools-used class="table-of-contents__link toc-highlight">Tools Used</a><li><a href=#sample-size-reliability-threshold class="table-of-contents__link toc-highlight">Sample-Size Reliability Threshold</a><li><a href=#cardinality-inference-locked class="table-of-contents__link toc-highlight">Cardinality Inference (Locked)</a><li><a href=#calc-parsing-precedence-locked class="table-of-contents__link toc-highlight">Calc-Parsing Precedence (Locked)</a><li><a href=#workflow-phases class="table-of-contents__link toc-highlight">Workflow Phases</a><li><a href=#output-template class="table-of-contents__link toc-highlight">Output Template</a><li><a href=#downstream-handoff-contract class="table-of-contents__link toc-highlight">Downstream Handoff Contract</a><li><a href=#error-handling class="table-of-contents__link toc-highlight">Error Handling</a><li><a href=#common-mistakes-to-avoid class="table-of-contents__link toc-highlight">Common Mistakes to Avoid</a><li><a href=#known-limitations class="table-of-contents__link toc-highlight">Known Limitations</a><li><a href=#mcp-skill-mapping class="table-of-contents__link toc-highlight">MCP Skill Mapping</a><li><a href=#graceful-degradation class="table-of-contents__link toc-highlight">Graceful Degradation</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

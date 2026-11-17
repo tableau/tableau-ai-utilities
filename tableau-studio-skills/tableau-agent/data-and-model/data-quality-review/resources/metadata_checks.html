@@ -1,0 +1,298 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Metadata Checks | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Metadata Checks | Tableau AI Utilities"/><meta data-rh=true name=description content='These checks run on list-available-fields output alone. They require no get-summary-data call and complete in seconds. They form the "Phase 0: Metadata Pre-Scan" and produce findings that feed into the same severity/scoring system as row-level checks.'/><meta data-rh=true property=og:description content='These checks run on list-available-fields output alone. They require no get-summary-data call and complete in seconds. They form the "Phase 0: Metadata Pre-Scan" and produce findings that feed into the same severity/scoring system as row-level checks.'/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/","name":"Data Quality Review","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks","name":"metadata_checks.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.fc7a4f13.js defer></script><script src=/tableau-ai-utilities/assets/js/main.526af1e5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data Quality Review" class=categoryLinkLabel_W154>Data Quality Review</span></a><button aria-label="Collapse sidebar category 'Data Quality Review'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/checks><span title=checks.md class=linkLabel_WmDU>checks.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/fixes><span title=fixes.md class=linkLabel_WmDU>fixes.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks><span title=metadata_checks.md class=linkLabel_WmDU>metadata_checks.md</span></a></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-scribe><span title="Data Scribe" class=categoryLinkLabel_W154>Data Scribe</span></a><button aria-label="Expand sidebar category 'Data Scribe'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-source-connector><span title="Data Source Connector" class=categoryLinkLabel_W154>Data Source Connector</span></a><button aria-label="Expand sidebar category 'Data Source Connector'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder><span title="Esri Map Builder" class=categoryLinkLabel_W154>Esri Map Builder</span></a><button aria-label="Expand sidebar category 'Esri Map Builder'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/join-and-relationship-advisor><span title="Join and Relationship Advisor" class=categoryLinkLabel_W154>Join and Relationship Advisor</span></a><button aria-label="Expand sidebar category 'Join and Relationship Advisor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/geocoding-auditor><span title="Geocoding Auditor" class=categoryLinkLabel_W154>Geocoding Auditor</span></a><button aria-label="Expand sidebar category 'Geocoding Auditor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/extract-optimizer><span title="Extract Optimizer" class=categoryLinkLabel_W154>Extract Optimizer</span></a><button aria-label="Expand sidebar category 'Extract Optimizer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Data and Model</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span>Data Quality Review</span></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Skill Expertise</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>metadata_checks.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Data Quality Review catalog details"><div class=row_T3bp><code class=name_A6OT>data-quality-review</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/data-quality-review.zip download=data-quality-review.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Metadata Checks</h1></header>
+<p>These checks run on <code>list-available-fields</code> output alone. They require no <code>get-summary-data</code> call and complete in seconds. They form the "Phase 0: Metadata Pre-Scan" and produce findings that feed into the same severity/scoring system as row-level checks.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=severity-levels-same-as-checksmd>Severity Levels (same as checks.md)<a href=#severity-levels-same-as-checksmd class=hash-link aria-label="Direct link to Severity Levels (same as checks.md)" title="Direct link to Severity Levels (same as checks.md)" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Level<th>Meaning<tbody><tr><td><strong>Critical</strong><td>Actively corrupts analysis or makes the datasource unusable for its stated purpose.<tr><td><strong>Warning</strong><td>Degrades usability, discoverability, or trust. Likely confuses consumers.<tr><td><strong>Info</strong><td>Cosmetic or low-impact. Worth noting.</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=check-categories>Check Categories<a href=#check-categories class=hash-link aria-label="Direct link to Check Categories" title="Direct link to Check Categories" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=m1-naming-violations-tableau-best-practices>M1. Naming Violations (Tableau Best Practices)<a href=#m1-naming-violations-tableau-best-practices class=hash-link aria-label="Direct link to M1. Naming Violations (Tableau Best Practices)" title="Direct link to M1. Naming Violations (Tableau Best Practices)" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Poor field names confuse consumers, break self-service, and make datasources undiscoverable.</p>
+<p><strong>Tableau naming conventions enforced:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Rule<th>Detection<th>Severity<tbody><tr><td>Dimensions should be Title Case<td>Field is dimension + not Title Case (e.g. "order date", "ORDER_DATE")<td>Warning (systemic)<tr><td>Measures should be Title Case or sentence case<td>Field is measure + contains raw underscores or ALL_CAPS<td>Warning (systemic)<tr><td>No raw underscores in display names<td>Field caption contains <code>_</code> (not just internal name)<td>Warning (systemic)<tr><td>No system suffixes exposed<td>Caption ends with <code>__c</code>, <code>__r</code>, <code>__x</code>, <code>__mdt</code><td>Warning (systemic)<tr><td>No table-prefix redundancy<td>Caption starts with its parent logical table name (e.g. "Orders Order ID")<td>Info<tr><td>Cryptic abbreviations<td>Caption is &lt;4 chars AND not in allowed-short list (ID, Qty, Amt, Pct, YoY, MoM, QoQ, YTD, MTD, No, Nr, SKU, UPC, URL, ZIP, Lat, Long, Lon)<td>Warning<tr><td>Generic/meaningless names<td>Caption matches: `^(value<td>field</table>
+<p><strong>Systemic aggregation:</strong> When >5 fields match the same naming pattern, report as one systemic finding: "[Pattern]: [count] fields. Examples: [top 5 captions]."</p>
+<p><strong>False positive exclusions:</strong></p>
+<ul>
+<li class="">Parameters (skip entirely)</li>
+<li class="">Fields where internal name differs from caption (user already aliased it; check caption only)</li>
+<li class="">Calculated fields with <code>DQ Fix:</code> prefix (created by this skill)</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=m2-type--role-mismatches-inferred-from-name>M2. Type & Role Mismatches (Inferred from Name)<a href=#m2-type--role-mismatches-inferred-from-name class=hash-link aria-label="Direct link to M2. Type & Role Mismatches (Inferred from Name)" title="Direct link to M2. Type & Role Mismatches (Inferred from Name)" translate=no>​</a></h3>
+<p><strong>Impact:</strong> A field whose name strongly implies one type/role but is configured differently will produce wrong aggregations or broken date hierarchies.</p>
+<p><strong>Detection rules:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pattern (case-insensitive match on caption)<th>Expected<th>Flag if<th>Severity<tbody><tr><td>Contains: date, time, created, updated, modified, timestamp, _at, _on<td>DATE or DATETIME type<td>Type is STRING or INTEGER<td>Critical<tr><td>Contains: count, qty, quantity, amount, total, sum, revenue, sales, cost, price, profit, margin<td>Numeric type + MEASURE role<td>Type is STRING, or role is DIMENSION<td>Warning<tr><td>Contains: <em>id, id</em>, _key, _code, _fk, _pk, uuid, guid<td>DIMENSION role<td>Role is MEASURE<td>Warning<tr><td>Contains: is_, has_, flag, active, enabled, disabled<td>BOOLEAN concept<td>Type is STRING with high cardinality (>10 distinct implied by name)<td>Info<tr><td>Contains: pct, percent, rate, ratio<td>Numeric MEASURE<td>Type is STRING<td>Warning<tr><td>Contains: name, description, comment, note, label, title, category, status, type, region, country, state, city<td>STRING DIMENSION<td>Role is MEASURE<td>Info</table>
+<p><strong>Word-boundary matching:</strong> Match on word boundaries or field-caption start/end to avoid false positives (e.g. "considered" should not match "id"). Use substring matching only for prefix/suffix patterns (<em>id, is</em>, _at).</p>
+<p><strong>Conflict with row-level Check #3:</strong> If both M2 and Check #3 flag the same field for a type mismatch, keep only the Check #3 finding (it has actual data evidence). Remove the M2 finding to avoid double-counting.</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=m3-schema-hygiene>M3. Schema Hygiene<a href=#m3-schema-hygiene class=hash-link aria-label="Direct link to M3. Schema Hygiene" title="Direct link to M3. Schema Hygiene" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Structural signals indicating poor modeling, excessive complexity, or rushed development.</p>
+<p><strong>Checks:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Check<th>Threshold<th>Severity<tbody><tr><td>Excessive field count<td>>100 fields: Warning; >200 fields: Critical<td>As stated<tr><td>No dimensions present<td>All fields are measures<td>Warning<tr><td>No measures present<td>All fields are dimensions (excluding calcs)<td>Info<tr><td>Excessive calc ratio<td>>60% of fields are calculated: Warning; >80%: Critical<td>As stated<tr><td>Very long calc formulas<td>Formula length >500 chars: Info; >1000 chars: Warning<td>As stated<tr><td>Deeply nested logic<td>Formula contains >5 IF/CASE/IIF nesting levels<td>Warning<tr><td>Hardcoded string literals<td>Formula contains >3 string comparisons (brittle to value changes)<td>Info</table>
+<p><strong>Counting:</strong> Each schema check is one finding regardless of how many fields contribute to it. "Excessive field count" is one finding, not one per field.</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=m4-near-duplicate--redundant-fields>M4. Near-Duplicate / Redundant Fields<a href=#m4-near-duplicate--redundant-fields class=hash-link aria-label="Direct link to M4. Near-Duplicate / Redundant Fields" title="Direct link to M4. Near-Duplicate / Redundant Fields" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Confuses consumers, inflates the field list, creates ambiguity about which field to use.</p>
+<p><strong>Detection logic:</strong></p>
+<ol>
+<li class="">
+<p><strong>Exact caption duplicates:</strong> Two or more fields with the identical caption (different internal names). Always a problem.</p>
+<ul>
+<li class="">Severity: Warning</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Near-duplicate captions:</strong> Normalize captions (lowercase, strip underscores/spaces/hyphens, strip common suffixes like "name", "value", "field") and group. If two+ fields collapse to the same normalized form, flag.</p>
+<ul>
+<li class="">Examples: "Customer Name" and "CustomerName" and "customer_name"; "Order Date" and "OrderDate"</li>
+<li class="">Severity: Info (may be intentional aliases across tables)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Same-name different-table:</strong> In multi-table datasources, the same caption appearing in two logical tables (e.g. "ID" in both Orders and Returns). Not always wrong but worth flagging for disambiguation.</p>
+<ul>
+<li class="">Severity: Info</li>
+</ul>
+</li>
+</ol>
+<p><strong>Systemic aggregation:</strong> If >5 near-duplicate groups exist, aggregate: "[N] near-duplicate field groups detected. Examples: [top 3 groups]."</p>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=m5-unused--low-signal-fields>M5. Unused / Low-Signal Fields<a href=#m5-unused--low-signal-fields class=hash-link aria-label="Direct link to M5. Unused / Low-Signal Fields" title="Direct link to M5. Unused / Low-Signal Fields" translate=no>​</a></h3>
+<p><strong>Impact:</strong> Clutter in the data pane reduces discoverability and increases cognitive load for consumers.</p>
+<p><strong>Detection logic (metadata-only heuristics):</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Signal<th>Interpretation<th>Severity<tbody><tr><td>Field is hidden (<code>isHidden: true</code> if exposed by API)<td>Already suppressed by author; no action needed<td>Skip (don't flag)<tr><td>Field caption is a generic auto-increment pattern (e.g. "F1", "F2", "Column1", "Unnamed: 0")<td>Likely an artifact of CSV/Excel import with no header row<td>Warning<tr><td>Field has no description AND is not used in any calc formula AND has a generic/system name<td>Low-value candidate<td>Info</table>
+<p><strong>Important:</strong> Desktop's <code>list-available-fields</code> does not expose usage data (which sheets use which fields). This check is heuristic only. Always phrase findings as "candidate for review" not "confirmed unused."</p>
+<p><strong>Do NOT flag:</strong></p>
+<ul>
+<li class="">Fields with meaningful captions even if unused (user may plan to use them)</li>
+<li class="">Join keys (even if never placed on a viz, they serve a structural purpose)</li>
+<li class="">Fields that appear in other fields' calc formulas (they're dependencies)</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=scoring-integration>Scoring Integration<a href=#scoring-integration class=hash-link aria-label="Direct link to Scoring Integration" title="Direct link to Scoring Integration" translate=no>​</a></h2>
+<p>Metadata findings feed into the same score formula as row-level findings (from checks.md):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Score = 100 - (Critical x 15) - (Warning x 6) - (Info x 1, capped at 5 total)</span><br/></div></code></pre></div></div>
+<p><strong>Important:</strong> When both a metadata finding (M2) and a row-level finding (Check #3) flag the same field for the same issue, count it ONCE (keep the row-level version, which has evidence). The metadata pre-scan is a fast first pass; row-level checks are the ground truth.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=report-integration>Report Integration<a href=#report-integration class=hash-link aria-label="Direct link to Report Integration" title="Direct link to Report Integration" translate=no>​</a></h2>
+<p>Metadata findings appear in the report BEFORE row-level findings, under a separate heading:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">### Metadata Findings (from field inventory)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#393A34><span class="token plain">- **[Pattern/Check]** -- [Severity] -- [description]. Fields: [count]. Examples: [top 3].</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  *Fix:* [one-line proposed fix or "Advisory only"].</span><br/></div></code></pre></div></div>
+<p>If zero metadata findings: omit the section entirely (don't write "No metadata findings").</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=relationship-to-row-level-checks>Relationship to Row-Level Checks<a href=#relationship-to-row-level-checks class=hash-link aria-label="Direct link to Relationship to Row-Level Checks" title="Direct link to Relationship to Row-Level Checks" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metadata check<th>Row-level counterpart<th>Priority rule<tbody><tr><td>M2 (type mismatch from name)<td>Check #3 (type mismatch from data)<td>If both fire on same field, keep Check #3 only<tr><td>M4 (near-duplicate captions)<td>Check #5 (inconsistent casing)<td>Both can coexist (different issues)<tr><td>M5 (unused/low-signal)<td>Check #9 (constant/zero-variance)<td>Both can coexist<tr><td>M1, M3<td>No row-level equivalent<td>Always report</table></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/metadata_checks.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review/resources/fixes><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>fixes.md</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-scribe><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>Data Scribe</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#severity-levels-same-as-checksmd class="table-of-contents__link toc-highlight">Severity Levels (same as checks.md)</a><li><a href=#check-categories class="table-of-contents__link toc-highlight">Check Categories</a><ul><li><a href=#m1-naming-violations-tableau-best-practices class="table-of-contents__link toc-highlight">M1. Naming Violations (Tableau Best Practices)</a><li><a href=#m2-type--role-mismatches-inferred-from-name class="table-of-contents__link toc-highlight">M2. Type & Role Mismatches (Inferred from Name)</a><li><a href=#m3-schema-hygiene class="table-of-contents__link toc-highlight">M3. Schema Hygiene</a><li><a href=#m4-near-duplicate--redundant-fields class="table-of-contents__link toc-highlight">M4. Near-Duplicate / Redundant Fields</a><li><a href=#m5-unused--low-signal-fields class="table-of-contents__link toc-highlight">M5. Unused / Low-Signal Fields</a></ul><li><a href=#scoring-integration class="table-of-contents__link toc-highlight">Scoring Integration</a><li><a href=#report-integration class="table-of-contents__link toc-highlight">Report Integration</a><li><a href=#relationship-to-row-level-checks class="table-of-contents__link toc-highlight">Relationship to Row-Level Checks</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

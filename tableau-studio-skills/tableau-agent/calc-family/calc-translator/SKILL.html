@@ -1,0 +1,806 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Calc Translator — SKILL.md | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Calc Translator — SKILL.md | Tableau AI Utilities"/><meta data-rh=true name=description content="Use when the user says 'Translate this Excel formula', 'convert this DAX', 'translate this SQL', 'what would this look like in Tableau?' Turns one SQL, Excel, or Power BI DAX expression into a working Tableau calc, verifies it, and flags where the translation isn't exact."/><meta data-rh=true property=og:description content="Use when the user says 'Translate this Excel formula', 'convert this DAX', 'translate this SQL', 'what would this look like in Tableau?' Turns one SQL, Excel, or Power BI DAX expression into a working Tableau calc, verifies it, and flags where the translation isn't exact."/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator/","name":"Calc Translator","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL","name":"SKILL.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.fc7a4f13.js defer></script><script src=/tableau-ai-utilities/assets/js/main.526af1e5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Writer" class=categoryLinkLabel_W154>Calc Writer</span></a><button aria-label="Expand sidebar category 'Calc Writer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-debugger><span title="Calc Debugger" class=categoryLinkLabel_W154>Calc Debugger</span></a><button aria-label="Expand sidebar category 'Calc Debugger'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-optimizer><span title="Calc Optimizer" class=categoryLinkLabel_W154>Calc Optimizer</span></a><button aria-label="Expand sidebar category 'Calc Optimizer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-linter><span title="Calc Linter" class=categoryLinkLabel_W154>Calc Linter</span></a><button aria-label="Expand sidebar category 'Calc Linter'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-hygiene-scan><span title="Calc Hygiene Scan" class=categoryLinkLabel_W154>Calc Hygiene Scan</span></a><button aria-label="Expand sidebar category 'Calc Hygiene Scan'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-inventory><span title="Calc Inventory" class=categoryLinkLabel_W154>Calc Inventory</span></a><button aria-label="Expand sidebar category 'Calc Inventory'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator><span title="Calc Translator" class=categoryLinkLabel_W154>Calc Translator</span></a><button aria-label="Collapse sidebar category 'Calc Translator'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-migrator><span title="Calc Migrator" class=categoryLinkLabel_W154>Calc Migrator</span></a><button aria-label="Expand sidebar category 'Calc Migrator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-migrator-diff-report><span title="Calc Migrator Diff Report" class=categoryLinkLabel_W154>Calc Migrator Diff Report</span></a><button aria-label="Expand sidebar category 'Calc Migrator Diff Report'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-documenter><span title="Calc Documenter" class=categoryLinkLabel_W154>Calc Documenter</span></a><button aria-label="Expand sidebar category 'Calc Documenter'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-explainer><span title="Calc Explainer" class=categoryLinkLabel_W154>Calc Explainer</span></a><button aria-label="Expand sidebar category 'Calc Explainer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Calc Family</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator><span>Calc Translator</span></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>SKILL.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Calc Translator catalog details"><div class=row_T3bp><code class=name_A6OT>calc-translator</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/calc-translator.zip download=calc-translator.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Calc Translator</h1></header>
+<p>You translate a single calc expression from SQL, Excel, or Power BI DAX into a working Tableau calculated field. One expression per invocation. Verification is mandatory. Semantic drift is reported honestly, not smoothed over. After a successful translation, optionally hand off to the Calc Optimizer skill for performance optimization and deeper verification.</p>
+<p><strong>Why this shape.</strong> Users who inherit content from other platforms currently have no repeatable way to port logic into Tableau. Direct translation is dialect-sensitive: <code>DATEADD</code> argument order differs between SQL Server and Tableau, DAX iterators have no direct Tableau equivalent, Excel <code>VLOOKUP</code> is a join not a calc. This skill encodes the dialect mappings, applies Tableaus calc-type judgment, writes the calc, verifies it against real data, flags cases where the translation is approximate, and routes performance-sensitive translations to the Calc Optimizer skill for optimization.</p>
+<p><strong>File structure:</strong> Single SKILL.md (this file). No reference files in v1 — all translation rules and drift patterns are inline below.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=when-to-use-full-trigger-detail>When to use (full trigger detail)<a href=#when-to-use-full-trigger-detail class=hash-link aria-label="Direct link to When to use (full trigger detail)" title="Direct link to When to use (full trigger detail)" translate=no>​</a></h2>
+<p>Translates a single calc expression from SQL, Excel, or Power BI DAX into a working Tableau calculated field. Classifies the target calc type (row-level, aggregate, LOD, table calc), writes and verifies the calc via author-calc plus get-summary-data, reports semantic drift between the source dialect and Tableau, and optionally hands off to calc-optimizer for performance optimization and deeper verification once the translation lands. Trigger on translate this SQL, convert this DAX, translate this Excel formula, port this expression to Tableau, what would this look like in Tableau, rewrite this calc in Tableau. Do NOT trigger on. writing a Tableau calc from a natural-language description (defer to calc-writer), debugging an existing Tableau calc (defer to calc-debugger), migrating a full workbook or model (out of scope, single-expression only), or optimizing performance of an already-translated calc (hand off to calc-optimizer).</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=trigger-conditions>Trigger Conditions<a href=#trigger-conditions class=hash-link aria-label="Direct link to Trigger Conditions" title="Direct link to Trigger Conditions" translate=no>​</a></h2>
+<p><strong>Positive:</strong> translate this SQL, convert this DAX to Tableau, translate this Excel formula, port this expression to Tableau, move this calc from Power BI, what would this look like as a Tableau calc, rewrite this in Tableau, help me convert this formula.</p>
+<p><strong>Negative (do NOT trigger):</strong></p>
+<ul>
+<li class="">Writing a Tableau calc from natural-language description — defer to <code>calc-writer</code></li>
+<li class="">Debugging an existing Tableau calc — defer to <code>calc-debugger</code></li>
+<li class="">Optimizing performance of an already-translated calc — hand off to <code>calc-optimizer</code></li>
+<li class="">Translating an entire workbook, model, or query — single expression only</li>
+<li class="">Building a Tableau data source connection to the source system — defer to <code>data-source-connector</code></li>
+<li class="">Recommending whether to migrate at all — strategic question, not a translation task</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=scope-boundaries>Scope Boundaries<a href=#scope-boundaries class=hash-link aria-label="Direct link to Scope Boundaries" title="Direct link to Scope Boundaries" translate=no>​</a></h2>
+<p><strong>IN:</strong></p>
+<ul>
+<li class="">Single-expression translation from SQL (ANSI-standard, Snowflake, BigQuery, SQL Server, Redshift, Postgres dialects), Excel formulas, and Power BI DAX</li>
+<li class="">Calc-type routing (row-level, aggregate, LOD, table calc) based on source-expression pattern</li>
+<li class="">Field-resolution verification against the target data source</li>
+<li class="">Post-translation verification via get-summary-data</li>
+<li class="">Semantic-drift reporting when the translation is approximate</li>
+<li class="">Optional handoff to the Calc Optimizer skill for performance optimization</li>
+</ul>
+<p><strong>OUT:</strong></p>
+<ul>
+<li class="">Multi-expression batch translation</li>
+<li class="">Data source connection setup or ETL</li>
+<li class="">Query performance tuning on the source system</li>
+<li class="">Parameter creation (author-parameter unreliable; source parameter references become manual instructions)</li>
+<li class="">Set or hierarchy creation — sets have no <code>column_ref</code> any tool can resolve (invisible to <code>list-available-fields</code>, <code>resolve-field</code>, and shelf placement regardless of creation method), so this is unresolvable through current tools. If a translation request also asks for a Top-N Set, propose a <code>RANK()</code>-based table calc filter instead (see Common Mistakes) — but note that placing it on the Filters shelf itself has no tool path either (no Filters-shelf placement command exists in this environment), so that last step is manual regardless of which alternative is used</li>
+<li class="">Any mutation of the source SQL / Excel / DAX artifact</li>
+<li class="">Deep performance optimization (defers to calc-optimizer)</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=tools-you-use>Tools You Use<a href=#tools-you-use class=hash-link aria-label="Direct link to Tools You Use" title="Direct link to Tools You Use" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tool<th>Purpose<th>When to skip<tbody><tr><td><code>list-workbook-datasources</code><td>Confirm target data source. Batch with list-available-fields in Phase 0.<td>Never skip.<tr><td><code>list-available-fields</code><td>Enumerate fields and types on the target data source.<td>Never skip.<tr><td><code>resolve-field</code><td>Confirm every source-side field reference has a Tableau counterpart. Batch all resolve calls in one turn — for expressions referencing 10+ fields (wide SUMIFS-style ports), still issue as one batched turn rather than splitting into multiple rounds.<td>Skip only if the source expression references zero fields.<tr><td><code>author-calc</code><td>Write the translated calc. Name it with the <code>T:</code> prefix and 20-character cap.<td>Never skip.<tr><td><code>add-worksheet</code>, <code>rename-sheet</code><td>Create a scratch worksheet for verification, then rename it to a distinct name. Reuse a scratch sheet only for a single edit cycle — if a second edit is needed on the same sheet later in the run, re-read it via <code>get-worksheet-xml</code> first, or create a new scratch sheet instead of trusting an earlier cache file (reusing across multiple edit cycles has caused silent field-drops and stale-cache apply rejections).<td>Skip if a suitable scratch sheet already exists AND no edit has been applied to it yet this run.<tr><td><code>add-field</code><td>Place the calc for the verification probe (row-level calc on Detail; LOD calc as SUM/ATTR on Text with its dimension on Rows).<td>Never skip during verification.<tr><td><code>get-summary-data</code><td>Verify the calc produces expected output.<td>Skip only when the data source is disconnected; in that case output UNVERIFIED and stop.<tr><td><code>Skill</code> (invoke Calc Optimizer)<td>Optional Phase 5 handoff to <code>calc-optimizer</code> for performance optimization.<td>Skip if the tester declines the handoff offer.</table>
+<p><strong>Never mutate the source system.</strong> This skill translates <em>into</em> Tableau; it does not touch the origin SQL query, Excel workbook, or DAX model.</p>
+<p><strong>One expression per run.</strong> Multiple expressions run as separate Phase 0-6 cycles.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=hard-constraints>Hard Constraints<a href=#hard-constraints class=hash-link aria-label="Direct link to Hard Constraints" title="Direct link to Hard Constraints" translate=no>​</a></h2>
+<ol>
+<li class="">
+<p><strong>Verification is mandatory.</strong> Every translated calc is verified via get-summary-data on a scratch worksheet. If verification is impossible (data source disconnected, sheet creation blocked, cloud timeout), state Unable to verify explicitly and refuse to declare the translation complete.</p>
+</li>
+<li class="">
+<p><strong>Parameter-safe write path.</strong> If the target data source contains any parameter-referencing calc (detected by scanning existing calc formulas for <code>[Parameters].</code> references), do not invoke <code>build-and-apply-worksheet</code> or <code>bind-template</code> with <code>auto_apply</code>. The corruption is silent and undetectable via formula readback. Use <code>add-worksheet</code> plus <code>add-field</code> only.</p>
+</li>
+<li class="">
+<p><strong>Bare parameter names.</strong> When a translation includes a parameter reference, the Tableau formula uses the bare parameter name, never <code>[Parameters].[X]</code>. Double-qualification breaks author-calc silently.</p>
+</li>
+<li class="">
+<p><strong>20-character field name cap.</strong> Every translated calc name is 20 characters or fewer. Propose a shortened name if source exceeds this; confirm with the tester before writing.</p>
+</li>
+<li class="">
+<p><strong>Comment placement after formula.</strong> author-calc collapses leading newlines. Translation comments go at the end of the formula, never at the top.</p>
+</li>
+<li class="">
+<p><strong>Blocking-modal awareness.</strong> If any tool call hangs, times out, or returns garbled results after a mutation, instruct the tester to check Tableau Studio for a modal dialog before continuing. Do not retry the call.</p>
+</li>
+<li class="">
+<p><strong>Semantic drift is reported, not hidden.</strong> When a translation is approximate (DAX <code>EARLIER()</code> has no direct Tableau equivalent; Excel <code>VLOOKUP</code> maps to a join), output both the closest Tableau expression and an explicit This is not an exact translation. Difference: X. caveat citing the Semantic Drift Catalog.</p>
+</li>
+<li class="">
+<p><strong>No fabricated fields.</strong> If a source-side field has no counterpart in the target Tableau data source, stop and ask the tester to map the field or provide the missing one. Never invent a field.</p>
+</li>
+<li class="">
+<p><strong>Calc-type routing is deterministic.</strong> The Tableau calc type is determined by pattern-matching the source expression against the Calc-Type Routing table, not by inference. Ties resolve to the tables rule, not the models judgment.</p>
+</li>
+<li class="">
+<p><strong>Single-expression only.</strong> If the tester pastes multiple expressions, ask which one to translate first and offer to re-run for the others. Do not batch.</p>
+</li>
+<li class="">
+<p><strong>Calc Optimizer handoff is offered, never forced.</strong> After a VERIFIED translation, offer the handoff to Calc Optimizer. Never auto-invoke. If the tester declines, close the run cleanly.</p>
+</li>
+<li class="">
+<p><strong>Declined handoff is a valid completion state.</strong> Not every translation needs optimization. If the tester says ship it as-is, the run is complete. Do not treat this as an incomplete or failed run.</p>
+</li>
+</ol>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=common-mistakes>Common Mistakes<a href=#common-mistakes class=hash-link aria-label="Direct link to Common Mistakes" title="Direct link to Common Mistakes" translate=no>​</a></h2>
+<p>Scan before writing any calc:</p>
+<ul>
+<li class=""><strong>Assuming SQL function argument order matches Tableau.</strong> <code>DATEADD</code> in SQL Server is <code>(part, number, date)</code>; Tableau uses <code>(part, interval, date)</code> — similar order, different terminology. <code>DATEDIFF</code> returns a different signed value on certain boundaries. Always check the Translation Rules table.</li>
+<li class=""><strong>Translating DAX <code>CALCULATE</code> naively.</strong> CALCULATE with filter modifiers is not a Tableau row-level calc — it is an LOD. Route via the Calc-Type Routing table.</li>
+<li class=""><strong>Translating Excel <code>VLOOKUP</code> as a Tableau calc.</strong> VLOOKUP is a join, not a calc. Refuse translation and hand off to <code>join-and-relationship-advisor</code>.</li>
+<li class=""><strong>Writing the calc before resolve-field confirms every reference.</strong> author-calc will succeed and produce a broken calc if a field is unresolvable.</li>
+<li class=""><strong>Skipping verification because the source expression looked simple.</strong> Simple expressions are the most common source of silent semantic drift (rounding rules, null handling, integer vs. float division).</li>
+<li class=""><strong>Preserving the source name verbatim when it exceeds 20 characters.</strong> Propose a shortened name up front.</li>
+<li class=""><strong>Applying the T: prefix in a way that produces a duplicate.</strong> If <code>T: X</code> already exists, increment to <code>T: X v2</code>. Never overwrite.</li>
+<li class=""><strong>Auto-invoking Calc Optimizer.</strong> The handoff is offered, not forced. Skipping the offer is a valid choice.</li>
+<li class=""><strong>Treating a declined Calc Optimizer handoff as a failed run.</strong> If the tester says no thanks, ship as-is, the run is complete.</li>
+<li class=""><strong>Burying a per-key predicate inside the aggregate.</strong> When the logic is a per-key test (e.g. customers with 2+ orders), offer a standalone flag calc (<code>{ FIXED [key] : agg } >= n</code>, boolean dimension) alongside the aggregate rate. Testers often prefer the reusable flag. Warn that a plain SUM or COUNT over the flag counts rows, not keys; use COUNTD(IF flag THEN key END).</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=worked-example--dax-calculate--filter>Worked Example — DAX CALCULATE + FILTER<a href=#worked-example--dax-calculate--filter class=hash-link aria-label="Direct link to Worked Example — DAX CALCULATE + FILTER" title="Direct link to Worked Example — DAX CALCULATE + FILTER" translate=no>​</a></h2>
+<p>Demonstrates the highest-value routing decision this skill makes. Base agent without the skill would typically route this as a row-level calc and produce wrong output. The skill routes correctly to an LOD and verifies.</p>
+<p><strong>Input from tester:</strong></p>
+<blockquote>
+<p>Translate this DAX to Tableau: CALCULATE(SUM(Sales[Amount]), FILTER(Sales, Sales[Region] = "West"))</p>
+</blockquote>
+<p><strong>Without the skill (baseline agent behavior):</strong></p>
+<p>The agent would likely produce something like <code>IF [Region] = "West" THEN SUM([Amount]) END</code> — which is a mixed-aggregation row-level calc, produces null in most contexts, and drops the dimensional filter context DAX implied. Silent semantic error.</p>
+<p><strong>With the skill (Phase 0 → Phase 6):</strong></p>
+<p><strong>Phase 0.</strong> Tester confirms: DAX source, target data source is Sales_Extract (single connected DS, auto-selected). No parameter-referencing calcs detected. Standard write mode.</p>
+<p><strong>Phase 1.</strong> Parse and route.</p>
+<blockquote>
+<p>Parsing DAX. The expression uses CALCULATE with a FILTER modifier, which imposes dimensional filter context. Per the Calc-Type Routing table, this routes to an LOD, not a row-level calc.</p>
+<p>Fields referenced: Sales[Amount], Sales[Region]. Both must resolve on the target.</p>
+<p>Proposed routing: FIXED LOD on Region. Confirm before I resolve fields?</p>
+</blockquote>
+<p>Tester: confirmed.</p>
+<p><strong>Phase 2.</strong> Batched resolve-field calls for Amount and Region. Both resolve. No parameters referenced.</p>
+<p><strong>Phase 3.</strong> Translate and write.</p>
+<blockquote>
+<p>Translation:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">{ FIXED : SUM(IF [Region] = "West" THEN [Amount] END) }</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">// Translated from DAX CALCULATE(SUM([Amount]), FILTER([Region] = "West")).</span><br/></div></code></pre></div></div>
+<p>Proposed name: <code>T: West Sales</code> (13 characters, under the 20-char cap).</p>
+<p>Pre-write validation:</p>
+<ul>
+<li class="">No parameter double-qualification: PASS</li>
+<li class="">Name length: PASS (13/20)</li>
+<li class="">Comment position: PASS (at end)</li>
+<li class="">No collision: PASS (no existing <code>T: West Sales</code>)</li>
+</ul>
+<p>Writing via author-calc now.</p>
+</blockquote>
+<p>author-calc succeeds. Calc appears in list-available-fields.</p>
+<p><strong>Phase 4.</strong> Verify.</p>
+<blockquote>
+<p>Creating scratch worksheet <code>T-Verify-2026-09-01-1247</code>. Placing <code>Region</code> on Rows and <code>SUM([T: West Sales])</code> on Text.</p>
+<p>get-summary-data returns:</p>
+<ul>
+<li class="">West: 145,230</li>
+<li class="">Every other region: 145,230 (same value, because a table-scoped FIXED ignores the Region dimension in the view)</li>
+</ul>
+<p>Expected behavior for a table-scoped FIXED LOD with a West-only condition. VERIFIED.</p>
+<p>No drift caveat needed for this pattern — CALCULATE with a single equality filter maps cleanly to a FIXED LOD with a conditional aggregate.</p>
+</blockquote>
+<p><strong>Phase 5.</strong> Handoff offer.</p>
+<blockquote>
+<p>Translation is verified. This is an LOD. Want me to hand off to <code>calc-optimizer</code> for a performance optimization pass and deeper verification? (yes/no)</p>
+</blockquote>
+<p>Tester: no thanks, ship as-is.</p>
+<p><strong>Phase 6.</strong> Deliver.</p>
+<blockquote>
+<p>Complete.</p>
+<ul>
+<li class="">Source: <code>CALCULATE(SUM(Sales[Amount]), FILTER(Sales, Sales[Region] = "West"))</code></li>
+<li class="">Target: <code>T: West Sales</code> = <code>{ FIXED : SUM(IF [Region] = "West" THEN [Amount] END) }</code></li>
+<li class="">Calc type: LOD (FIXED)</li>
+<li class="">Verification: VERIFIED</li>
+<li class="">Drift caveats: none</li>
+<li class="">Manual follow-ups: drop the <code>T:</code> prefix once you approve final placement</li>
+<li class="">Handoff outcome: declined; shipped as-is</li>
+</ul>
+<p>Translate another expression?</p>
+</blockquote>
+<p><strong>What the skill prevented:</strong></p>
+<ul>
+<li class="">Row-level routing (mixed-aggregation error)</li>
+<li class="">Missing dimensional filter context</li>
+<li class="">Silent verification (would have shipped without a get-summary-data check)</li>
+<li class="">Double-qualification if the source expression had referenced <code>[Parameters].[Region]</code> instead of a literal</li>
+<li class="">Name overflow if the source calc name had been <code>West Region Sales Aggregate</code></li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=workflow>Workflow<a href=#workflow class=hash-link aria-label="Direct link to Workflow" title="Direct link to Workflow" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-0--intake-and-setup>Phase 0 — Intake and Setup<a href=#phase-0--intake-and-setup class=hash-link aria-label="Direct link to Phase 0 — Intake and Setup" title="Direct link to Phase 0 — Intake and Setup" translate=no>​</a></h3>
+<p><strong>Batching:</strong> issue list-workbook-datasources and list-available-fields in one turn.</p>
+<ol>
+<li class="">Ask the tester:
+<ul>
+<li class="">Source dialect: SQL (which vendor), Excel, or DAX?</li>
+<li class="">Paste the expression (single expression only).</li>
+<li class="">Target data source in the workbook (if multiple exist).</li>
+</ul>
+</li>
+<li class="">Confirm the target: <code>list-workbook-datasources</code>. If multiple, ask which. If one, auto-select.</li>
+<li class="">Check for parameter-referencing calcs on the target data source (scan formulas from <code>list-available-fields</code> for <code>[Parameters].</code> references). If present, enter parameter-safe mode (see Hard Constraint 2).</li>
+<li class="">Call <code>get-workbook-inventory</code> alongside <code>list-available-fields</code> to check for a prior <code>T:</code>-prefixed calc from an earlier session before assuming the field list alone is sufficient for collision-checking in Phase 3.</li>
+<li class="">If the testers stated dialect/vendor isnt one of the covered SQL vendors, Excel, or DAX, ask which vendor it is; if a function has no Translation Rules entry, follow the Source-side function has no Translation Rules entry row in Error Handling rather than guessing.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-1--parse-and-route>Phase 1 — Parse and Route<a href=#phase-1--parse-and-route class=hash-link aria-label="Direct link to Phase 1 — Parse and Route" title="Direct link to Phase 1 — Parse and Route" translate=no>​</a></h3>
+<ol>
+<li class="">
+<p>Parse the source expression to identify:</p>
+<ul>
+<li class="">Referenced fields (map to Tableau via <code>list-available-fields</code>)</li>
+<li class="">Referenced parameters (flag for manual creation guidance)</li>
+<li class="">Functions used (map via Translation Rules below)</li>
+<li class="">Aggregation patterns (SUM, COUNT, DISTINCT, window functions)</li>
+<li class="">Filter modifiers (WHERE, DAX CALCULATE modifiers, Excel IF wrappers)</li>
+</ul>
+</li>
+<li class="">
+<p>Route to a Tableau calc type using the Calc-Type Routing table:</p>
+<ul>
+<li class="">Row-level source function → Tableau row-level calc</li>
+<li class="">Source aggregation without dimensional context → Tableau aggregate calc</li>
+<li class="">Source aggregation with dimensional filter or partition context → Tableau LOD</li>
+<li class="">Source window function → Tableau table calc</li>
+<li class="">Source lookup across tables → flag as relationship, not calc; refuse translation</li>
+</ul>
+</li>
+<li class="">
+<p>Announce the route to the tester with the reasoning (This is an LOD because the source uses a dimensional filter modifier). Give them a chance to override.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-2--resolve-fields>Phase 2 — Resolve Fields<a href=#phase-2--resolve-fields class=hash-link aria-label="Direct link to Phase 2 — Resolve Fields" title="Direct link to Phase 2 — Resolve Fields" translate=no>​</a></h3>
+<p><strong>Batching:</strong> issue all resolve-field calls in one turn.</p>
+<ol>
+<li class="">
+<p>For every field named in the source expression, call <code>resolve-field</code>. If any field is unresolvable, stop and ask the tester to provide a mapping or add the missing field.</p>
+</li>
+<li class="">
+<p>If a source parameter is referenced, do not attempt author-parameter. Generate a manual-creation instruction block for the tester and continue Phase 2 assuming the parameter will exist by verification time.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-3--translate-and-write>Phase 3 — Translate and Write<a href=#phase-3--translate-and-write class=hash-link aria-label="Direct link to Phase 3 — Translate and Write" title="Direct link to Phase 3 — Translate and Write" translate=no>​</a></h3>
+<ol>
+<li class="">
+<p>Assemble the Tableau expression using the Function Mappings and the routed calc type.</p>
+</li>
+<li class="">
+<p>Apply the 20-character name cap. Propose a name; confirm with the tester.</p>
+</li>
+<li class="">
+<p>Place translation-note comments at the end of the formula (never the beginning).</p>
+</li>
+<li class="">
+<p><strong>Pre-write validation gate (mandatory).</strong> Before calling author-calc, read the drafted formula string back and confirm all four checks pass:</p>
+<ul>
+<li class=""><strong>No parameter double-qualification:</strong> the string contains zero occurrences of <code>[Parameters].</code>. If found, strip to bare parameter name and re-check.</li>
+<li class=""><strong>Name length:</strong> the proposed name is ≤ 20 characters. If over, stop and propose a shorter name.</li>
+<li class=""><strong>Comment position:</strong> any translation comment appears after the final formula token (never before or interleaved). If comments are misplaced, move them to the end.</li>
+<li class=""><strong>No collision:</strong> <code>T: {name}</code> does not already exist in list-available-fields output. If it does, increment to <code>T: {name} v2</code>.</li>
+</ul>
+<p>If any check fails and cannot be auto-corrected, stop and surface the specific failure to the tester. Never call author-calc while a check is failing — the writes are hard to reverse (no delete-calc tool).</p>
+</li>
+<li class="">
+<p>Call <code>author-calc</code> with:</p>
+<ul>
+<li class="">Name: <code>T: {shortened-name}</code></li>
+<li class="">Formula: translated expression, comments at end</li>
+<li class="">Data source: confirmed target</li>
+</ul>
+</li>
+<li class="">
+<p>Confirm the calc appears in <code>list-available-fields</code>. If not, the write failed silently — check for a blocking modal.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-4--verify>Phase 4 — Verify<a href=#phase-4--verify class=hash-link aria-label="Direct link to Phase 4 — Verify" title="Direct link to Phase 4 — Verify" translate=no>​</a></h3>
+<ol>
+<li class="">Create a scratch worksheet with a distinct name (e.g., <code>T-Verify-{timestamp}</code>). No delete-sheet or delete-calc tool path exists, so the scratch sheet and the authored calc persist. Tell the tester up front, naming the sheet, so they can remove it manually.</li>
+<li class="">Place the translated calc via <code>add-field</code>. A row-level calc can go on Detail. An LOD calc can't go on Detail as-is: put the grouping dimension on Rows and the calc on Text as <code>SUM(...)</code> (or <code>ATTR(...)</code>). Add companion fields the verification needs. Run this step right after <code>author-calc</code>; don't wait for the user to ask.</li>
+<li class="">Call <code>get-summary-data</code>. Compare against:
+<ul>
+<li class="">The testers expected value if provided</li>
+<li class="">A hand-calculated value if the expression is simple enough to compute manually</li>
+<li class="">The source systems output if the tester can paste it</li>
+</ul>
+</li>
+<li class="">Log the verification result: <strong>VERIFIED</strong>, <strong>DRIFT</strong> (plausible but different; report delta), or <strong>UNVERIFIED</strong>.</li>
+<li class="">If drift is detected, cross-reference the Semantic Drift Catalog. Include the caveat text verbatim in output.</li>
+<li class="">If the target data source returns fewer than ~5 rows, note in the delivery summary that verification confidence is lower — a small sample can mask a DRIFT that would only appear at scale.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-5--calc-optimizer-handoff-optional>Phase 5 — Calc Optimizer Handoff (optional)<a href=#phase-5--calc-optimizer-handoff-optional class=hash-link aria-label="Direct link to Phase 5 — Calc Optimizer Handoff (optional)" title="Direct link to Phase 5 — Calc Optimizer Handoff (optional)" translate=no>​</a></h3>
+<p>After VERIFIED, offer the handoff:</p>
+<blockquote>
+<p>Translation is verified. This is a {row-level / aggregate / LOD / table calc}. Want me to hand off to {calc-optimizer} for performance optimization and a deeper verification pass? (yes/no)</p>
+</blockquote>
+<p>Route based on calc type:</p>
+<ul>
+<li class="">Any calc type (row-level, aggregate, LOD, or table calc) → <code>calc-optimizer</code></li>
+</ul>
+<p><strong>On yes:</strong></p>
+<ol>
+<li class="">Invoke the sibling skill via the <code>Skill</code> tool, passing the translated calc name, the source-dialect context, and any drift caveats as input.</li>
+<li class="">The sibling skill returns an optimized version (or confirms the translation is already optimal) plus a deeper verification report.</li>
+<li class="">Confirm the tester wants to apply any sibling-proposed changes; if yes, the sibling handles the write. If no, the original translation stands.</li>
+</ol>
+<p><strong>On no:</strong> close the run cleanly. Log in the delivery summary: Handoff declined; translation shipped as-is.</p>
+<p>Handoff is never forced. Declining is a valid completion state.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-6--deliver>Phase 6 — Deliver<a href=#phase-6--deliver class=hash-link aria-label="Direct link to Phase 6 — Deliver" title="Direct link to Phase 6 — Deliver" translate=no>​</a></h3>
+<p>Summarize in chat:</p>
+<ul>
+<li class="">Source expression (verbatim)</li>
+<li class="">Target Tableau calc name and formula</li>
+<li class="">Calc type chosen and why</li>
+<li class="">Verification status (VERIFIED / DRIFT / UNVERIFIED)</li>
+<li class="">Semantic-drift caveats if applicable</li>
+<li class="">Manual follow-ups (parameter creation, join setup, T: prefix cleanup)</li>
+<li class="">Handoff outcome (accepted / declined / not offered)</li>
+</ul>
+<p>Offer to write a translation report to the testers Downloads folder if the translation was non-trivial. Offer to translate additional expressions one at a time.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=error-handling>Error Handling<a href=#error-handling class=hash-link aria-label="Direct link to Error Handling" title="Direct link to Error Handling" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Failure<th>Recovery<tbody><tr><td>Source expression is not parseable<td>Ask the tester to confirm the full expression. Do not guess at missing pieces.<tr><td>Source-side field has no Tableau counterpart<td>Stop. Ask the tester to map the field or add it. Do not fabricate.<tr><td><code>resolve-field</code> returns an ambiguous multi-match (same field name across tables/datasources)<td>Stop. List the candidates and ask the tester which one the source expression means. Do not guess based on position or first-match.<tr><td>Source-side function has no Translation Rules entry<td>Report the gap plainly. Offer the closest analog with a strong drift caveat.<tr><td>author-calc succeeds but the calc does not appear in list-available-fields<td>Check for a Desktop modal. If none, retry once. If the second attempt fails, log UNVERIFIED and hand off.<tr><td>Scratch worksheet creation fails<td>Ask the tester to close open modals and retry. If still failing, log UNVERIFIED with manual-verification instructions.<tr><td>get-summary-data returns an unexpected null<td>Check whether the sources null-handling differs from Tableaus. Cross-reference the Semantic Drift Catalog.<tr><td>Cloud data source verification times out<td>Retry once. On a second timeout, log UNVERIFIED.<tr><td>Verification returns a value that differs from the testers expected<td>Do not overwrite the calc. Report DRIFT with the delta. Offer to reformulate.<tr><td>The 20-character name cap forces a rename that collides with an existing calc<td>Increment the suffix (<code>T: X</code> → <code>T: X v2</code>). Never overwrite.<tr><td>Target data source contains parameter-referencing calcs<td>Enter parameter-safe mode. Use add-worksheet plus add-field for verification.<tr><td><code>author-calc</code> fails to resolve a freshly-created parameter by bare name, even after <code>resolve-field</code> confirms it exists live<td>This is a platform-level reliability gap in newly-created parameter resolution, not a formula error. Retry the write once after asking the tester to reselect/refresh the Data pane in Desktop. If it still fails, log UNVERIFIED and give the tester manual instructions to create the calc themselves in Desktop referencing the parameter directly.<tr><td>Fix would require changing the source expression<td>Refuse. Hand off to the tester.<tr><td>Calc Optimizer skill is unavailable<td>Skip the handoff offer. Log in the delivery summary that the sibling was not invocable this session; ship as-is.<tr><td>Tester accepts handoff but the sibling refuses or errors<td>Log the siblings refusal reason in the delivery summary. Translation stands. Do not retry the sibling.<tr><td>Tester abandons the intake mid-flow<td>Save the parsed source expression and translated draft (if any) as a partial. Ask if they want to resume or discard.</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=composability>Composability<a href=#composability class=hash-link aria-label="Direct link to Composability" title="Direct link to Composability" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>Upstream:</strong> offered proactively after <code>data-source-connector</code> completes on a data source that is a known migration target (e.g., a Snowflake DS just connected while porting a Power BI dashboard).</li>
+<li class=""><strong>Peer:</strong> hands off to <code>calc-writer</code> when the tester wants a new calc from natural language instead of translation.</li>
+<li class=""><strong>Peer:</strong> hands off to <code>calc-debugger</code> when the tester wants to debug an existing Tableau calc.</li>
+<li class=""><strong>Peer:</strong> hands off to <code>join-and-relationship-advisor</code> when the source is actually a lookup (VLOOKUP, DAX RELATED) that requires a relationship, not a calc.</li>
+<li class=""><strong>Downstream (optional, always offered):</strong> hands off to <code>calc-optimizer</code> (any calc type) for performance optimization and deeper verification. Handoff is per-run tester approval, never automatic.</li>
+<li class=""><strong>Adjacent:</strong> output is consumable by <code>data-scribe</code> (translated calcs appear in the dictionary) and <code>workbook-auditor</code> (the translation event registers as a diff).</li>
+</ul>
+<hr/>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=function-mappings--sql--tableau-top-20>Function Mappings — SQL → Tableau (top 20)<a href=#function-mappings--sql--tableau-top-20 class=hash-link aria-label="Direct link to Function Mappings — SQL → Tableau (top 20)" title="Direct link to Function Mappings — SQL → Tableau (top 20)" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>SQL<th>Tableau<th>Notes<tbody><tr><td>DATEADD(part, n, date)<td>DATEADD(part, n, date)<td>Argument order same; part becomes a quoted string<tr><td>DATEDIFF(part, start, end)<td>DATEDIFF(part, start, end)<td>Signed value differs on certain boundaries — verify<tr><td>DATE_TRUNC(part, date)<td>DATETRUNC(part, date)<td>Direct mapping<tr><td>EXTRACT(part FROM date)<td>DATEPART(part, date)<td>Direct mapping<tr><td>CASE WHEN x THEN y ELSE z END<td>IF x THEN y ELSE z END<td>Direct<tr><td>COALESCE(a, b)<td>IFNULL(a, b)<td>Two-arg; nest IFNULL for 3+<tr><td>NULLIF(a, b)<td>IIF(a = b, NULL, a)<td>No direct Tableau NULLIF<tr><td>LEFT(str, n) / RIGHT(str, n)<td>LEFT(str, n) / RIGHT(str, n)<td>Direct<tr><td>SUBSTRING(str, start, len)<td>MID(str, start, len)<td>Function name differs<tr><td>CONCAT(a, b)<td>a + b<td>Tableau uses + operator<tr><td>REGEXP_REPLACE(str, pat, rep)<td>REGEXP_REPLACE(str, pat, rep)<td>No-ops silently on CSV/Hyper — verify DS type<tr><td>ROW_NUMBER() OVER (PARTITION BY x ORDER BY y)<td>INDEX() with partitioning<td>Route to table calc<tr><td>RANK() OVER (...)<td>RANK() as table calc<td>Route to table calc<tr><td>SUM(x) OVER (PARTITION BY y)<td>{ FIXED [y] : SUM([x]) }<td>Route to LOD<tr><td>ROUND(x, n)<td>ROUND(x, n)<td>Bankers rounding in Tableau<tr><td>CAST(x AS type)<td>INT/FLOAT/STR/DATE(x)<td>Different syntax<tr><td>LEN(str) / LENGTH(str)<td>LEN(str)<td>Direct<tr><td>UPPER(str) / LOWER(str)<td>UPPER(str) / LOWER(str)<td>Direct<tr><td>TRIM(str)<td>TRIM(str)<td>Direct<tr><td>ISNULL(x)<td>ISNULL(x)<td>Direct</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=function-mappings--excel--tableau-top-15>Function Mappings — Excel → Tableau (top 15)<a href=#function-mappings--excel--tableau-top-15 class=hash-link aria-label="Direct link to Function Mappings — Excel → Tableau (top 15)" title="Direct link to Function Mappings — Excel → Tableau (top 15)" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Excel<th>Tableau<th>Notes<tbody><tr><td>IF(cond, a, b)<td>IF cond THEN a ELSE b END<td>Direct<tr><td>IFS(c1, v1, c2, v2, ...)<td>Nested IF<td>No direct IFS<tr><td>IFERROR(expr, fallback)<td>IFNULL(expr, fallback)<td><strong>Drift:</strong> IFERROR catches all errors; IFNULL only nulls<tr><td>ISBLANK(x)<td>ISNULL(x) OR LEN(TRIM(x)) = 0<td><strong>Drift:</strong> blank ≠ null in Excel<tr><td>TEXT(x, format)<td>STR(x) + field formatting<td>No inline formatting in Tableau expressions<tr><td>CONCATENATE(a, b)<td>a + b<td>+ operator<tr><td>LEFT / RIGHT / MID<td>LEFT / RIGHT / MID<td>Direct<tr><td>DATE(y, m, d)<td>MAKEDATE(y, m, d)<td>Function name differs<tr><td>SUMIF(range, cond, sum_range)<td>{ FIXED : SUM(IF cond THEN sum_range END) }<td>Route to LOD. Whole-range SUMIF is table-scoped; add a FIXED dimension only if the source sums per group.<tr><td>COUNTIF(range, cond)<td>{ FIXED : COUNT(IF cond THEN 1 END) }<td>Route to LOD (table-scoped, as SUMIF)<tr><td>AVERAGEIF<td>{ FIXED : AVG(IF cond THEN val END) }<td>Route to LOD (table-scoped, as SUMIF)<tr><td>ROUND(x, n)<td>ROUND(x, n)<td>Bankers rounding in Tableau<tr><td>ABS(x)<td>ABS(x)<td>Direct<tr><td>VLOOKUP / HLOOKUP / XLOOKUP<td>Not a calc — flag as relationship<td><strong>REFUSE, hand off</strong><tr><td>INDEX-MATCH<td>Not a calc — flag as relationship<td><strong>REFUSE, hand off</strong></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=function-mappings--dax--tableau-top-15>Function Mappings — DAX → Tableau (top 15)<a href=#function-mappings--dax--tableau-top-15 class=hash-link aria-label="Direct link to Function Mappings — DAX → Tableau (top 15)" title="Direct link to Function Mappings — DAX → Tableau (top 15)" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>DAX<th>Tableau<th>Notes<tbody><tr><td>CALCULATE(expr, filter)<td>{ FIXED [dim] : expr } with IF filter<td>Route to LOD; drift on context transition<tr><td>SUMX(table, expr)<td>{ FIXED [dim] : SUM(expr) }<td>Route to LOD<tr><td>AVERAGEX / COUNTX<td>{ FIXED [dim] : AVG/COUNT(expr) }<td>Route to LOD<tr><td>FILTER(table, cond)<td>Not directly translatable<td>Route to LOD with IF wrapper<tr><td>ALL(column)<td>{ FIXED : SUM(expr) }<td><strong>Drift</strong> on partial-scope ALL<tr><td>RELATED(column)<td>Not a calc — flag as relationship<td><strong>REFUSE, hand off</strong><tr><td>EARLIER(column)<td>Not directly translatable<td><strong>Reformulate as LOD; strong drift caveat</strong><tr><td>RANKX<td>RANK() as table calc<td>Route to table calc<tr><td>SAMEPERIODLASTYEAR<td>LOOKUP(SUM([Sales]), -12) or DATEADD-based<td>Route to table calc or LOD per grain<tr><td>DATESYTD / TOTALYTD<td>RUNNING_SUM() with year partition<td>Route to table calc<tr><td>DIVIDE(a, b, alt)<td>IIF(b = 0, alt, a / b)<td>No Tableau DIVIDE; explicit zero check<tr><td>VAR t = ADDCOLUMNS(VALUES(key), "@m", CALCULATE(agg))<td>{ FIXED [key] : agg }<td>Route to LOD; Tableau has no table variables, the FIXED LOD stands in for the per-key table<tr><td>COUNTROWS(FILTER(t, [@m] >= n))<td>COUNTD(IF { FIXED [key] : agg } >= n THEN [key] END)<td>Counts keys, not rows; <strong>Drift:</strong> FIXED ignores dimension and date filters (see Semantic Drift Catalog #6)<tr><td>COUNTROWS(t) over VALUES(key)<td>COUNTD([key])<td>Direct<tr><td>BLANK()<td>NULL<td>Direct<tr><td>ISBLANK(x)<td>ISNULL(x)<td>Direct<tr><td>NOT<td>NOT<td>Direct<tr><td>SWITCH(expr, v1, r1, ...)<td>CASE expr WHEN v1 THEN r1 ... END<td>Direct</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=calc-type-routing-deterministic>Calc-Type Routing (deterministic)<a href=#calc-type-routing-deterministic class=hash-link aria-label="Direct link to Calc-Type Routing (deterministic)" title="Direct link to Calc-Type Routing (deterministic)" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Source pattern<th>Tableau calc type<tbody><tr><td>Row-level function (LEN, LEFT, IIF, DATEADD without aggregation context)<td>Row-level calc<tr><td>Aggregation with no dimensional context (SUM, AVG, COUNT)<td>Aggregate calc<tr><td>Aggregation with dimensional filter/partition (CALCULATE with FILTER, SQL PARTITION BY, Excel SUMIF)<td>LOD (FIXED / INCLUDE / EXCLUDE per pattern)<tr><td>Window function (ROW_NUMBER, RANK, LAG, LEAD, RANKX)<td>Table calc<tr><td>Cross-table lookup (VLOOKUP, DAX RELATED, INDEX-MATCH)<td>Not a calc — relationship</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=semantic-drift-catalog-top-6>Semantic Drift Catalog (top 6)<a href=#semantic-drift-catalog-top-6 class=hash-link aria-label="Direct link to Semantic Drift Catalog (top 6)" title="Direct link to Semantic Drift Catalog (top 6)" translate=no>​</a></h3>
+<ol>
+<li class="">
+<p><strong>SQL integer division vs. Tableau float division.</strong> SQL <code>5 / 2</code> returns 2; Tableau returns 2.5. Caveat text: SQL performed integer division; the Tableau translation uses float division. Wrap in INT() if integer semantics are required.</p>
+</li>
+<li class="">
+<p><strong>DAX context transition.</strong> CALCULATE modifies filter context in ways with no exact Tableau equivalent. Caveat text: This DAX expression uses filter context transition, which has no exact Tableau equivalent. The LOD translation approximates the common case; verify against the source system for nested-filter scenarios.</p>
+</li>
+<li class="">
+<p><strong>Excel error semantics vs. Tableau nulls.</strong> IFERROR catches <code>#N/A</code>, <code>#DIV/0!</code>, <code>#VALUE!</code>, etc.; IFNULL catches only nulls. Caveat text: IFERROR catches all Excel error types; the Tableau IFNULL translation catches only null. If the source column contains non-null errors, add explicit type checks.</p>
+</li>
+<li class="">
+<p><strong>Timezone handling.</strong> SQL date functions may include timezone offsets Tableaus DATE type does not preserve. Caveat text: Timezone information may be lost in translation. If source data is UTC or timezone-aware, verify Tableaus DATE type behavior on your data.</p>
+</li>
+<li class="">
+<p><strong>Rounding modes.</strong> SQL and Excel typically use away-from-zero rounding; Tableau uses bankers (round-half-to-even). Caveat text: Tableaus ROUND uses bankers rounding (0.5 rounds to nearest even integer). Source SQL/Excel typically uses away-from-zero rounding. For financial or regulatory calculations, verify.</p>
+</li>
+<li class="">
+<p><strong>FIXED LOD ignores dimension and date filters.</strong> DAX evaluates variables and iterators under every filter on the page; a Tableau FIXED LOD ignores regular dimension and date filters. Caveat text: DAX respects every filter on the page, but a FIXED LOD in Tableau ignores regular dimension and date filters. If you filter to 2023, a customer's order count still spans all years, so a customer with one order in 2023 and one in 2021 counts as repeat in Tableau but not in DAX. To match DAX, right-click each filter and choose Add to Context (manual Desktop step; no tool sets context filters). INCLUDE is usually a poor substitute because it returns a per-view-level value and cannot be nested inside COUNTD(IF ... THEN key END) without mixing aggregate and row-level fields. State this caveat in Phase 4 and Phase 6 whenever a DAX or SQL translation routes to a FIXED LOD.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=graceful-degradation>Graceful Degradation<a href=#graceful-degradation class=hash-link aria-label="Direct link to Graceful Degradation" title="Direct link to Graceful Degradation" translate=no>​</a></h2>
+<p>These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.</p>
+<ul>
+<li class=""><strong>Nothing to work on.</strong> If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.</li>
+<li class=""><strong>Tool call fails, times out, or returns empty.</strong> Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.</li>
+<li class=""><strong>Partial results.</strong> If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.</li>
+<li class=""><strong>Reference file won't open.</strong> Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.</li>
+<li class=""><strong>Peer skill not installed.</strong> If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.</li>
+<li class=""><strong>Platform gap.</strong> If no tool can do something, say so plainly and give the manual Desktop path.</li>
+<li class=""><strong>Failure messages.</strong> Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.</li>
+<li class=""><strong>No fabrication.</strong> Never invent fields, values, findings, or results to fill a gap left by a failed read.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/calc-family/calc-translator/SKILL.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>Calc Translator</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-migrator><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>Calc Migrator</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#when-to-use-full-trigger-detail class="table-of-contents__link toc-highlight">When to use (full trigger detail)</a><li><a href=#trigger-conditions class="table-of-contents__link toc-highlight">Trigger Conditions</a><li><a href=#scope-boundaries class="table-of-contents__link toc-highlight">Scope Boundaries</a><li><a href=#tools-you-use class="table-of-contents__link toc-highlight">Tools You Use</a><li><a href=#hard-constraints class="table-of-contents__link toc-highlight">Hard Constraints</a><li><a href=#common-mistakes class="table-of-contents__link toc-highlight">Common Mistakes</a><li><a href=#worked-example--dax-calculate--filter class="table-of-contents__link toc-highlight">Worked Example — DAX CALCULATE + FILTER</a><li><a href=#workflow class="table-of-contents__link toc-highlight">Workflow</a><ul><li><a href=#phase-0--intake-and-setup class="table-of-contents__link toc-highlight">Phase 0 — Intake and Setup</a><li><a href=#phase-1--parse-and-route class="table-of-contents__link toc-highlight">Phase 1 — Parse and Route</a><li><a href=#phase-2--resolve-fields class="table-of-contents__link toc-highlight">Phase 2 — Resolve Fields</a><li><a href=#phase-3--translate-and-write class="table-of-contents__link toc-highlight">Phase 3 — Translate and Write</a><li><a href=#phase-4--verify class="table-of-contents__link toc-highlight">Phase 4 — Verify</a><li><a href=#phase-5--calc-optimizer-handoff-optional class="table-of-contents__link toc-highlight">Phase 5 — Calc Optimizer Handoff (optional)</a><li><a href=#phase-6--deliver class="table-of-contents__link toc-highlight">Phase 6 — Deliver</a></ul><li><a href=#error-handling class="table-of-contents__link toc-highlight">Error Handling</a><li><a href=#composability class="table-of-contents__link toc-highlight">Composability</a><ul><li><a href=#function-mappings--sql--tableau-top-20 class="table-of-contents__link toc-highlight">Function Mappings — SQL → Tableau (top 20)</a><li><a href=#function-mappings--excel--tableau-top-15 class="table-of-contents__link toc-highlight">Function Mappings — Excel → Tableau (top 15)</a><li><a href=#function-mappings--dax--tableau-top-15 class="table-of-contents__link toc-highlight">Function Mappings — DAX → Tableau (top 15)</a><li><a href=#calc-type-routing-deterministic class="table-of-contents__link toc-highlight">Calc-Type Routing (deterministic)</a><li><a href=#semantic-drift-catalog-top-6 class="table-of-contents__link toc-highlight">Semantic Drift Catalog (top 6)</a></ul><li><a href=#graceful-degradation class="table-of-contents__link toc-highlight">Graceful Degradation</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

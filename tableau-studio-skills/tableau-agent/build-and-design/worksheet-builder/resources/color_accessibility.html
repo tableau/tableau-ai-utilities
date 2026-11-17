@@ -1,0 +1,342 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Color & Accessibility Rules | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Color & Accessibility Rules | Tableau AI Utilities"/><meta data-rh=true name=description content="Palette selection logic, WCAG compliance requirements, and accessible encoding patterns for all worksheet builds."/><meta data-rh=true property=og:description content="Palette selection logic, WCAG compliance requirements, and accessible encoding patterns for all worksheet builds."/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/","name":"Worksheet Builder","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility","name":"color_accessibility.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.fc7a4f13.js defer></script><script src=/tableau-ai-utilities/assets/js/main.526af1e5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Data Model Documenter" class=categoryLinkLabel_W154>Data Model Documenter</span></a><button aria-label="Expand sidebar category 'Data Model Documenter'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder><span title="Worksheet Builder" class=categoryLinkLabel_W154>Worksheet Builder</span></a><button aria-label="Collapse sidebar category 'Worksheet Builder'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/anti_patterns><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/anti_patterns><span title=anti_patterns.md class=linkLabel_WmDU>anti_patterns.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/build_patterns><span title=build_patterns.md class=linkLabel_WmDU>build_patterns.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/calc_templates><span title=calc_templates.md class=linkLabel_WmDU>calc_templates.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility><span title=color_accessibility.md class=linkLabel_WmDU>color_accessibility.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/decision_framework><span title=decision_framework.md class=linkLabel_WmDU>decision_framework.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/dual_axis_charts><span title=dual_axis_charts.md class=linkLabel_WmDU>dual_axis_charts.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/filter_context_gaps><span title=filter_context_gaps.md class=linkLabel_WmDU>filter_context_gaps.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/kpi_highlight_box><span title=kpi_highlight_box.md class=linkLabel_WmDU>kpi_highlight_box.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/number_formatting><span title=number_formatting.md class=linkLabel_WmDU>number_formatting.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/parameters_known_gaps><span title=parameters_known_gaps.md class=linkLabel_WmDU>parameters_known_gaps.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/worked_examples><span title=worked_examples.md class=linkLabel_WmDU>worked_examples.md</span></a></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner><span title="Viz Planner" class=categoryLinkLabel_W154>Viz Planner</span></a><button aria-label="Expand sidebar category 'Viz Planner'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-critique-pro-studio><span title="VizCritique Pro Desktop" class=categoryLinkLabel_W154>VizCritique Pro Desktop</span></a><button aria-label="Expand sidebar category 'VizCritique Pro Desktop'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/phone-layout-blueprint><span title="Tableau Phone Layout Blueprint" class=categoryLinkLabel_W154>Tableau Phone Layout Blueprint</span></a><button aria-label="Expand sidebar category 'Tableau Phone Layout Blueprint'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Build and Design</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder><span>Worksheet Builder</span></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Skill Expertise</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>color_accessibility.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Worksheet Builder catalog details"><div class=row_T3bp><code class=name_A6OT>worksheet-builder</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/worksheet-builder.zip download=worksheet-builder.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Color & Accessibility Rules</h1></header>
+<p>Palette selection logic, WCAG compliance requirements, and accessible encoding patterns for all worksheet builds.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=palette-selection-logic>Palette Selection Logic<a href=#palette-selection-logic class=hash-link aria-label="Direct link to Palette Selection Logic" title="Direct link to Palette Selection Logic" translate=no>​</a></h2>
+<p>Choose palette type based on what the color encodes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Data Scenario<th>Palette Type<th>Default Hex Values<tbody><tr><td>Single measure, no breakdown<td>Solid primary<td>#4E79A7<tr><td>Sequential (low → high magnitude)<td>Single-hue gradient<td>#c6dbef → #2171b5 → #08519c<tr><td>Diverging (below/above center)<td>Two-hue gradient<td>#E15759 ← #F0F0F0 → #59A14F<tr><td>Categorical (≤7 distinct groups)<td>Distinct hues<td>#4E79A7, #F28E2B, #59A14F, #E15759, #EDC948, #B07AA1, #76B7B2<tr><td>Status/semantic (fixed meaning)<td>Semantic fixed<td>Green=#59A14F, Yellow=#F28E2B, Red=#E15759<tr><td>Highlight one, dim rest<td>Focal + gray<td>#4E79A7 (focal) + #D3D3D3 (non-focal)<tr><td>Brand-specific<td>Brand-anchored<td>User provides; semantic colors remain standard</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=palette-rules>Palette Rules<a href=#palette-rules class=hash-link aria-label="Direct link to Palette Rules" title="Direct link to Palette Rules" translate=no>​</a></h2>
+<ol>
+<li class="">
+<p><strong>Max 7 categorical colors</strong> per chart. If >7 categories: aggregate into "Other" or use highlight-one-dim-rest approach.</p>
+</li>
+<li class="">
+<p><strong>Semantic color is mandatory for status.</strong> If the chart shows good/bad/warning, use green/yellow/red (or accessible equivalent). Never repurpose brand colors for status meaning.</p>
+</li>
+<li class="">
+<p><strong>Gray is your best tool.</strong> Use #9C9C9C or #D3D3D3 for: de-emphasis, baselines, gridlines, axes, non-focal elements. Gray lets data colors stand out.</p>
+</li>
+<li class="">
+<p><strong>Consistent across worksheets.</strong> If "West" is #4E79A7 in one sheet, it must be #4E79A7 in every sheet in the workbook. Assign colors by dimension value, not by position.</p>
+</li>
+<li class="">
+<p><strong>Background: white or near-white.</strong> #FFFFFF to #F5F5F5. Dark backgrounds only if explicitly branded and high-contrast verified.</p>
+</li>
+<li class="">
+<p><strong>Text colors:</strong> Primary = #333333 (titles, values). Secondary = #666666 (labels, subtitles). Tertiary = #999999 (annotations, footnotes).</p>
+</li>
+</ol>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=wcag-accessibility-requirements-non-negotiable>WCAG Accessibility Requirements (Non-Negotiable)<a href=#wcag-accessibility-requirements-non-negotiable class=hash-link aria-label="Direct link to WCAG Accessibility Requirements (Non-Negotiable)" title="Direct link to WCAG Accessibility Requirements (Non-Negotiable)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=contrast-minimums-wcag-aa>Contrast Minimums (WCAG AA)<a href=#contrast-minimums-wcag-aa class=hash-link aria-label="Direct link to Contrast Minimums (WCAG AA)" title="Direct link to Contrast Minimums (WCAG AA)" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Element<th>Minimum Ratio<th>Example<tbody><tr><td>Body text on background<td>4.5:1<td>#333333 on #FFFFFF = 12.6:1 (pass)<tr><td>Large text (≥18px or ≥14px bold)<td>3:1<td>#666666 on #FFFFFF = 5.7:1 (pass)<tr><td>Graphical elements (bars, lines, marks)<td>3:1<td>#4E79A7 on #FFFFFF = 4.2:1 (pass)<tr><td>Adjacent color segments<td>3:1 between each other<td>Check neighboring bars/slices</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=color-vision-deficiency-rules>Color Vision Deficiency Rules<a href=#color-vision-deficiency-rules class=hash-link aria-label="Direct link to Color Vision Deficiency Rules" title="Direct link to Color Vision Deficiency Rules" translate=no>​</a></h3>
+<ol>
+<li class="">
+<p><strong>Never use red-green as the only distinction.</strong> 8% of males have red-green color blindness.</p>
+<ul>
+<li class="">Bad: red bar vs. green bar with no other differentiation</li>
+<li class="">Good: red bar vs. green bar WITH text labels ("Above Target" / "Below Target")</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Safe color pairs for status:</strong></p>
+<ul>
+<li class="">Blue (#4E79A7) + Orange (#F28E2B) — universally distinguishable</li>
+<li class="">Dark blue + light blue (value intensity) — safe for all types</li>
+<li class="">Green + Red — OK only if triple-encoded (see below)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Avoid rainbow scales entirely.</strong> Not intuitive for magnitude AND problematic for color-blind users. Use single-hue sequential instead.</p>
+</li>
+<li class="">
+<p><strong>Test mentally:</strong> "If I printed this in grayscale, could I still read it?" If no, add a non-color encoding.</p>
+</li>
+</ol>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=triple-encoding-rule-status-indicators>Triple Encoding Rule (Status Indicators)<a href=#triple-encoding-rule-status-indicators class=hash-link aria-label="Direct link to Triple Encoding Rule (Status Indicators)" title="Direct link to Triple Encoding Rule (Status Indicators)" translate=no>​</a></h2>
+<p><strong>Status MUST be encoded three ways. Never color alone.</strong></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=required-triple-encoding>Required Triple Encoding:<a href=#required-triple-encoding class=hash-link aria-label="Direct link to Required Triple Encoding:" title="Direct link to Required Triple Encoding:" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">✅ ACCESSIBLE:</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  Color     + Icon     + Text</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  Green     + ✓        + "On Track"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  Yellow    + ⚠        + "Caution"  </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  Red       + ✗        + "Alert"</span><br/></div></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">❌ INACCESSIBLE:</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  Green / Yellow / Red  (color only — excludes 8% of males)</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=implementation-in-tableau>Implementation in Tableau:<a href=#implementation-in-tableau class=hash-link aria-label="Direct link to Implementation in Tableau:" title="Direct link to Implementation in Tableau:" translate=no>​</a></h3>
+<ul>
+<li class="">Use a calculated field for status classification</li>
+<li class="">Shape mark for icon (custom shapes: checkmark, warning triangle, X)</li>
+<li class="">Text mark or label for the word</li>
+<li class="">Color mark for the background or shape fill</li>
+<li class="">All three appear together in the view</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=sequential-color-scales-for-maps-heatmaps-continuous-color>Sequential Color Scales (for Maps, Heatmaps, Continuous Color)<a href=#sequential-color-scales-for-maps-heatmaps-continuous-color class=hash-link aria-label="Direct link to Sequential Color Scales (for Maps, Heatmaps, Continuous Color)" title="Direct link to Sequential Color Scales (for Maps, Heatmaps, Continuous Color)" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=recommended-sequential-palettes>Recommended Sequential Palettes:<a href=#recommended-sequential-palettes class=hash-link aria-label="Direct link to Recommended Sequential Palettes:" title="Direct link to Recommended Sequential Palettes:" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Use Case<th>Palette<th>Hex Range<tbody><tr><td>Default (any magnitude)<td>Blues<td>#c6dbef → #4292c6 → #08519c<tr><td>Revenue/money<td>Blue-green<td>#e5f5e0 → #41ab5d → #006d2c<tr><td>Temperature/heat<td>Orange-red<td>#fee5d9 → #fb6a4a → #a50f15<tr><td>Neutral/general<td>Gray<td>#f0f0f0 → #969696 → #252525</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=diverging-palettes-for-abovebelow-center>Diverging Palettes (for above/below center):<a href=#diverging-palettes-for-abovebelow-center class=hash-link aria-label="Direct link to Diverging Palettes (for above/below center):" title="Direct link to Diverging Palettes (for above/below center):" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Use Case<th>Palette<th>Hex Range<tbody><tr><td>Above/below target<td>Red-Gray-Green<td>#E15759 ← #F0F0F0 → #59A14F<tr><td>Positive/negative change<td>Orange-Gray-Blue<td>#F28E2B ← #F0F0F0 → #4E79A7</table>
+<p><strong>Diverging palette rules:</strong></p>
+<ul>
+<li class="">Center point must be meaningful (zero, target, average)</li>
+<li class="">Both extremes must be equally intense/saturated</li>
+<li class="">Midpoint should be neutral (white, light gray)</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=categorical-color-assignment>Categorical Color Assignment<a href=#categorical-color-assignment class=hash-link aria-label="Direct link to Categorical Color Assignment" title="Direct link to Categorical Color Assignment" translate=no>​</a></h2>
+<p>When assigning colors to dimension values:</p>
+<ol>
+<li class=""><strong>Assign by value, not by sort order.</strong> "West" is always blue, regardless of where it appears.</li>
+<li class=""><strong>Most important category gets the most prominent color.</strong> Use darker, more saturated colors for focal items.</li>
+<li class=""><strong>"Other" or aggregate categories get gray.</strong> Reserve chromatic colors for distinct, named categories.</li>
+<li class=""><strong>Max 7 colors.</strong> Beyond 7, human ability to distinguish and remember color mappings drops sharply.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=default-categorical-palette-in-priority-order>Default Categorical Palette (in priority order):<a href=#default-categorical-palette-in-priority-order class=hash-link aria-label="Direct link to Default Categorical Palette (in priority order):" title="Direct link to Default Categorical Palette (in priority order):" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Position<th>Hex<th>Name<th>Use For<tbody><tr><td>1<td>#4E79A7<td>Steel Blue<td>Primary/most important category<tr><td>2<td>#F28E2B<td>Orange<td>Secondary category or warning<tr><td>3<td>#59A14F<td>Green<td>Third category or positive status<tr><td>4<td>#E15759<td>Red<td>Fourth category or negative status<tr><td>5<td>#EDC948<td>Gold<td>Fifth category<tr><td>6<td>#B07AA1<td>Purple<td>Sixth category<tr><td>7<td>#76B7B2<td>Teal<td>Seventh category<tr><td>N/A<td>#9C9C9C<td>Gray<td>"Other", de-emphasized, or baseline</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=typography-for-accessibility>Typography for Accessibility<a href=#typography-for-accessibility class=hash-link aria-label="Direct link to Typography for Accessibility" title="Direct link to Typography for Accessibility" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Element<th>Minimum Size<th>Weight<th>Color<tbody><tr><td>KPI value<td>28-48px<td>Bold<td>#333333<tr><td>Chart title<td>18-20px<td>Medium/Bold<td>#333333<tr><td>Subtitle/context<td>11-12px<td>Regular<td>#666666<tr><td>Axis labels<td>10-12px<td>Regular<td>#666666<tr><td>Data labels<td>10-12px<td>Regular<td>#333333<tr><td>Annotations<td>10-11px<td>Italic or Regular<td>#666666<tr><td>Tooltip text<td>11-12px<td>Regular<td>#333333</table>
+<p><strong>Never go below 10px for any text that needs to be read.</strong></p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=applying-color-in-the-shelf-recipe>Applying Color in the Shelf Recipe<a href=#applying-color-in-the-shelf-recipe class=hash-link aria-label="Direct link to Applying Color in the Shelf Recipe" title="Direct link to Applying Color in the Shelf Recipe" translate=no>​</a></h2>
+<p>When specifying color in a worksheet spec:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">COLOR:</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  - [Field name] | [Palette type: Sequential/Diverging/Categorical] | [Specific palette: Blues/Orange-Blue/Tableau 10]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  - OR: Single color | #4E79A7</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">  - OR: Status encoding | Green=#59A14F, Yellow=#F28E2B, Red=#E15759 | Triple-encoded with [shape field] + [label field]</span><br/></div></code></pre></div></div>
+<p>Always note when the color assignment requires custom configuration beyond Tableau's default palette assignment.</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/color_accessibility.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/calc_templates><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>calc_templates.md</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder/resources/decision_framework><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>decision_framework.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#palette-selection-logic class="table-of-contents__link toc-highlight">Palette Selection Logic</a><li><a href=#palette-rules class="table-of-contents__link toc-highlight">Palette Rules</a><li><a href=#wcag-accessibility-requirements-non-negotiable class="table-of-contents__link toc-highlight">WCAG Accessibility Requirements (Non-Negotiable)</a><ul><li><a href=#contrast-minimums-wcag-aa class="table-of-contents__link toc-highlight">Contrast Minimums (WCAG AA)</a><li><a href=#color-vision-deficiency-rules class="table-of-contents__link toc-highlight">Color Vision Deficiency Rules</a></ul><li><a href=#triple-encoding-rule-status-indicators class="table-of-contents__link toc-highlight">Triple Encoding Rule (Status Indicators)</a><ul><li><a href=#required-triple-encoding class="table-of-contents__link toc-highlight">Required Triple Encoding:</a><li><a href=#implementation-in-tableau class="table-of-contents__link toc-highlight">Implementation in Tableau:</a></ul><li><a href=#sequential-color-scales-for-maps-heatmaps-continuous-color class="table-of-contents__link toc-highlight">Sequential Color Scales (for Maps, Heatmaps, Continuous Color)</a><ul><li><a href=#recommended-sequential-palettes class="table-of-contents__link toc-highlight">Recommended Sequential Palettes:</a><li><a href=#diverging-palettes-for-abovebelow-center class="table-of-contents__link toc-highlight">Diverging Palettes (for above/below center):</a></ul><li><a href=#categorical-color-assignment class="table-of-contents__link toc-highlight">Categorical Color Assignment</a><ul><li><a href=#default-categorical-palette-in-priority-order class="table-of-contents__link toc-highlight">Default Categorical Palette (in priority order):</a></ul><li><a href=#typography-for-accessibility class="table-of-contents__link toc-highlight">Typography for Accessibility</a><li><a href=#applying-color-in-the-shelf-recipe class="table-of-contents__link toc-highlight">Applying Color in the Shelf Recipe</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>
