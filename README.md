@@ -4,6 +4,7 @@ Public catalog of **Tableau Agent skills** for Tableau Studio — what is availa
 
 - Browse the generated site (Overview, then Installable Skills).
 - Each skill is a folder with a `SKILL.md`. Studio skills live at `tableau-studio-skills/tableau-agent/<category>/<name>/`. MCP skills live at `tableau-mcp-skills/<harness>/<name>/`.
+- MCP skills in `tableau-mcp-skills/general/` use shared, host-independent instructions; client-specific skills remain in their existing format folders.
 - A README (when present) is the human-facing details page. `SKILL.md` is what the agent loads.
 - Protected skills cannot be replaced by a same-name override. Overridable skills can.
 

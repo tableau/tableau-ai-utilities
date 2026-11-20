@@ -23,6 +23,7 @@ This file is a curated index. Each corpus is SKILL.md plus the README when-to-us
 - [Content Quality — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-content-quality.txt): SKILL.md plus when-to-use from the README for 7 skills
 - [Publish and Deploy — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-publish-and-deploy.txt): SKILL.md plus when-to-use from the README for 8 skills
 - [Studio Utilities — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-studio-utilities.txt): SKILL.md plus when-to-use from the README for 1 skill
+- [General — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-general.txt): SKILL.md plus when-to-use from the README for 1 skill
 - [Claude Format — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-claude-format.txt): SKILL.md plus when-to-use from the README for 8 skills
 - [Codex Format — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-codex-format.txt): SKILL.md plus when-to-use from the README for 10 skills
 
@@ -191,6 +192,13 @@ This file is a curated index. Each corpus is SKILL.md plus the README when-to-us
 - [Testing Matrix](https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix): EDIT WITH CAUTION. Use when the user says 'Test this skill', 'build a testing matrix', 'QA plan for this skill'. Builds 20-25 test prompts for a Tableau Studio agent skill, walks you through them in Desktop, and on failure proposes a fix and applies it only with your approval.
 - [Testing Matrix — SKILL.md](https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix/SKILL): Agent instructions (when to fire, steps, verification)
 - [Testing Matrix — download](https://tableau.github.io/tableau-ai-utilities/downloads/testing-matrix.zip): Zip of testing-matrix/ for the skills directory
+
+## General
+
+- [General — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-general.txt): SKILL.md plus when-to-use from the README for 1 skill
+- [Tableau Workbook Inventory](https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory): Overridable. List or count published Tableau workbooks accessible through the connected Tableau MCP site, optionally scoped to a named project. Use for workbook inventories, workbook lists, and workbook counts. Do not use for topic-based content recommendations, governance audits, rendering views, querying business data, or changing content.
+- [Tableau Workbook Inventory — SKILL.md](https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory/SKILL): Agent instructions (when to fire, steps, verification)
+- [Tableau Workbook Inventory — download](https://tableau.github.io/tableau-ai-utilities/downloads/tableau-workbook-inventory.zip): Zip of tableau-workbook-inventory/ for the skills directory
 
 ## Claude Format
 

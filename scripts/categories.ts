@@ -92,6 +92,11 @@ export const CATEGORIES = [
     ],
   },
   {
+    slug: 'general',
+    label: 'General',
+    skills: ['tableau-workbook-inventory'],
+  },
+  {
     slug: 'claude-format',
     label: 'Claude Format',
     skills: ['tableau-insights-service'],
