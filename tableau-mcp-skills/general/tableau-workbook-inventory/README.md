@@ -26,6 +26,6 @@ Results depend on account permissions, server configuration, and the connected t
 - [SKILL.md](SKILL.md): agent instructions and scope.
 - [skill-expertise/list-workbooks.md](skill-expertise/list-workbooks.md): filters, fixed page boundaries, response interpretation, and source contracts.
 
-## Portability and validation status
+## Portability
 
-The same host-independent instructions are intended for Claude, Codex, and Slackbot with equivalent Tableau MCP connections. Skill loading depends on the client; local or plugin installation does not establish native Skills over MCP support. Public-repository consumption and live execution of this skill remain unverified.
+This skill provides client-independent instructions for listing and counting published Tableau workbooks using the connected Tableau MCP server. It requires access to the `list-workbooks` tool. Follow your client's supported method for loading skills.
