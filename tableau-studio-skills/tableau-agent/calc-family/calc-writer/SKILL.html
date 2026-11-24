@@ -1,0 +1,333 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Calc Writer — SKILL.md | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Calc Writer — SKILL.md | Tableau AI Utilities"/><meta data-rh=true name=description content="Use when the user says 'I need a calc that...', 'write a calc for...', 'create a calc that flags...', 'make a calc that...' Writes one new Tableau calculated field from plain language, checks it against your data, and confirms it works. Not for fixing or translating existing calcs."/><meta data-rh=true property=og:description content="Use when the user says 'I need a calc that...', 'write a calc for...', 'create a calc that flags...', 'make a calc that...' Writes one new Tableau calculated field from plain language, checks it against your data, and confirms it works. Not for fixing or translating existing calcs."/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/","name":"Calc Writer","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL","name":"SKILL.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.7f0f288b.js defer></script><script src=/tableau-ai-utilities/assets/js/main.ed8bd7b5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Writer" class=categoryLinkLabel_W154>Calc Writer</span></a><button aria-label="Collapse sidebar category 'Calc Writer'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/resources><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a><button aria-label="Expand sidebar category 'Skill Expertise'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-debugger><span title="Calc Debugger" class=categoryLinkLabel_W154>Calc Debugger</span></a><button aria-label="Expand sidebar category 'Calc Debugger'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-optimizer><span title="Calc Optimizer" class=categoryLinkLabel_W154>Calc Optimizer</span></a><button aria-label="Expand sidebar category 'Calc Optimizer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-linter><span title="Calc Linter" class=categoryLinkLabel_W154>Calc Linter</span></a><button aria-label="Expand sidebar category 'Calc Linter'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-hygiene-scan><span title="Calc Hygiene Scan" class=categoryLinkLabel_W154>Calc Hygiene Scan</span></a><button aria-label="Expand sidebar category 'Calc Hygiene Scan'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-inventory><span title="Calc Inventory" class=categoryLinkLabel_W154>Calc Inventory</span></a><button aria-label="Expand sidebar category 'Calc Inventory'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-translator><span title="Calc Translator" class=categoryLinkLabel_W154>Calc Translator</span></a><button aria-label="Expand sidebar category 'Calc Translator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-migrator><span title="Calc Migrator" class=categoryLinkLabel_W154>Calc Migrator</span></a><button aria-label="Expand sidebar category 'Calc Migrator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-migrator-diff-report><span title="Calc Migrator Diff Report" class=categoryLinkLabel_W154>Calc Migrator Diff Report</span></a><button aria-label="Expand sidebar category 'Calc Migrator Diff Report'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-documenter><span title="Calc Documenter" class=categoryLinkLabel_W154>Calc Documenter</span></a><button aria-label="Expand sidebar category 'Calc Documenter'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-explainer><span title="Calc Explainer" class=categoryLinkLabel_W154>Calc Explainer</span></a><button aria-label="Expand sidebar category 'Calc Explainer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title=General class=categoryLinkLabel_W154>General</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Calc Family</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span>Calc Writer</span></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>SKILL.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Calc Writer catalog details"><div class=row_T3bp><code class=name_A6OT>calc-writer</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/calc-writer.zip download=calc-writer.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Calc Writer</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=when-to-use-full-trigger-detail>When to use (full trigger detail)<a href=#when-to-use-full-trigger-detail class=hash-link aria-label="Direct link to When to use (full trigger detail)" title="Direct link to When to use (full trigger detail)" translate=no>​</a></h2>
+<p>Author a new Tableau calculated field from a natural-language ask. Single-calc-per-pass discipline by default, with an opt-in sequential multi-calc mode when the user is asked and agrees. Reads workbook via list-workbook-datasources and list-available-fields; writes via author-calc; verifies via get-summary-data. Every authored calc passes an 8-check Validation Gate (R-TYPE, R-AGG, R-LOD, R-TC, R-NULL, R-BOOL, R-PERF, R-NAME) before delivery. Signatures looked up from nested function library, never guessed. Triggers on "write this calc," "author a calc for," "I need a calc that," "create a calc for," "make a calc that." Do NOT trigger for debugging broken calcs (use calc-debugger), improving performance (use calc-optimizer), translating from SQL/Excel/DAX (use calc-translator), style/naming audits (use calc-linter), cataloging existing calcs (use calc-inventory), or ambiguous calc questions (use calc-orchestrator).</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=purpose>Purpose<a href=#purpose class=hash-link aria-label="Direct link to Purpose" title="Direct link to Purpose" translate=no>​</a></h2>
+<p>Author one new Tableau calculated field per run from a natural-language ask. Single-trigger discipline. Every calc passes an 8-check Validation Gate before delivery. Function signatures are looked up from the function library in <code>skill-expertise/</code>, never guessed. When another calc skill is chained, the handoff YAML (<code>calc_write_handoff/1</code>) passes the result along.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=trigger-conditions>Trigger Conditions<a href=#trigger-conditions class=hash-link aria-label="Direct link to Trigger Conditions" title="Direct link to Trigger Conditions" translate=no>​</a></h2>
+<p><strong>Single-calc triggers (default mode):</strong> "write this calc," "author a calc for," "I need a calc that," "create a calc for," "make a calc that," "build me a calc for," "give me a calc that."</p>
+<p><strong>Multi-calc trigger (opt-in mode via HC#1 clarifier):</strong> "write these calcs," "write me N calcs," "author several calcs," or any ask that names more than one calc in a single invocation. The skill still fires on the trigger, but HC#1s clarifier fires first ("one at a time or sequential this run?") before authoring begins.</p>
+<p><strong>Adjacent-skill triggers that must NOT fire calc-writer:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Trigger phrase<th>Correct target skill<tbody><tr><td>"debug this calc," "why is this calc returning NULL," "fix this broken calc"<td><code>calc-debugger</code><tr><td>"optimize this calc," "why is this calc slow," "make this calc faster"<td><code>calc-optimizer</code><tr><td>"translate this SQL to Tableau," "port this DAX to Tableau," "convert Excel formula"<td><code>calc-translator</code><tr><td>"style-check my calcs," "lint my calcs," "check calc naming conventions"<td><code>calc-linter</code><tr><td>"list all my calcs," "inventory these calcs," "catalog my calcs"<td><code>calc-inventory</code><tr><td>"help with a calc" (ambiguous, no intent named)<td><code>calc-orchestrator</code><tr><td>"build a dashboard," "create a viz for this calc"<td><code>worksheet-builder</code> or <code>viz-planner</code><tr><td>"create a parameter for this calc"<td>Out of scope (author-parameter unreliable); route to Desktop UI.<tr><td>"make this field a set"<td>Out of scope; route to Desktop UI.<tr><td>"create a hierarchy from these calcs"<td>Out of scope; route to Desktop UI.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=scope-boundaries>Scope Boundaries<a href=#scope-boundaries class=hash-link aria-label="Direct link to Scope Boundaries" title="Direct link to Scope Boundaries" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>IN:</strong> author one new calc per run from a natural-language ask, or — when the user explicitly opts in via the HC#1 clarifier — a sequential multi-calc run authoring each named calc through the full pipeline one at a time; classify calc type (row-level, aggregate, LOD FIXED/INCLUDE/EXCLUDE, table calc); look up function signatures from <code>skill-expertise/</code> (function library files); run 8-check Validation Gate; verify output via <code>get-summary-data</code> on a scratch worksheet when the Verification Policy requires it; emit <code>calc_write_handoff/1</code> YAML only per HC#7.</li>
+<li class=""><strong>OUT:</strong> authoring multiple calcs without first asking the HC#1 clarifier; debugging existing calcs (<code>calc-debugger</code>); performance optimization (<code>calc-optimizer</code>); source-dialect translation (<code>calc-translator</code>); style audits (<code>calc-linter</code>); catalog exports (<code>calc-inventory</code>); parameter creation; set creation; hierarchy creation; whole-workbook migration; dashboard or worksheet building.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=edge-case-boundaries>Edge-Case Boundaries<a href=#edge-case-boundaries class=hash-link aria-label="Direct link to Edge-Case Boundaries" title="Direct link to Edge-Case Boundaries" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Edge Case<th>Handling<tbody><tr><td>User asks for a calc that references a parameter<td>Author the calc, cite the parameter reference in the handoff as <code>[param_name] (parameter — cite but do not resolve)</code>. Do NOT attempt to create the parameter; refuse parameter creation.<tr><td>User asks for a calc that references a set<td>Same as parameter: cite the set reference, refuse to create the set.<tr><td>User asks for a calc that requires a nested calc dependency (<code>[Other Calc]</code>) that doesnt exist<td>Refuse the write; ask user to confirm whether to author the missing calc first (separate invocation) or use the raw fields inline.<tr><td>User asks for a calc referencing a field that doesnt exist<td>Refuse: "field <code>[Missing Field]</code> doesnt exist in the target data source. Confirm the field name or point to the correct data source." Never fabricate the field.<tr><td>User asks for a fresh parameter to be created for the calc<td>Refuse (author-parameter unreliable). Ask user to create the parameter manually in Desktop, then re-invoke.<tr><td>Ambiguous calc type (could be row-level or aggregate)<td>Ask exactly one clarifier: "Should this aggregate across rows (SUM/AVG) or compute per row?" Never assume.<tr><td>Sample size below 1,000 rows for verification<td>Report verification result but flag as "unverified: sample size below reliable threshold (1,000 rows)." Severity does not downgrade.<tr><td>Data source has parameter-referencing calcs already (Data Scribe corruption risk)<td>Skip <code>build-and-apply-worksheet</code> verification; use existing scratch worksheet if one exists. Never mutate a workbook with parameter-referencing calcs via shelf-mutating tools.<tr><td>Fresh-parameter resolution failure (author-calc cant resolve a param by bare name)<td>Retry once after asking user to refresh the Data pane in Desktop. If still failing, refuse with manual calc-creation instructions (platform gap).<tr><td>Very wide data source (>100 fields)<td>Batch <code>list-available-fields</code> in groups of ~10 with inline progress notes. Reuse Phase 1 inventory across chained invocations in the same session rather than re-batching per call.<tr><td>Multi-table data source (relationships or cross-join scenarios)<td>Confirm which logical table the calc will reference before authoring. If the calc spans two related tables, verify cardinality context in the handoff notes (calcs grain matters at query time).<tr><td>Very narrow data source (&lt;10 fields)<td>Skip the batching guidance in Phase 1; single <code>list-available-fields</code> call sufficient.<tr><td>Tiny extract (&lt;sample_size rows)<td>Sample size threshold labeling applies; report verified findings but flag confidence with "unverified: sample size below reliable threshold (1,000 rows)."<tr><td>Ambiguous field name shared across multiple data sources<td>When asking which source, name each candidate source alongside the fields role/type in that source (e.g., "measure" vs. "dimension") so the user isnt just repeating the field name back — clarify with data-source names, not field names, since the field name alone doesnt disambiguate.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=hard-constraints>Hard Constraints<a href=#hard-constraints class=hash-link aria-label="Direct link to Hard Constraints" title="Direct link to Hard Constraints" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>HC#1:</strong> Default mode authors exactly one calc per run. If the ask names multiple calcs in one invocation, ask exactly one clarifier before starting: "I can author these one at a time (default, re-invoke per calc) or walk through all N sequentially in this run as separate single-calc passes — which would you prefer?" Never assume multi-calc mode; the user must opt in per invocation. In multi-calc mode, each calc still runs the full pipeline (Phases 0-4.6) independently and in sequence — no batching or shortcutting of field verification or the V-gate; Phase 4 verification follows the Verification Policy for each calc. A failure on one calc in the sequence does not block the others; report per-calc results.</li>
+<li class=""><strong>HC#2:</strong> Function signatures are looked up from <code>skill-expertise/INDEX.md</code>, never guessed. If the function isnt in the library, refuse the write; do not invent a signature.</li>
+<li class=""><strong>HC#3:</strong> Every authored calc passes the full 8-check Validation Gate (<code>skill-expertise/validation_gate.md</code>) before delivery. Failing any gate blocks the write.</li>
+<li class=""><strong>HC#4:</strong> One clarifying question maximum. If the ask is ambiguous, ask exactly one clarifier. Never chain a second.</li>
+<li class=""><strong>HC#5:</strong> Never fabricate field references. If a named field doesnt exist in the target data source, refuse.</li>
+<li class=""><strong>HC#6:</strong> Never create parameters, sets, or hierarchies. Refuse and route to Desktop UI manual creation.</li>
+<li class=""><strong>HC#7:</strong> Emit <code>calc_write_handoff/1</code> YAML only when the user chains to another installed calc skill or asks for it. Never include it in the normal user-facing reply.</li>
+<li class=""><strong>HC#8:</strong> Refuse out-of-scope questions by exact slug (six calc-family peers + <code>worksheet-builder</code>/<code>viz-planner</code> for dashboard work).</li>
+<li class=""><strong>HC#9:</strong> Perf advisory is advisory-only. Never rewrite the calc for performance. Detect patterns per the perf-advisory catalog, surface the recommendation in the reply with a verbatim <code>calc-optimizer</code> trigger phrase (and in <code>perf_advisory</code> when a handoff is emitted). Optimization is <code>calc-optimizer</code>s job.</li>
+<li class=""><strong>HC#10:</strong> Never claim quantified perf impact (specific latency, row count, or memory reduction). Perf advisory is pattern-detection only. Quantified impact comes from <code>calc-optimizer</code>, which profiles against actual data.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=tools-used>Tools Used<a href=#tools-used class=hash-link aria-label="Direct link to Tools Used" title="Direct link to Tools Used" translate=no>​</a></h2>
+<ul>
+<li class=""><code>list-workbook-datasources</code> — Phase 0 (identify target DS).</li>
+<li class=""><code>list-available-fields</code> (verbosity: full) — Phase 1 (verify field references, check for parameter-corruption risk).</li>
+<li class=""><code>author-calc</code> — Phase 3 (write the calc).</li>
+<li class=""><code>add-worksheet</code>, <code>delete-sheet</code> — Phase 4 (create/clean scratch worksheet for verification).</li>
+<li class=""><code>add-field</code> — Phase 4 (place calc on scratch worksheet Detail).</li>
+<li class=""><code>get-summary-data</code> — Phase 4 (verify calc output).</li>
+<li class=""><code>resolve-field</code> — Phase 1 fallback (disambiguate field names).</li>
+</ul>
+<p>One workbook mutation per run (the authored calc, plus a scratch worksheet only when the Verification Policy calls for Phase 4). Any scratch worksheet is cleaned in Phase 5.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=function-library-locked-reference>Function Library (Locked Reference)<a href=#function-library-locked-reference class=hash-link aria-label="Direct link to Function Library (Locked Reference)" title="Direct link to Function Library (Locked Reference)" translate=no>​</a></h2>
+<p><code>skill-expertise/INDEX.md</code> catalogs ~150 Tableau Studio functions across eight categories: string, date, number, logical, aggregate, LOD, table calc, spatial. Every function has a signature, return type, LOD/TC eligibility, and version-gated status (e.g., MAKEPOINT 2019.2+, BUFFER 2024.1+, USEREMAIL 2023.3+).</p>
+<p>Never invent a signature.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=domain-accuracy-assertions-locked>Domain-Accuracy Assertions (Locked)<a href=#domain-accuracy-assertions-locked class=hash-link aria-label="Direct link to Domain-Accuracy Assertions (Locked)" title="Direct link to Domain-Accuracy Assertions (Locked)" translate=no>​</a></h3>
+<p>Locked Tableau behaviors (LOD order of operations, ATTR failure modes, INT vs. ROUND, Boolean aggregation, COUNT/COUNTD NULLs, DATEPARSE patterns, table-calc partitioning, spatial and USEREMAIL version gates, REGEXP escaping) live in <code>skill-expertise/domain_accuracy.md</code>. Read it before authoring any LOD, table-calc, ATTR, Boolean-aggregate, date-parsing, spatial, or REGEXP calc. Any calc that violates an assertion is caught by the Validation Gate or a perf-advisory flag, never delivered.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=validation-gate-locked-8-checks>Validation Gate (Locked, 8 Checks)<a href=#validation-gate-locked-8-checks class=hash-link aria-label="Direct link to Validation Gate (Locked, 8 Checks)" title="Direct link to Validation Gate (Locked, 8 Checks)" translate=no>​</a></h2>
+<p>Every authored calc passes all applicable checks in <code>skill-expertise/validation_gate.md</code> before delivery, in this order: R-TYPE-01/02, R-AGG-01/02, R-LOD-01/02/03 (LOD only), R-TC-01/02 (table calc only), R-NULL-01, R-BOOL-01, R-PERF-01, R-NAME-01. Any failure blocks the write. If R-TYPE-01 fails, re-classify before re-authoring; other failures may need a clarifier or refusal.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=sample-size-reliability-threshold>Sample-Size Reliability Threshold<a href=#sample-size-reliability-threshold class=hash-link aria-label="Direct link to Sample-Size Reliability Threshold" title="Direct link to Sample-Size Reliability Threshold" translate=no>​</a></h2>
+<p><code>get-summary-data</code> verification is reliable when the scratch worksheet returns at least <strong>1,000 rows</strong>. Below that threshold:</p>
+<ul>
+<li class="">Report the verification result normally.</li>
+<li class="">Flag as <strong>"unverified: sample size below reliable threshold (1,000 rows)."</strong></li>
+<li class="">Severity does not downgrade; the confidence label changes.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=scale-tiers-multi-calc-mode-and-source-types>Scale Tiers, Multi-Calc Mode, and Source Types<a href=#scale-tiers-multi-calc-mode-and-source-types class=hash-link aria-label="Direct link to Scale Tiers, Multi-Calc Mode, and Source Types" title="Direct link to Scale Tiers, Multi-Calc Mode, and Source Types" translate=no>​</a></h2>
+<p>Field-count tiers (narrow to 200+ fields), row-count confidence tiers, multi-calc sequential mode, and data source type branching (extract, live, blend, federated, multi-table) are in <code>skill-expertise/scale_and_modes.md</code>. Read it for 100+ field or 1M+ row sources, multi-calc runs, or any blended, federated, or multi-table source.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=verification-policy-when-to-run-phase-4>Verification Policy (When to Run Phase 4)<a href=#verification-policy-when-to-run-phase-4 class=hash-link aria-label="Direct link to Verification Policy (When to Run Phase 4)" title="Direct link to Verification Policy (When to Run Phase 4)" translate=no>​</a></h2>
+<p>Run the scratch-sheet check (Phase 4) only when it is worth the extra calls:</p>
+<ul>
+<li class=""><strong>Verify:</strong> LOD (FIXED/INCLUDE/EXCLUDE), table calc, any ATTR or mixed row-level/aggregate logic, DATEPARSE or date math, type conversion, REGEXP, a nested-calc dependency, or when the user asks to check it.</li>
+<li class=""><strong>Skip:</strong> simple row-level calcs (arithmetic, comparisons, IF/CASE on existing fields, string concatenation) once <code>author-calc</code> succeeds and the Validation Gate passes.</li>
+<li class=""><strong>Can't verify:</strong> a FIXED LOD with no dimensions does not return through <code>get-summary-data</code> (platform gap). Report it as not checked in a view.</li>
+<li class=""><strong>Never</strong> verify on a data source with parameter-referencing calcs (shelf-mutation corruption risk); report it as not checked in a view.</li>
+</ul>
+<p>Always state which happened in the reply: "Checked on N rows" or "Not checked in a view yet. Say 'check it' to verify on your data." Never imply a check that did not run.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=workflow-phases>Workflow Phases<a href=#workflow-phases class=hash-link aria-label="Direct link to Workflow Phases" title="Direct link to Workflow Phases" translate=no>​</a></h2>
+<ol>
+<li class=""><strong>Phase 0 Intake.</strong> Confirm target data source via <code>list-workbook-datasources</code>. If multi-source, ask which. Parse the users natural-language ask into an intent: measure, dimension, calc-type hint, expected return type. If the ask names more than one calc, apply HC#1s clarifier before proceeding.</li>
+<li class=""><strong>Phase 1 Field Verification.</strong> Call <code>list-available-fields</code> (verbosity: full). Verify every field the ask references exists. If any missing, refuse per HC#5. Check for parameter-referencing calcs already in the data source (parameter-corruption avoidance).
+<ul>
+<li class=""><strong>Wide-workbook batching:</strong> on data sources with >100 fields, batch <code>list-available-fields</code> calls in groups of ~10 with inline progress notes. Skip on &lt;100-field sources.</li>
+<li class=""><strong>Inventory reuse:</strong> if the same session already ran Phase 1 on this data source (e.g., a prior calc-writer invocation, or a chained handoff from calc-optimizer / calc-linter), reuse the cached inventory rather than re-calling. Detect this by checking whether the previous handoffs <code>datasource_name</code> matches the current target.</li>
+</ul>
+</li>
+<li class=""><strong>Phase 2 Function Lookup.</strong> For every function the calc requires, look up the signature in <code>skill-expertise/INDEX.md</code>. If missing, refuse per HC#2. If found, note the version-gated status if any.</li>
+<li class=""><strong>Phase 3 Author.</strong> Call <code>author-calc</code> with the composed formula. On success, capture the returned calc name and formula text. On failure, apply error-handling table.</li>
+<li class=""><strong>Phase 4 Verification (conditional, per the Verification Policy).</strong> Skip this phase for simple row-level calcs and report "not checked in a view yet." Otherwise, create a scratch worksheet (if none exists). Reference the calc on the shelf using the correct derivation prefix, determined by whether the calcs own formula already contains an aggregation:
+<ul>
+<li class=""><strong>Formula has no aggregation</strong> (plain row-level calc, e.g. <code>DATEDIFF(...)</code>, <code>[Sales] > 500</code>): Tableau applies default aggregation on shelf placement. Use <code>none:</code> for a dimension-role calc, <code>sum:</code> for a measure-role calc.</li>
+<li class=""><strong>Formula already contains its own aggregation</strong> (<code>SUM(...)</code>, <code>AVG(...)</code>, an LOD <code>{FIXED/INCLUDE/EXCLUDE ...}</code>, or a table calc): the calc is fully aggregated already and has no separate per-row instance to re-aggregate. Use its native <code>usr:</code> ref — never wrap it in an additional <code>sum:</code>, which Tableau will reject as "no field named" the moment you try.</li>
+<li class="">Either way, place the calc alone on Detail with nothing else on the shelves for verification, then call <code>get-summary-data</code>. Apply sample-size threshold labeling. If scratch worksheet creation fails, retry once; if it fails a second time, mark <code>verified: false</code>, <code>sample_size: "verification_skipped"</code>, and note the failure in the handoff rather than blocking delivery of an otherwise-passing calc.</li>
+<li class=""><strong>Table-calc addressing dimension:</strong> when verifying a table calc that depends on row order (WINDOW_<em>, RUNNING_</em>, PREVIOUS_VALUE, INDEX, RANK, LOOKUP), place a continuous date pill (e.g., <code>[tdy:Order Date:qk]</code> or the appropriate continuous truncation) on Rows for the addressing dimension — never the raw discrete date field, which fails preflight as <code>date-field-bound-as-string</code>.</li>
+</ul>
+</li>
+<li class=""><strong>Phase 4.4 Perf-Advisory Scan.</strong> Pattern-match the authored calc against the perf-advisory catalog in <code>skill-expertise/handoff_schema.md</code> (PA-COUNTD-HIGH-CARDINALITY, PA-REGEXP-IN-AGGREGATE, PA-CONTAINS-IN-AGGREGATE, PA-LOD-NESTED, PA-TABLE-CALC-WHERE-LOD-WOULD-WORK, PA-CROSS-DS-BLEND, PA-DATEDIFF-IN-FILTER, PA-NESTED-IF-DEEP, PA-STRING-ARITHMETIC). This is advisory-only. Never rewrite the calc for perf; thats <code>calc-optimizer</code>s job. If severity is <code>note</code> or <code>warning</code>, tell the user in one line with the verbatim <code>calc-optimizer</code> trigger phrase. When a handoff is emitted (HC#7), also populate <code>perf_advisory.flags</code>, <code>perf_advisory.severity</code>, and <code>perf_advisory.recommendation</code>.</li>
+<li class=""><strong>Phase 4.5 Validation Gate.</strong> Run all 8 checks against the authored calc. Any failure blocks delivery. If R-TYPE-01 fails, re-classify and re-author. Other failures may require clarifier or refusal.</li>
+<li class=""><strong>Phase 4.6 Disagreement Branch (conditional).</strong> If user disputes the delivered calc:
+<ul>
+<li class="">Offer one alternate formulation (typically the next-most-natural calc type: row-level → aggregate, aggregate → LOD FIXED, or vice versa).</li>
+<li class="">If rejected, route to Tableaus calc reference docs. Never chain a second alternate.</li>
+</ul>
+</li>
+<li class=""><strong>Phase 5 Cleanup + Reply.</strong> Delete any scratch worksheet (or leave it with the users approval). Reply with: the calc name and formula, what it does in one line, the verification status ("Checked on N rows" or "Not checked in a view yet"), and any perf note. Emit <code>calc_write_handoff/1</code> only per HC#7.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=handoff-contract>Handoff Contract<a href=#handoff-contract class=hash-link aria-label="Direct link to Handoff Contract" title="Direct link to Handoff Contract" translate=no>​</a></h2>
+<p>The <code>calc_write_handoff/1</code> YAML schema is in <code>skill-expertise/handoff_schema.md</code>. Emit it only per HC#7: when the user chains to another calc skill that is installed in this session ("now optimize it", "now lint it", "add it to the inventory") or explicitly asks for it. It is not part of the normal reply. Downstream skills refuse unknown schema versions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=error-handling>Error Handling<a href=#error-handling class=hash-link aria-label="Direct link to Error Handling" title="Direct link to Error Handling" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Situation<th>Response<tbody><tr><td>Multi-source workbook<td>Ask which source. If the ask also names multiple calcs, combine with the HC#1 clarifier (one-at-a-time vs. sequential multi-calc mode) rather than asking twice.<tr><td>Field doesnt exist in the target DS<td>Refuse per HC#5. Ask user to confirm field name or point to correct DS.<tr><td>Function isnt in the library<td>Refuse per HC#2. Never invent a signature.<tr><td>Ambiguous calc type<td>Ask one clarifier per HC#4. Never chain a second.<tr><td>Parameter reference in the ask, parameter doesnt exist<td>Refuse parameter creation per HC#6. Ask user to create manually in Desktop, then re-invoke.<tr><td>Fresh-parameter resolution fails (author-calc cant resolve param by bare name)<td>Retry once after Data pane refresh. If still failing, refuse with manual calc-creation instructions.<tr><td><code>author-calc</code> returns "syntax error"<td>Diagnose via V-gate rules; if fixable, re-author with corrected formula; else refuse and hand off to <code>calc-debugger</code>.<tr><td><code>author-calc</code> returns success but <code>get-summary-data</code> verification shows wrong output<td>Re-run V-gate; if V-gate says calc is valid but semantics dont match ask, offer one alternate formulation per Phase 4.6.<tr><td>Data source has parameter-referencing calcs (corruption risk)<td>Skip <code>build-and-apply-worksheet</code>; use existing scratch worksheet. Never shelf-mutate.<tr><td>Validation Gate R-TYPE-01 fails<td>Re-classify calc type; re-author once. If second attempt fails, refuse.<tr><td>Validation Gate any other rule fails<td>Report the specific rule ID and evidence; block delivery.<tr><td>User asks for multiple calcs in one invocation<td>Ask the HC#1 clarifier (one-at-a-time vs. sequential multi-calc mode this run). Proceed per the users choice; never assume.<tr><td>Field or parameter reference resolves at Phase 1 but fails to resolve at <code>author-calc</code> time (stale/renamed mid-session)<td>Retry once. If still failing, refuse with "field/parameter <code>[X]</code> no longer resolves; confirm it wasnt renamed or removed, or refresh the Data pane and re-invoke." Do not silently substitute a similarly-named field.<tr><td>User asks for debugging/optimization/translation/lint/inventory<td>Route to exact slug per HC#8.<tr><td><code>author-calc</code> hangs/times out twice in a row (no dialog blocking, session confirmed reachable)<td>Stop retrying after the second timeout. Check whether the calc was actually created server-side despite the timeout (search the field inventory for the intended caption) before assuming failure. If genuinely not created, hand the user exact manual creation steps (caption, formula, datatype, role) for Desktops Create Calculated Field dialog, and explicitly ask them to confirm once done so verification can proceed — never let the handoff trail off without that ask. Confirmed not connection-type-dependent: the same hang recurred identically on both a live connection and its extracted version of the same data source, and survived a full Desktop restart — treat this as a standing environment reliability gap, not a live-connection-latency or stale-session issue.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=common-mistakes-to-avoid>Common Mistakes to Avoid<a href=#common-mistakes-to-avoid class=hash-link aria-label="Direct link to Common Mistakes to Avoid" title="Direct link to Common Mistakes to Avoid" translate=no>​</a></h2>
+<ul>
+<li class="">Inventing a function signature that isnt in <code>INDEX.md</code>. HC#2 hard-bans.</li>
+<li class="">Authoring a calc without running the full 8-check V-gate. HC#3 hard-bans.</li>
+<li class="">Fabricating field references. HC#5 hard-bans.</li>
+<li class="">Attempting to create a parameter. HC#6 hard-bans; route to Desktop UI.</li>
+<li class="">Chaining clarifying questions past the first. HC#4 caps at one.</li>
+<li class="">Emitting the handoff YAML when no calc skill asked for it, or showing it in the normal reply. HC#7 limits it to chained runs.</li>
+<li class="">Building a scratch sheet for a simple row-level calc. The Verification Policy skips it.</li>
+<li class="">Implying a calc was checked when Phase 4 did not run. Always state the verification status.</li>
+<li class="">Hedging on calc type ("this might be an LOD"). Classify or refuse.</li>
+<li class="">Delivering a calc that references a non-existent nested calc. Refuse per Edge-Case Boundary.</li>
+<li class="">Treating an <code>author-calc</code> "success" response as proof only the intended calc changed. If the returned calc name, formula, or datasource doesnt match what was requested, stop and verify before delivering — <code>author-calc</code> can silently touch the wrong calc on a workbook with caption collisions or stale field references; never assume success implies isolation.</li>
+<li class="">Assuming multi-calc mode by default. HC#1 requires the clarifier every time multiple calcs are requested in one invocation.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=known-limitations>Known Limitations<a href=#known-limitations class=hash-link aria-label="Direct link to Known Limitations" title="Direct link to Known Limitations" translate=no>​</a></h2>
+<ul>
+<li class="">Default mode is one calc per invocation; sequential multi-calc mode requires explicit user opt-in per HC#1 and still runs each calc through the full pipeline (no shortcuts). True batch authoring (parallel writes, shared V-gate pass) remains out of scope.</li>
+<li class="">Parameter creation is out of scope (platform gap).</li>
+<li class="">Set and hierarchy creation are out of scope.</li>
+<li class="">Function library reflects Tableau Desktop 2026.x GA.</li>
+<li class="">Fresh-parameter resolution has a documented one-retry pattern (platform gap).</li>
+<li class="">Sample-size threshold labeling requires ≥1,000 rows for verified; smaller samples flag as unverified.</li>
+<li class="">Simple row-level calcs are not checked in a view by default (Verification Policy); users can ask for a check.</li>
+<li class="">Version-gated functions (MAKEPOINT 2019.2+, BUFFER 2024.1+, USEREMAIL 2023.3+) noted inline; older Desktop versions may not support them.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=mcp-skill-mapping>MCP Skill Mapping<a href=#mcp-skill-mapping class=hash-link aria-label="Direct link to MCP Skill Mapping" title="Direct link to MCP Skill Mapping" translate=no>​</a></h2>
+<p><code>tableau-calc-engine</code> (Cloud) is the analog. Calc Writer is the Desktop-agent-native single-trigger authoring peer.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=relationship-to-other-skills>Relationship to Other Skills<a href=#relationship-to-other-skills class=hash-link aria-label="Direct link to Relationship to Other Skills" title="Direct link to Relationship to Other Skills" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>Peer to <code>calc-debugger</code>, <code>calc-optimizer</code>, <code>calc-translator</code>, <code>calc-linter</code>, <code>calc-inventory</code>.</strong> Single-trigger discipline enforced by explicit Do NOT trigger clauses.</li>
+<li class=""><strong>Orchestrator:</strong> <code>calc-orchestrator</code> routes ambiguous asks to Calc Writer when intent is clearly "author new."</li>
+<li class=""><strong>Downstream handoff (only when chained, per HC#7):</strong> <code>calc_write_handoff/1</code> YAML consumable by <code>calc-optimizer</code> ("now optimize it"), <code>calc-linter</code> ("now lint it"), <code>calc-inventory</code> ("now include this in the catalog").</li>
+<li class=""><strong>Upstream:</strong> <code>viz-planner</code> and <code>worksheet-builder</code> may invoke Calc Writer during dashboard design when a calc is needed.</li>
+<li class=""><strong>Sibling to non-calc skills:</strong> never authors a field alias (thats a Desktop UI action); never modifies the data model (<code>join-and-relationship-advisor</code>); never documents field meaning (<code>data-scribe</code>).</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=graceful-degradation>Graceful Degradation<a href=#graceful-degradation class=hash-link aria-label="Direct link to Graceful Degradation" title="Direct link to Graceful Degradation" translate=no>​</a></h2>
+<p>These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.</p>
+<ul>
+<li class=""><strong>Nothing to work on.</strong> If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.</li>
+<li class=""><strong>Tool call fails, times out, or returns empty.</strong> Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.</li>
+<li class=""><strong>Partial results.</strong> If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.</li>
+<li class=""><strong>Reference file won't open.</strong> Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.</li>
+<li class=""><strong>Peer skill not installed.</strong> If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.</li>
+<li class=""><strong>Platform gap.</strong> If no tool can do something, say so plainly and give the manual Desktop path.</li>
+<li class=""><strong>Failure messages.</strong> Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.</li>
+<li class=""><strong>No fabrication.</strong> Never invent fields, values, findings, or results to fill a gap left by a failed read.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/calc-family/calc-writer/SKILL.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>Calc Writer</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer/resources><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>INDEX.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#when-to-use-full-trigger-detail class="table-of-contents__link toc-highlight">When to use (full trigger detail)</a><li><a href=#purpose class="table-of-contents__link toc-highlight">Purpose</a><li><a href=#trigger-conditions class="table-of-contents__link toc-highlight">Trigger Conditions</a><li><a href=#scope-boundaries class="table-of-contents__link toc-highlight">Scope Boundaries</a><ul><li><a href=#edge-case-boundaries class="table-of-contents__link toc-highlight">Edge-Case Boundaries</a></ul><li><a href=#hard-constraints class="table-of-contents__link toc-highlight">Hard Constraints</a><li><a href=#tools-used class="table-of-contents__link toc-highlight">Tools Used</a><li><a href=#function-library-locked-reference class="table-of-contents__link toc-highlight">Function Library (Locked Reference)</a><ul><li><a href=#domain-accuracy-assertions-locked class="table-of-contents__link toc-highlight">Domain-Accuracy Assertions (Locked)</a></ul><li><a href=#validation-gate-locked-8-checks class="table-of-contents__link toc-highlight">Validation Gate (Locked, 8 Checks)</a><li><a href=#sample-size-reliability-threshold class="table-of-contents__link toc-highlight">Sample-Size Reliability Threshold</a><li><a href=#scale-tiers-multi-calc-mode-and-source-types class="table-of-contents__link toc-highlight">Scale Tiers, Multi-Calc Mode, and Source Types</a><li><a href=#verification-policy-when-to-run-phase-4 class="table-of-contents__link toc-highlight">Verification Policy (When to Run Phase 4)</a><li><a href=#workflow-phases class="table-of-contents__link toc-highlight">Workflow Phases</a><li><a href=#handoff-contract class="table-of-contents__link toc-highlight">Handoff Contract</a><li><a href=#error-handling class="table-of-contents__link toc-highlight">Error Handling</a><li><a href=#common-mistakes-to-avoid class="table-of-contents__link toc-highlight">Common Mistakes to Avoid</a><li><a href=#known-limitations class="table-of-contents__link toc-highlight">Known Limitations</a><li><a href=#mcp-skill-mapping class="table-of-contents__link toc-highlight">MCP Skill Mapping</a><li><a href=#relationship-to-other-skills class="table-of-contents__link toc-highlight">Relationship to Other Skills</a><li><a href=#graceful-degradation class="table-of-contents__link toc-highlight">Graceful Degradation</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

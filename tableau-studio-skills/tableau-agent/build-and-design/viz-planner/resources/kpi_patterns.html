@@ -1,0 +1,373 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>KPI & Metric Patterns | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="KPI & Metric Patterns | Tableau AI Utilities"/><meta data-rh=true name=description content="BAN (Big-Ass Number) display formats, comparison logic, sparkline inclusion rules, and KPI hierarchy design for Tableau dashboards."/><meta data-rh=true property=og:description content="BAN (Big-Ass Number) display formats, comparison logic, sparkline inclusion rules, and KPI hierarchy design for Tableau dashboards."/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/","name":"Viz Planner","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns","name":"kpi_patterns.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.7f0f288b.js defer></script><script src=/tableau-ai-utilities/assets/js/main.ed8bd7b5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Data Model Documenter" class=categoryLinkLabel_W154>Data Model Documenter</span></a><button aria-label="Expand sidebar category 'Data Model Documenter'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/worksheet-builder><span title="Worksheet Builder" class=categoryLinkLabel_W154>Worksheet Builder</span></a><button aria-label="Expand sidebar category 'Worksheet Builder'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner><span title="Viz Planner" class=categoryLinkLabel_W154>Viz Planner</span></a><button aria-label="Collapse sidebar category 'Viz Planner'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/anti_patterns><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/anti_patterns><span title=anti_patterns.md class=linkLabel_WmDU>anti_patterns.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/build_patterns><span title=build_patterns.md class=linkLabel_WmDU>build_patterns.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/calc_templates><span title=calc_templates.md class=linkLabel_WmDU>calc_templates.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/color_accessibility><span title=color_accessibility.md class=linkLabel_WmDU>color_accessibility.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/container_patterns><span title=container_patterns.md class=linkLabel_WmDU>container_patterns.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/decision_framework><span title=decision_framework.md class=linkLabel_WmDU>decision_framework.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/device_layouts><span title=device_layouts.md class=linkLabel_WmDU>device_layouts.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/filter_action_wiring><span title=filter_action_wiring.md class=linkLabel_WmDU>filter_action_wiring.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/filter_interaction><span title=filter_interaction.md class=linkLabel_WmDU>filter_interaction.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_highlight_box><span title=kpi_highlight_box.md class=linkLabel_WmDU>kpi_highlight_box.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns><span title=kpi_patterns.md class=linkLabel_WmDU>kpi_patterns.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/layout_patterns><span title=layout_patterns.md class=linkLabel_WmDU>layout_patterns.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/worked_examples><span title=worked_examples.md class=linkLabel_WmDU>worked_examples.md</span></a></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-critique-pro-studio><span title="VizCritique Pro Desktop" class=categoryLinkLabel_W154>VizCritique Pro Desktop</span></a><button aria-label="Expand sidebar category 'VizCritique Pro Desktop'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/phone-layout-blueprint><span title="Tableau Phone Layout Blueprint" class=categoryLinkLabel_W154>Tableau Phone Layout Blueprint</span></a><button aria-label="Expand sidebar category 'Tableau Phone Layout Blueprint'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title=General class=categoryLinkLabel_W154>General</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Build and Design</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner><span>Viz Planner</span></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Skill Expertise</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>kpi_patterns.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Viz Planner catalog details"><div class=row_T3bp><code class=name_A6OT>viz-planner</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/viz-planner.zip download=viz-planner.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>KPI & Metric Patterns</h1></header>
+<p>BAN (Big-Ass Number) display formats, comparison logic, sparkline inclusion rules, and KPI hierarchy design for Tableau dashboards.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=kpi-hierarchy>KPI Hierarchy<a href=#kpi-hierarchy class=hash-link aria-label="Direct link to KPI Hierarchy" title="Direct link to KPI Hierarchy" translate=no>​</a></h2>
+<p>Every business dashboard has a metric hierarchy. Define it before placing anything on the layout.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tier<th>Role<th>Count<th>Display<th>Position<tbody><tr><td><strong>Primary</strong><td>Metrics the audience checks FIRST. The reason they opened the dashboard.<td>2-4<td>BAN with comparison (large, bold, color-coded delta)<td>KPI zone, top of dashboard<tr><td><strong>Secondary</strong><td>Supporting context that explains or qualifies primary KPIs<td>2-4<td>Smaller BAN or inline with charts<td>Below primary, or right-side panel<tr><td><strong>Detail</strong><td>Breakdown values visible within charts<td>N/A<td>Chart labels, axis values, tooltips<td>Within viz zone</table>
+<p><strong>How to identify Primary KPIs:</strong></p>
+<ul>
+<li class="">What number does the audience quote in meetings?</li>
+<li class="">What number triggers action if it moves?</li>
+<li class="">What's the first question they ask on Monday morning?</li>
+</ul>
+<p><strong>How to identify Secondary KPIs:</strong></p>
+<ul>
+<li class="">What explains WHY the primary moved?</li>
+<li class="">What context is needed to interpret the primary?</li>
+<li class="">What's the "next question" after seeing the primary?</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=ban-display-format>BAN Display Format<a href=#ban-display-format class=hash-link aria-label="Direct link to BAN Display Format" title="Direct link to BAN Display Format" translate=no>​</a></h2>
+<p>Each KPI tile follows this structure:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">+------------------------+</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| METRIC LABEL           |  &lt;- 10-11px, uppercase or title case, #666666</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| $1.24M                 |  &lt;- 28-48px, bold, #333333 (the number)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| ^ 12.3% vs. LY        |  &lt;- 11-12px, color-coded (green up / red down)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| Target: $1.30M         |  &lt;- 10px, #999999 (optional benchmark)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">+------------------------+</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=size-by-tier>Size by Tier<a href=#size-by-tier class=hash-link aria-label="Direct link to Size by Tier" title="Direct link to Size by Tier" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tier<th>Number Size<th>Label Size<th>Card Width<tbody><tr><td>Primary KPI<td>28-36px bold<td>10-11px<td>Equal share of KPI zone (e.g., 25% each for 4 KPIs)<tr><td>Secondary KPI<td>20-24px bold<td>10px<td>Smaller card or inline<tr><td>Inline metric<td>14-16px bold<td>9-10px<td>Within chart area</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=comparison-line-rules>Comparison Line Rules<a href=#comparison-line-rules class=hash-link aria-label="Direct link to Comparison Line Rules" title="Direct link to Comparison Line Rules" translate=no>​</a></h3>
+<p>The comparison line (delta) is what makes a KPI actionable. A number without context is just a number.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>What to Compare<th>Format<th>When<tbody><tr><td>vs. Same Period Last Year<td>"^12.3% vs. LY" or "+$148K vs. LY"<td>Default for most business metrics<tr><td>vs. Prior Period<td>"^3.1% vs. last month"<td>Sequential process, monthly reviews<tr><td>vs. Target/Goal<td>"92% of target" or "-$80K vs. goal"<td>Target-driven KPIs<tr><td>vs. Baseline<td>"+24% since launch"<td>Campaign or initiative tracking</table>
+<p><strong>Comparison formatting:</strong></p>
+<ul>
+<li class="">Up/positive: green (#59A14F) with up arrow (^) or triangle</li>
+<li class="">Down/negative: red (#E15759) with down arrow (v) or triangle</li>
+<li class="">Flat/neutral: gray (#9C9C9C) with dash (-)</li>
+<li class=""><strong>Reverse for cost metrics:</strong> Lower is better, so down = green, up = red</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=comparison-period-selection-logic>Comparison Period Selection Logic<a href=#comparison-period-selection-logic class=hash-link aria-label="Direct link to Comparison Period Selection Logic" title="Direct link to Comparison Period Selection Logic" translate=no>​</a></h2>
+<p>Choose the default comparison based on business context:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Context<th>Default Comparison<th>Why<tbody><tr><td>Ongoing operations (sales, revenue)<td>vs. same period last year (YoY)<td>Normalizes seasonality<tr><td>Campaign / product launch<td>vs. pre-launch baseline<td>Shows lift<tr><td>Target-driven (quotas, OKRs)<td>vs. target / goal<td>Shows gap to close<tr><td>Sequential process (pipeline)<td>vs. prior period (MoM, WoW)<td>Shows momentum<tr><td>Seasonal business<td>vs. same period last year<td>Always YoY to control for season<tr><td>Growth startups<td>vs. prior period (MoM)<td>Growth rate is the metric<tr><td>Real-time operations<td>vs. same time yesterday or trailing average<td>Anomaly detection</table>
+<p><strong>Multiple comparisons:</strong> If both YoY and vs. Target are relevant, show the more actionable one as the primary comparison line, and put the other in the tooltip.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=sparkline-inclusion-rules>Sparkline Inclusion Rules<a href=#sparkline-inclusion-rules class=hash-link aria-label="Direct link to Sparkline Inclusion Rules" title="Direct link to Sparkline Inclusion Rules" translate=no>​</a></h2>
+<p>Sparklines add trend context to KPI tiles. They answer "is this going up or down?" without requiring a full chart.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=when-to-include-sparkline-in-kpi-card>When to Include Sparkline in KPI Card<a href=#when-to-include-sparkline-in-kpi-card class=hash-link aria-label="Direct link to When to Include Sparkline in KPI Card" title="Direct link to When to Include Sparkline in KPI Card" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Include<th>Don't Include<tbody><tr><td>Metric has meaningful time trend<td>Metric is a snapshot (count of active users right now)<tr><td>Audience is Manager or Analyst<td>Audience is Executive (scan-only; sparkline adds noise)<tr><td>Time periods available (>6 periods)<td>Fewer than 6 data points (not enough for a shape)<tr><td>Trend direction matters for interpretation<td>Only the current value matters</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=sparkline-specifications>Sparkline Specifications<a href=#sparkline-specifications class=hash-link aria-label="Direct link to Sparkline Specifications" title="Direct link to Sparkline Specifications" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Size: 80-120px wide x 20-30px tall</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Color: Primary blue (#4E79A7), single line, no fill</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Periods: Last 12 (months/weeks/days depending on grain)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Markers: None, OR single endpoint marker (current value)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Axis: Hidden (sparklines show shape, not precise values)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Grid: None</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">Labels: None (the BAN above provides the number)</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=sparkline-position-in-kpi-card>Sparkline Position in KPI Card<a href=#sparkline-position-in-kpi-card class=hash-link aria-label="Direct link to Sparkline Position in KPI Card" title="Direct link to Sparkline Position in KPI Card" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">+------------------------+</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| METRIC LABEL           |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| $1.24M                 |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| ^ 12.3% vs. LY        |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| [__________/^^]        |  &lt;- Sparkline at bottom of card</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">+------------------------+</span><br/></div></code></pre></div></div>
+<p>OR (compact variant):</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">+----------------------------------+</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| METRIC LABEL  [__/^^]            |  &lt;- Sparkline right-aligned</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| $1.24M        ^ 12.3% vs. LY    |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">+----------------------------------+</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=kpi-card-styling>KPI Card Styling<a href=#kpi-card-styling class=hash-link aria-label="Direct link to KPI Card Styling" title="Direct link to KPI Card Styling" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=background>Background<a href=#background class=hash-link aria-label="Direct link to Background" title="Direct link to Background" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Style<th>When<th>Hex<tbody><tr><td>Light gray card<td>Default. Subtle container differentiation.<td>#F8F9FA<tr><td>White card (no background)<td>When dashboard background is already gray<td>#FFFFFF<tr><td>Status-colored card<td>Operations dashboards with health status<td>Green/Yellow/Red at 10% opacity</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=borders-and-spacing>Borders and Spacing<a href=#borders-and-spacing class=hash-link aria-label="Direct link to Borders and Spacing" title="Direct link to Borders and Spacing" translate=no>​</a></h3>
+<ul>
+<li class="">Card border: none (use background contrast) or 1px #E0E0E0</li>
+<li class="">Inner padding: 12px all sides</li>
+<li class="">Between cards: 8-12px gap</li>
+<li class="">Cards in a row: always same height (visual consistency)</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=number-formatting-rules>Number Formatting Rules<a href=#number-formatting-rules class=hash-link aria-label="Direct link to Number Formatting Rules" title="Direct link to Number Formatting Rules" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric Type<th>Format<th>Example<tbody><tr><td>Revenue/Sales (large)<td>$#.#M or $#.#K<td>$2.4M, $847K<tr><td>Revenue (small, &lt;$1K)<td>$#,##0<td>$892<tr><td>Percentage<td>#.#% (one decimal)<td>14.2%, 3.1%<tr><td>Count (large)<td>#.#K or #.#M<td>24.5K, 1.2M<tr><td>Count (small, &lt;1000)<td>#,##0<td>847<tr><td>Ratio<td>#.##<td>3.14, 0.87<tr><td>Change (absolute)<td>+$#.#M / -$#.#M<td>+$148K, -$23K<tr><td>Change (relative)<td>+#.#% / -#.#%<td>+12.3%, -4.1%</table>
+<p><strong>Formatting rules:</strong></p>
+<ul>
+<li class="">Always abbreviate large numbers (M, K). Never show $2,400,000 in a BAN.</li>
+<li class="">Always show sign (+/-) on change values. No sign = ambiguous.</li>
+<li class="">One decimal place for percentages. Two decimals only for very small percentages (&lt;1%).</li>
+<li class="">Consistent precision across all KPI cards (don't mix $2.4M with $847,231).</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=kpi-calculated-fields>KPI Calculated Fields<a href=#kpi-calculated-fields class=hash-link aria-label="Direct link to KPI Calculated Fields" title="Direct link to KPI Calculated Fields" translate=no>​</a></h2>
+<p>Common calculations needed for KPI tiles:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=ytd-value>YTD Value<a href=#ytd-value class=hash-link aria-label="Direct link to YTD Value" title="Direct link to YTD Value" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// [Sales YTD]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">IF YEAR([Order Date]) = YEAR(TODAY()) </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">   AND [Order Date] &lt;= TODAY()</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">THEN [Sales] </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">END</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=yoy-change->YoY Change (%)<a href=#yoy-change- class=hash-link aria-label="Direct link to YoY Change (%)" title="Direct link to YoY Change (%)" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// [YoY Change]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">(SUM([Sales This Year]) - SUM([Sales Last Year])) </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">/ ABS(SUM([Sales Last Year]))</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=vs-target->vs. Target (%)<a href=#vs-target- class=hash-link aria-label="Direct link to vs. Target (%)" title="Direct link to vs. Target (%)" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// [vs Target %]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">(SUM([Sales]) - [Target Parameter]) / [Target Parameter]</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=status-classification>Status Classification<a href=#status-classification class=hash-link aria-label="Direct link to Status Classification" title="Direct link to Status Classification" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// [KPI Status]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">IF SUM([Sales]) >= [Target Parameter] THEN "On Track"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">ELSEIF SUM([Sales]) >= [Target Parameter] * 0.9 THEN "At Risk"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">ELSE "Off Track"</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">END</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=period-over-period-table-calc>Period-over-Period (Table Calc)<a href=#period-over-period-table-calc class=hash-link aria-label="Direct link to Period-over-Period (Table Calc)" title="Direct link to Period-over-Period (Table Calc)" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">// [PoP Change]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">(ZN(SUM([Sales])) - LOOKUP(ZN(SUM([Sales])), -1)) </span><br/></div><div class=token-line style=color:#393A34><span class="token plain">/ ABS(LOOKUP(ZN(SUM([Sales])), -1))</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=multi-kpi-layout-options>Multi-KPI Layout Options<a href=#multi-kpi-layout-options class=hash-link aria-label="Direct link to Multi-KPI Layout Options" title="Direct link to Multi-KPI Layout Options" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=3-primary-kpis-most-common>3 Primary KPIs (Most Common)<a href=#3-primary-kpis-most-common class=hash-link aria-label="Direct link to 3 Primary KPIs (Most Common)" title="Direct link to 3 Primary KPIs (Most Common)" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">+----------+----------+----------+</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| Sales    | Profit   | Margin   |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| $2.4M   | $340K    | 14.2%    |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| ^8% YoY | ^3% YoY  | v0.5pp   |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">+----------+----------+----------+</span><br/></div></code></pre></div></div>
+<ul>
+<li class="">Equal thirds, 60-80px height</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=4-primary-kpis>4 Primary KPIs<a href=#4-primary-kpis class=hash-link aria-label="Direct link to 4 Primary KPIs" title="Direct link to 4 Primary KPIs" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">+--------+--------+--------+--------+</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| Rev    | Orders | AOV    | NPS    |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| $2.4M  | 24.5K  | $98    | 72     |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| ^8%    | ^12%   | v3%    | ^2pts  |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">+--------+--------+--------+--------+</span><br/></div></code></pre></div></div>
+<ul>
+<li class="">Equal quarters, 60-80px height</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=2-primary--2-secondary-stacked>2 Primary + 2 Secondary (Stacked)<a href=#2-primary--2-secondary-stacked class=hash-link aria-label="Direct link to 2 Primary + 2 Secondary (Stacked)" title="Direct link to 2 Primary + 2 Secondary (Stacked)" translate=no>​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">+-------------------+-------------------+</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| REVENUE           | CUSTOMERS         |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| $2.4M  ^8% YoY   | 24.5K  ^12% YoY  |</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">+-------------------+-------------------+</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">| Avg Order: $98    | Retention: 87%    |  &lt;- Secondary, smaller</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">+-------------------+-------------------+</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=kpi-interaction-when-applicable>KPI Interaction (When Applicable)<a href=#kpi-interaction-when-applicable class=hash-link aria-label="Direct link to KPI Interaction (When Applicable)" title="Direct link to KPI Interaction (When Applicable)" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Audience<th>KPI Interactivity<tbody><tr><td>Executive<td>Non-interactive (display only) OR click to navigate to detail page<tr><td>Manager<td>Click KPI to filter dashboard to that metric's detail<tr><td>Analyst<td>Click KPI to navigate; hover for tooltip with breakdown<tr><td>Operations<td>Click to open alert detail or ticket</table>
+<p><strong>KPI as filter action source:</strong></p>
+<ul>
+<li class="">Works when KPIs represent segments (e.g., Revenue by Region cards)</li>
+<li class="">Click "West: $820K" -> filters all charts to West</li>
+<li class="">Must have clear "selected" state (border, background change)</li>
+<li class="">Always provide "clear selection" / "show all" reset</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_patterns.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/kpi_highlight_box><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>kpi_highlight_box.md</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/viz-planner/resources/layout_patterns><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>layout_patterns.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#kpi-hierarchy class="table-of-contents__link toc-highlight">KPI Hierarchy</a><li><a href=#ban-display-format class="table-of-contents__link toc-highlight">BAN Display Format</a><ul><li><a href=#size-by-tier class="table-of-contents__link toc-highlight">Size by Tier</a><li><a href=#comparison-line-rules class="table-of-contents__link toc-highlight">Comparison Line Rules</a></ul><li><a href=#comparison-period-selection-logic class="table-of-contents__link toc-highlight">Comparison Period Selection Logic</a><li><a href=#sparkline-inclusion-rules class="table-of-contents__link toc-highlight">Sparkline Inclusion Rules</a><ul><li><a href=#when-to-include-sparkline-in-kpi-card class="table-of-contents__link toc-highlight">When to Include Sparkline in KPI Card</a><li><a href=#sparkline-specifications class="table-of-contents__link toc-highlight">Sparkline Specifications</a><li><a href=#sparkline-position-in-kpi-card class="table-of-contents__link toc-highlight">Sparkline Position in KPI Card</a></ul><li><a href=#kpi-card-styling class="table-of-contents__link toc-highlight">KPI Card Styling</a><ul><li><a href=#background class="table-of-contents__link toc-highlight">Background</a><li><a href=#borders-and-spacing class="table-of-contents__link toc-highlight">Borders and Spacing</a></ul><li><a href=#number-formatting-rules class="table-of-contents__link toc-highlight">Number Formatting Rules</a><li><a href=#kpi-calculated-fields class="table-of-contents__link toc-highlight">KPI Calculated Fields</a><ul><li><a href=#ytd-value class="table-of-contents__link toc-highlight">YTD Value</a><li><a href=#yoy-change- class="table-of-contents__link toc-highlight">YoY Change (%)</a><li><a href=#vs-target- class="table-of-contents__link toc-highlight">vs. Target (%)</a><li><a href=#status-classification class="table-of-contents__link toc-highlight">Status Classification</a><li><a href=#period-over-period-table-calc class="table-of-contents__link toc-highlight">Period-over-Period (Table Calc)</a></ul><li><a href=#multi-kpi-layout-options class="table-of-contents__link toc-highlight">Multi-KPI Layout Options</a><ul><li><a href=#3-primary-kpis-most-common class="table-of-contents__link toc-highlight">3 Primary KPIs (Most Common)</a><li><a href=#4-primary-kpis class="table-of-contents__link toc-highlight">4 Primary KPIs</a><li><a href=#2-primary--2-secondary-stacked class="table-of-contents__link toc-highlight">2 Primary + 2 Secondary (Stacked)</a></ul><li><a href=#kpi-interaction-when-applicable class="table-of-contents__link toc-highlight">KPI Interaction (When Applicable)</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

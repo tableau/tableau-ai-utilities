@@ -1,0 +1,342 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-mcp-skills/claude-format/tableau-calc-engine/index" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Tableau Calc Engine | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Tableau Calc Engine | Tableau AI Utilities"/><meta data-rh=true name=description content='Write, debug, translate, and optimize Tableau calculated fields. Covers basic calcs, LOD expressions, table calculations, sets and set actions, dynamic zone visibility, spatial/mapping functions, string functions, parameters, and performance tuning. Triggers on "write a calc", "fix this calculation", "calculated field", "why is this returning NULL", "running total", "YoY calc", "percent of total", "rank calc", "moving average", "Top N", "LOD expression", "table calc help", "dynamic zone visibility", "MAKEPOINT", "translate this SQL to Tableau", "optimize this calc", or "tableau calc engine". Do NOT use for dashboard design or layout (Tableau Dashboard Blueprint), critiquing a finished dashboard (VizCritique Pro), Tableau Prep flows, creating or publishing workbooks, or generating test data (Hyper Synthetic Forge).'/><meta data-rh=true property=og:description content='Write, debug, translate, and optimize Tableau calculated fields. Covers basic calcs, LOD expressions, table calculations, sets and set actions, dynamic zone visibility, spatial/mapping functions, string functions, parameters, and performance tuning. Triggers on "write a calc", "fix this calculation", "calculated field", "why is this returning NULL", "running total", "YoY calc", "percent of total", "rank calc", "moving average", "Top N", "LOD expression", "table calc help", "dynamic zone visibility", "MAKEPOINT", "translate this SQL to Tableau", "optimize this calc", or "tableau calc engine". Do NOT use for dashboard design or layout (Tableau Dashboard Blueprint), critiquing a finished dashboard (VizCritique Pro), Tableau Prep flows, creating or publishing workbooks, or generating test data (Hyper Synthetic Forge).'/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine/","name":"Tableau Calc Engine","position":1}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.7f0f288b.js defer></script><script src=/tableau-ai-utilities/assets/js/main.ed8bd7b5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title=General class=categoryLinkLabel_W154>General</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Tableau Insights Service" class=categoryLinkLabel_W154>Tableau Insights Service</span></a><button aria-label="Expand sidebar category 'Tableau Insights Service'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/hyper-synthetic-forge><span title="Hyper Synthetic Forge" class=categoryLinkLabel_W154>Hyper Synthetic Forge</span></a><button aria-label="Expand sidebar category 'Hyper Synthetic Forge'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/pulse-blueprint><span title="Pulse Blueprint" class=categoryLinkLabel_W154>Pulse Blueprint</span></a><button aria-label="Expand sidebar category 'Pulse Blueprint'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible menu__list-item-collapsible--active"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine><span title="Tableau Calc Engine" class=categoryLinkLabel_W154>Tableau Calc Engine</span></a><button aria-label="Collapse sidebar category 'Tableau Calc Engine'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine/resources/dynamic-zones-and-parameters><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-content-compass><span title="Tableau Content Compass" class=categoryLinkLabel_W154>Tableau Content Compass</span></a><button aria-label="Expand sidebar category 'Tableau Content Compass'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-governance-scanner><span title="Tableau Governance Scanner" class=categoryLinkLabel_W154>Tableau Governance Scanner</span></a><button aria-label="Expand sidebar category 'Tableau Governance Scanner'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-quest><span title=TableauQuest class=categoryLinkLabel_W154>TableauQuest</span></a><button aria-label="Expand sidebar category 'TableauQuest'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-scribe><span title="Tableau Scribe" class=categoryLinkLabel_W154>Tableau Scribe</span></a><button aria-label="Expand sidebar category 'Tableau Scribe'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau MCP Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Claude Format</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>Tableau Calc Engine</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Tableau Calc Engine catalog details"><div class=row_T3bp><code class=name_A6OT>tableau-calc-engine</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/tableau-calc-engine.zip download=tableau-calc-engine.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Tableau Calc Engine</h1></header>
+<p><strong>Tableau Calculation Authoring & Optimization</strong></p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=what-it-does>What It Does<a href=#what-it-does class=hash-link aria-label="Direct link to What It Does" title="Direct link to What It Does" translate=no>​</a></h2>
+<p>Tableau Calc Engine writes, debugs, translates, and optimizes Tableau calculated fields. Given a description of what you need, it produces a complete, commented, paste-ready formula — correctly typed (row-level, aggregate, LOD, or table calc), positioned in Tableau's order of operations, and named concisely (aim for 20 characters or fewer). When something's broken, it diagnoses why. When you have SQL and need Tableau, it translates. When it's slow, it rewrites for performance.</p>
+<p>It covers the full calculation surface: basic expressions, LOD (FIXED/INCLUDE/EXCLUDE), table calculations (addressing, partitioning, nesting), sets and set actions, dynamic zone visibility, spatial/mapping functions (MAKEPOINT, MAKELINE, DISTANCE, BUFFER), string functions (REGEXP, SPLIT, FIND), parameters, and parameter actions.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=highlights>Highlights<a href=#highlights class=hash-link aria-label="Direct link to Highlights" title="Direct link to Highlights" translate=no>​</a></h2>
+<p><strong>Sets & Set Actions</strong> — Full coverage of computed sets, combined sets, set actions (2018.3+), set-based calculations, and the critical order-of-operations interaction (sets live at step 5: FIXED ignores them, INCLUDE/EXCLUDE respects them).</p>
+<p><strong>String Functions Reference</strong> — Core functions (REGEXP_EXTRACT, REGEXP_REPLACE, SPLIT, MID, FIND, TRIM) plus a SQL → Tableau equivalence table for Translate mode.</p>
+<p><strong>Last N Complete Periods recipe</strong> — The #1 most-asked date calc: filter to last N full months, excluding the partial current month.</p>
+<p><strong>Relative Date Window recipe</strong> — Compare last 30 days vs. prior 30 days (configurable window, non-calendar-aligned).</p>
+<p><strong>Version Compatibility Table</strong> — Feature-to-minimum-version mapping at the top of the skill. Inline <code>// Requires Tableau 2022.3+</code> notes on version-gated recommendations.</p>
+<p><strong>Additional edge cases</strong> — Data model (relationships vs. single table) behavior, string comparison case sensitivity, version-gated feature handling.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=what-it-does-not-do>What It Does NOT Do<a href=#what-it-does-not-do class=hash-link aria-label="Direct link to What It Does NOT Do" title="Direct link to What It Does NOT Do" translate=no>​</a></h2>
+<p><strong>It does not design dashboards.</strong> Calc Engine writes the formulas — it doesn't tell you which charts to build, where to place them, or how to structure a layout. That's Tableau Dashboard Blueprint.</p>
+<p><strong>It does not evaluate finished dashboards.</strong> It doesn't look at your completed work and score it. That's VizCritique Pro.</p>
+<p><strong>It does not generate test data.</strong> If you need synthetic data to test your calcs against, that's Hyper Synthetic Forge.</p>
+<p><strong>It does not replace Tableau Desktop.</strong> You still paste formulas into Tableau, configure table calc settings (Compute Using), and set up parameters manually. The skill gives you production-ready logic — you implement it.</p>
+<p><strong>It does not write Tableau Prep calculations.</strong> Prep uses a different formula syntax and context. This skill targets Desktop/Server calculated fields.</p>
+<p><strong>It does not modify your datasource schema.</strong> When it recommends "push to datasource," it tells you what to materialize and why — you or your data engineer implements that change.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=four-operating-modes>Four Operating Modes<a href=#four-operating-modes class=hash-link aria-label="Direct link to Four Operating Modes" title="Direct link to Four Operating Modes" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Mode<th>Input<th>Output<tbody><tr><td><strong>Write</strong><td>"I need a calc that does X"<td>Complete formula with name, type, comments, dependencies, and placement guidance<tr><td><strong>Debug</strong><td>"This calc returns NULL / wrong values / errors"<td>Diagnosis, root cause, corrected formula, and prevention advice<tr><td><strong>Translate</strong><td>"Convert this SQL to Tableau"<td>SQL breakdown, Tableau strategy per SQL concept, complete formula(s), and behavioral caveats<tr><td><strong>Optimize</strong><td>"This calc is slow on 2M rows"<td>Performance diagnosis, rewritten formula, alternative architectures, and rules applied</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=what-it-covers>What It Covers<a href=#what-it-covers class=hash-link aria-label="Direct link to What It Covers" title="Direct link to What It Covers" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Domain<th>Includes<tbody><tr><td><strong>Basic Calcs</strong><td>String, date, logic, arithmetic, type conversion, NULL handling<tr><td><strong>Aggregate Expressions</strong><td>SUM, AVG, COUNTD, MIN, MAX, custom aggregations<tr><td><strong>LOD Expressions</strong><td>FIXED, INCLUDE, EXCLUDE — when to use each, nesting, filter interaction<tr><td><strong>Table Calculations</strong><td>Addressing, partitioning, LOOKUP, RUNNING_SUM, RANK, WINDOW, INDEX, nested table calcs<tr><td><strong>Sets & Set Actions</strong><td>Computed sets, combined sets, set actions, IN/OUT calcs, set + order-of-operations interaction<tr><td><strong>Dynamic Zone Visibility</strong><td>Boolean calcs for show/hide zones, parameter-action patterns, role-based visibility<tr><td><strong>Spatial & Mapping</strong><td>MAKEPOINT, MAKELINE, DISTANCE, BUFFER, AREA, LENGTH, hex binning, spatial joins<tr><td><strong>String Functions</strong><td>REGEXP_EXTRACT/REPLACE/MATCH, SPLIT, MID, FIND, TRIM, CONTAINS + SQL equivalences<tr><td><strong>Parameters</strong><td>Dynamic measure/dimension swap, TOP N, reference lines, parameter actions<tr><td><strong>Order of Operations</strong><td>Full pipeline understanding — where each calc type lives and why it matters<tr><td><strong>Performance</strong><td>Optimization hierarchy, when to push to datasource, anti-patterns</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=version-requirements>Version Requirements<a href=#version-requirements class=hash-link aria-label="Direct link to Version Requirements" title="Direct link to Version Requirements" translate=no>​</a></h2>
+<p>Not all features are available in all Tableau versions. The skill flags these automatically:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature<th>Minimum Version<tbody><tr><td>LOD Expressions<td>9.0 (2015)<tr><td>Set Actions<td>2018.3<tr><td>MAKEPOINT, MAKELINE<td>2019.2<tr><td>Parameter Actions<td>2019.2<tr><td>DISTANCE<td>2020.1<tr><td>Dynamic Zone Visibility<td>2022.3<tr><td>BUFFER<td>2024.1 (confirm in release notes)</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=required--companion-skills>Required & Companion Skills<a href=#required--companion-skills class=hash-link aria-label="Direct link to Required & Companion Skills" title="Direct link to Required & Companion Skills" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Skill<th>Relationship<th>Why<tbody><tr><td><strong>Tableau MCP</strong> (connector)<td><strong>Required for validation</strong><td>Calc Engine validates field names via <code>get-datasource-metadata</code> and tests row-level, aggregate, and LOD calcs with <code>query-datasource</code>. Table calcs, sets, ISMEMBEROF, dynamic zones, and spatial calcs can't be tested this way, so it gives manual test cases for those. It can't save a calc into your workbook; you paste it in. Without the MCP, the skill still writes calcs — just without live validation.<tr><td><strong>Tableau Dashboard Blueprint</strong><td><strong>Recommended</strong><td>Blueprint identifies which calcs a dashboard needs. Calc Engine picks up those specs and produces production-ready formulas. Direct handoff when both are used in the same session.<tr><td><strong>VizCritique Pro</strong><td><strong>Optional</strong><td>Evaluates the built result. If VizCritique flags a performance issue caused by calculations, Calc Engine can fix it.<tr><td><strong>Hyper Synthetic Forge</strong><td><strong>Optional</strong><td>Generates test data to validate calc behavior before connecting production data.</table>
+<p><strong>Minimum viable setup:</strong> Tableau Calc Engine installed. Works standalone — you describe what you need, it writes the formula.</p>
+<p><strong>With Tableau MCP:</strong> Validates field names against the live schema and tests row-level, aggregate, and LOD logic against real data (not table calcs, sets, or spatial calcs). If the MCP is unavailable, the skill says validation was skipped and lists test cases to verify manually. If you name a datasource it can't find, it stops and asks you to pick one.</p>
+<p><strong>Full suite:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">Hyper Synthetic Forge → Tableau Dashboard Blueprint → Tableau Calc Engine → Build in Tableau → VizCritique Pro</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">(generate data)         (design what to build)        (write the calcs)     (you build it)     (evaluate result)</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=recipe-library-built-in-patterns>Recipe Library (Built-In Patterns)<a href=#recipe-library-built-in-patterns class=hash-link aria-label="Direct link to Recipe Library (Built-In Patterns)" title="Direct link to Recipe Library (Built-In Patterns)" translate=no>​</a></h2>
+<p>The skill includes a library of production-tested calculation patterns that it draws from rather than deriving from scratch each time:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category<th>Patterns<tbody><tr><td><strong>Time Intelligence</strong><td>YoY % change (two approaches, with a YTD like-for-like option), fiscal YoY, prior period comparison (flexible by parameter), last N complete periods, relative date window (last 30 vs. prior 30); YTD running total with reset is in the table calc patterns<tr><td><strong>Cohort Analysis</strong><td>Cohort assignment, periods-since-first, cohort size, retention rate<tr><td><strong>Ranking & TOP N</strong><td>Dynamic TOP N with "Other" bucket (set-based); basic RANK in the table calc patterns<tr><td><strong>% of Total</strong><td>Table calc (TOTAL), FIXED grand total, EXCLUDE parent %, all three methods with filter-response tradeoffs<tr><td><strong>Moving Calculations</strong><td>Configurable moving average with NULL handling at edges<tr><td><strong>Status & Alerts</strong><td>Traffic light KPI, threshold-based conditional formatting<tr><td><strong>Customer Metrics</strong><td>Days since last event, order sequence number, distinct count with conditions (frequent buyers)<tr><td><strong>52-Week Analysis</strong><td>52-week high/low, % from trailing high<tr><td><strong>Dynamic Swap</strong><td>Measure swap, dimension swap, parameter-driven chart configuration<tr><td><strong>Spatial</strong><td>Distance calculations, delivery radius, drive-time proxy, hex binning for density<tr><td><strong>Dynamic Zones</strong><td>Toggle panels, click-to-reveal, threshold-triggered alerts, role-based visibility<tr><td><strong>Sets</strong><td>IN/OUT classification, % from set, set member count, set-driven KPI BANs</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=how-to-trigger>How to Trigger<a href=#how-to-trigger class=hash-link aria-label="Direct link to How to Trigger" title="Direct link to How to Trigger" translate=no>​</a></h2>
+<p>Say any of:</p>
+<ul>
+<li class="">"Tableau Calc Engine"</li>
+<li class="">"Write a calc for..."</li>
+<li class="">"LOD expression"</li>
+<li class="">"Fix this table calc"</li>
+<li class="">"Why is this returning NULL?"</li>
+<li class="">"Convert this SQL to Tableau"</li>
+<li class="">"This calc is slow"</li>
+<li class="">"Dynamic zone visibility"</li>
+<li class="">"MAKEPOINT / DISTANCE / spatial calc"</li>
+<li class="">"Help me with addressing and partitioning"</li>
+<li class="">"Set action"</li>
+<li class="">"Order of operations"</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=what-it-needs-from-you>What It Needs From You<a href=#what-it-needs-from-you class=hash-link aria-label="Direct link to What It Needs From You" title="Direct link to What It Needs From You" translate=no>​</a></h2>
+<p><strong>For Write mode:</strong></p>
+<ul>
+<li class="">What the calculation should do (in plain English)</li>
+<li class="">Field names involved (or datasource name/LUID for auto-detection)</li>
+<li class="">Context: what's in the view? (Which dimensions are on shelves? This matters for table calcs and LOD grain.)</li>
+</ul>
+<p><strong>For Debug mode:</strong></p>
+<ul>
+<li class="">The formula that's not working</li>
+<li class="">What it's returning vs. what you expect</li>
+<li class="">What's in the view (dimensions, filters)</li>
+</ul>
+<p><strong>For Translate mode:</strong></p>
+<ul>
+<li class="">The SQL query or expression</li>
+<li class="">Target context: what does the Tableau view look like?</li>
+</ul>
+<p><strong>For Optimize mode:</strong></p>
+<ul>
+<li class="">The slow formula</li>
+<li class="">Data volume (approximate row count)</li>
+<li class="">Where it's used (how many views, complexity of the dashboard)</li>
+</ul>
+<p>If the answer would change the formula's logic and no default covers it, the skill asks. Otherwise it applies a stated default (calendar year, Sunday week start) and flags it. It never invents business logic.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=naming--documentation-standards>Naming & Documentation Standards<a href=#naming--documentation-standards class=hash-link aria-label="Direct link to Naming & Documentation Standards" title="Direct link to Naming & Documentation Standards" translate=no>​</a></h2>
+<p>Every calc produced follows these standards:</p>
+<ul>
+<li class=""><strong>Name:</strong> ≤20 characters, informative, uses consistent prefix convention</li>
+<li class=""><strong>Comments:</strong> Every non-trivial calc gets a header comment (purpose, dependencies, type, notes)</li>
+<li class=""><strong>Type classification:</strong> Explicitly labeled as row-level, aggregate, LOD, or table calc</li>
+<li class=""><strong>Order of operations position:</strong> Noted so you understand filter interaction behavior</li>
+<li class=""><strong>Version note:</strong> If the calc requires a specific Tableau version, it's flagged inline</li>
+</ul>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=performance-guidance>Performance Guidance<a href=#performance-guidance class=hash-link aria-label="Direct link to Performance Guidance" title="Direct link to Performance Guidance" translate=no>​</a></h2>
+<p>The skill ranks calculation approaches from fastest to slowest:</p>
+<ol>
+<li class="">Datasource-materialized columns (pre-computed)</li>
+<li class="">Row-level calculations</li>
+<li class="">Simple aggregates</li>
+<li class="">FIXED LOD (cost depends on grain; confirm with Performance Recorder)</li>
+<li class="">INCLUDE/EXCLUDE LOD</li>
+<li class="">Basic table calculations</li>
+<li class="">Nested LOD</li>
+<li class="">Complex table calculations</li>
+<li class="">String operations on high-cardinality fields</li>
+<li class="">Nested table calcs with LOD inputs</li>
+</ol>
+<p>When writing any calc, it considers where in this hierarchy the formula falls. If it lands in the bottom half and the user mentions large data, it proactively suggests alternatives or recommends pushing to the datasource.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=use-cases>Use Cases<a href=#use-cases class=hash-link aria-label="Direct link to Use Cases" title="Direct link to Use Cases" translate=no>​</a></h2>
+<p><strong>Greenfield calculation authoring</strong> — You know what you need but not how to express it in Tableau. Describe it in English, get a paste-ready formula.</p>
+<p><strong>Debugging mysterious NULLs</strong> — Your calc "worked yesterday" but now shows blanks everywhere. Calc Engine identifies whether it's addressing, filter timing, or scope.</p>
+<p><strong>SQL-to-Tableau migration</strong> — Your analyst built logic in SQL and you need the Tableau equivalent that respects the viz's grain and filter behavior. Includes string function equivalence mapping.</p>
+<p><strong>Performance rescue</strong> — A dashboard takes 45 seconds to load and the performance recorder points at calculations. Calc Engine identifies the expensive patterns and rewrites them.</p>
+<p><strong>Dynamic interactivity</strong> — You want zones that appear/disappear, measures that swap on click, sets that update on selection, TOP N that adjusts with a slider. Calc Engine writes the parameter + calc + set combinations to make it work.</p>
+<p><strong>Spatial analysis</strong> — You have lat/long data and need distance calculations, service area buffers, or hex-binned density maps. Version requirements noted.</p>
+<p><strong>Learning the order of operations</strong> — You keep getting burned by FIXED ignoring filters, sets not affecting LODs, or table calcs showing NULLs. Calc Engine explains the <em>why</em> and teaches the mental model, not just the fix.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=design-principles>Design Principles<a href=#design-principles class=hash-link aria-label="Direct link to Design Principles" title="Direct link to Design Principles" translate=no>​</a></h2>
+<ol>
+<li class=""><strong>Correct first, fast second.</strong> A correct slow calc is better than a wrong fast one. Optimize after validation.</li>
+<li class=""><strong>Ask when it matters, default when it doesn't.</strong> Logic no default covers gets a question; everything else gets a flagged default.</li>
+<li class=""><strong>Simplest approach wins.</strong> If SUM/AVG does the job, don't use LOD. If LOD does it, don't nest. Complexity must be justified.</li>
+<li class=""><strong>Comment everything non-obvious.</strong> The next person reading this calc (including future-you) should understand it in 10 seconds.</li>
+<li class=""><strong>Name within 20 characters.</strong> If you can't name it concisely, it might be doing too much — consider splitting.</li>
+<li class=""><strong>Respect the pipeline.</strong> Every calc type has a position in Tableau's order of operations. Choose the type that lives at the right point for your use case.</li>
+<li class=""><strong>Push down when possible.</strong> If a row-level calc runs on millions of rows and rarely changes, it belongs in the datasource — not in Tableau.</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-mcp-skills/claude-format/tableau-calc-engine/index.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/pulse-blueprint/resources/memory-file-templates><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>memory-file-templates.md</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-calc-engine/SKILL><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>SKILL.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#what-it-does class="table-of-contents__link toc-highlight">What It Does</a><li><a href=#highlights class="table-of-contents__link toc-highlight">Highlights</a><li><a href=#what-it-does-not-do class="table-of-contents__link toc-highlight">What It Does NOT Do</a><li><a href=#four-operating-modes class="table-of-contents__link toc-highlight">Four Operating Modes</a><li><a href=#what-it-covers class="table-of-contents__link toc-highlight">What It Covers</a><li><a href=#version-requirements class="table-of-contents__link toc-highlight">Version Requirements</a><li><a href=#required--companion-skills class="table-of-contents__link toc-highlight">Required & Companion Skills</a><li><a href=#recipe-library-built-in-patterns class="table-of-contents__link toc-highlight">Recipe Library (Built-In Patterns)</a><li><a href=#how-to-trigger class="table-of-contents__link toc-highlight">How to Trigger</a><li><a href=#what-it-needs-from-you class="table-of-contents__link toc-highlight">What It Needs From You</a><li><a href=#naming--documentation-standards class="table-of-contents__link toc-highlight">Naming & Documentation Standards</a><li><a href=#performance-guidance class="table-of-contents__link toc-highlight">Performance Guidance</a><li><a href=#use-cases class="table-of-contents__link toc-highlight">Use Cases</a><li><a href=#design-principles class="table-of-contents__link toc-highlight">Design Principles</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

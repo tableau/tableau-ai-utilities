@@ -1,0 +1,242 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>ArcGIS MapServer -> Tableau workbook (Map Layers): reference | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="ArcGIS MapServer -> Tableau workbook (Map Layers): reference | Tableau AI Utilities"/><meta data-rh=true name=description content="Read this only when debugging a failed import or editing the generated XML. Verified end to end in Tableau"/><meta data-rh=true property=og:description content="Read this only when debugging a failed import or editing the generated XML. Verified end to end in Tableau"/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/","name":"Esri Map Builder","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB","name":"ESRI-MAPSERVER-TO-TWB.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.7f0f288b.js defer></script><script src=/tableau-ai-utilities/assets/js/main.ed8bd7b5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data Quality Review" class=categoryLinkLabel_W154>Data Quality Review</span></a><button aria-label="Expand sidebar category 'Data Quality Review'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-scribe><span title="Data Scribe" class=categoryLinkLabel_W154>Data Scribe</span></a><button aria-label="Expand sidebar category 'Data Scribe'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-source-connector><span title="Data Source Connector" class=categoryLinkLabel_W154>Data Source Connector</span></a><button aria-label="Expand sidebar category 'Data Source Connector'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder><span title="Esri Map Builder" class=categoryLinkLabel_W154>Esri Map Builder</span></a><button aria-label="Collapse sidebar category 'Esri Map Builder'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB><span title=ESRI-MAPSERVER-TO-TWB.md class=linkLabel_WmDU>ESRI-MAPSERVER-TO-TWB.md</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/check_driver.py><span title=check_driver.py class=linkLabel_WmDU>check_driver.py</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/gen_workbook.py><span title=gen_workbook.py class=linkLabel_WmDU>gen_workbook.py</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class=menu__link tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/list_layers.py><span title=list_layers.py class=linkLabel_WmDU>list_layers.py</span></a></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/join-and-relationship-advisor><span title="Join and Relationship Advisor" class=categoryLinkLabel_W154>Join and Relationship Advisor</span></a><button aria-label="Expand sidebar category 'Join and Relationship Advisor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/geocoding-auditor><span title="Geocoding Auditor" class=categoryLinkLabel_W154>Geocoding Auditor</span></a><button aria-label="Expand sidebar category 'Geocoding Auditor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/extract-optimizer><span title="Extract Optimizer" class=categoryLinkLabel_W154>Extract Optimizer</span></a><button aria-label="Expand sidebar category 'Extract Optimizer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title=General class=categoryLinkLabel_W154>General</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Data and Model</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder><span>Esri Map Builder</span></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Skill Expertise</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>ESRI-MAPSERVER-TO-TWB.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Esri Map Builder catalog details"><div class=row_T3bp><code class=name_A6OT>esri-map-builder</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/esri-map-builder.zip download=esri-map-builder.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>ArcGIS MapServer -> Tableau workbook (Map Layers): reference</h1></header>
+<p>Read this only when debugging a failed import or editing the generated XML. Verified end to end in Tableau
+Desktop and Tableau Studio: the generated workbook opens with no errors, and <strong>Extract > Refresh All Extracts</strong>
+fills every layer on the map.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=run-it>Run it<a href=#run-it class=hash-link aria-label="Direct link to Run it" title="Direct link to Run it" translate=no>​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#393A34;--prism-background-color:#f6f8fa><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#393A34;background-color:#f6f8fa><code class=codeBlockLines_e6Vv><div class=token-line style=color:#393A34><span class="token plain">python3 skill-expertise/check_driver.py                       # Esri JDBC driver installed? (stdlib only)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">python3 skill-expertise/list_layers.py &lt;service|folder|root URL> [--open REGEX]   # what is there (stdlib only)</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">python3 skill-expertise/gen_workbook.py &lt;MapServer URL>[#0,4,6] [&lt;2nd service URL>[#ids] ...] --out out --name Book2 \</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">    [--layers 0,4,6] [--basemap &lt;WMTSCapabilities.xml URL>] [--hyper-dir DIR]</span><br/></div><div class=token-line style=color:#393A34><span class="token plain">python3 skill-expertise/gen_workbook.py &lt;MapServer URL> --discover-basemaps</span><br/></div></code></pre></div></div>
+<p><code>check_driver.py</code> and <code>list_layers.py</code> use only the standard library. <code>gen_workbook.py</code> needs <code>tableauhyperapi</code>;
+follow SKILL.md step 3 and 4 to find an interpreter that has it, and ask the user before creating a venv or
+installing anything. Hyper writes <code>hyperd.log</code> into <code>--out</code>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=the-approach>The approach<a href=#the-approach class=hash-link aria-label="Direct link to The approach" title="Direct link to The approach" translate=no>​</a></h2>
+<p>Per feature layer the generator writes:</p>
+<ol>
+<li class=""><strong>A federated Esri datasource</strong>: <code>&lt;connection class='federated'></code> with a named-connection
+<code>class='esri' server='&lt;MapServer URL>'</code>, relation <code>[&lt;service name>].[&lt;layer name>]</code>, connector-side
+<code>metadata-records</code>, an <code>&lt;extract></code> block with extract-side <code>metadata-records</code>, and an <code>object-graph</code>.</li>
+<li class=""><strong>A one-row <code>.hyper</code> extract</strong> at the path in <code>&lt;extract>&lt;connection dbname=...></code>. Tableau needs the file to
+exist at open; the single row is replaced by Refresh. (A missing file gives an error plus a file picker.)</li>
+<li class=""><strong>A map-layer pane</strong> in one worksheet: <code>&lt;pane></code> with <code>lod</code> + <code>geometry</code> encodings on
+<code>[&lt;ds>].[clct:Shape:nk]</code>, <code>customization-axis='layer'</code>. Rows/cols are the first datasource's
+<code>Latitude (generated)</code> / <code>Longitude (generated)</code>.</li>
+</ol>
+<p>Sources of truth:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Need<th>REST call<tbody><tr><td>Layer list, geometry type, default visibility<td><code>MapServer?f=pjson</code> (no fields here)<tr><td>Field names/types/lengths<td><code>MapServer/{id}?f=pjson</code><tr><td>One sample row incl. geometry (WGS84)<td><code>MapServer/{id}/query?where=1=1&outFields=*&returnGeometry=true&resultRecordCount=1&f=geojson</code><tr><td>Feature count<td><code>MapServer/{id}/query?where=1=1&returnCountOnly=true&f=json</code></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=type-mapping-esrifieldtype---tableau>Type mapping (esriFieldType -> Tableau)<a href=#type-mapping-esrifieldtype---tableau class=hash-link aria-label="Direct link to Type mapping (esriFieldType -> Tableau)" title="Direct link to Type mapping (esriFieldType -> Tableau)" translate=no>​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Esri<th>connector remote-type<th>extract remote-type<th>local-type<th>agg<th>Hyper type<tbody><tr><td>OID, Integer<td>3<td>20<td>integer<td>Sum<td>BIG_INT<tr><td>SmallInteger<td>2<td>20<td>integer<td>Sum<td>BIG_INT<tr><td>Double<td>5<td>5<td>real<td>Sum<td>DOUBLE<tr><td>String<td>129<td>129<td>string<td>Count<td>TEXT<tr><td>Geometry<td>132<td>128<td>spatial<td>Count (conn) / Collect (extract)<td>TABLEAU.TABGEOGRAPHY<tr><td>Date<td>135<td>135<td>datetime<td>Year<td>TIMESTAMP</table>
+<ul>
+<li class="">Strings: connector record gets <code>&lt;width></code> = field length and <code>TypeIsVarchar</code>; extract record gets
+<code>&lt;collation flag='0' name='LROOT' /></code>.</li>
+<li class="">Ordinals: connector 1-based, extract 0-based. Field order follows the REST <code>fields[]</code> order.</li>
+<li class="">Date and GlobalID refresh fine. BigInteger, Single, and GUID are mapped but unverified. Blob, Raster, and XML
+fields are skipped with a warning.</li>
+<li class="">Take types from <code>fields[]</code>, never from the sample row: the first row can be mostly NULL.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=xml-details-that-matter>XML details that matter<a href=#xml-details-that-matter class=hash-link aria-label="Direct link to XML details that matter" title="Direct link to XML details that matter" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>Schema errors on open</strong> (<code>'user-specific' is not declared for element 'extract'</code>, <code>simple-id</code> not allowed in
+<code>window</code>): Tableau validates against a schema gated by <code>&lt;document-format-change-manifest></code>. Keep the full
+flag list from a real workbook (<code>AnimationOnByDefault</code>, <code>EsriConnectorCanBeFederated</code>, <code>Layers</code>,
+<code>LayersPerPaneSpecPrimaryDS</code>, <code>MarkAnimation</code>, <code>ObjectModel*</code>, <code>SchemaViewerObjectModel</code>,
+<code>SheetIdentifierTracking</code>, <code>VConnDownstreamExtractsWithWarnings</code>, <code>WindowsPersistSimpleIdentifiers</code>).</li>
+<li class=""><strong><code>invalid geography format: not a spatial stream</code></strong> (on open and on Refresh): Hyper's Inserter accepts raw
+WKT bytes for <code>TABGEOGRAPHY</code> without validating, but Tableau rejects them. Let Hyper encode with
+<code>'&lt;WKT>'::geography</code>. Large polygons exceed the maximum SQL literal length, so load WKT as TEXT into a staging
+table via the Inserter, then <code>INSERT ... SELECT "Shape"::geography</code>.</li>
+<li class=""><strong>Relation schema is the service name, not <code>mapName</code>.</strong> Use the URL segment before <code>/MapServer</code> (folder
+dropped). Using <code>root["mapName"]</code> can fail with <code>"selectedService" is null</code> when the two differ.</li>
+<li class=""><strong>Geometry column name</strong> is always <code>Shape</code> in Tableau metadata, even when Esri names it something like
+<code>library.recreation.PARK_area.SHAPE</code> (joined layers). Each layer's <code>[Shape]</code> column is captioned
+<code>&lt;layer name> (Shape)</code> so layers are distinguishable on the map.</li>
+<li class=""><strong>One geometry column only.</strong> Some services label an ordinary field as geometry, giving
+<code>column 'Shape' specified more than once</code>. The generator keeps one geometry field (prefers a name whose last
+dotted part is <code>shape</code>) and warns about the rest.</li>
+<li class=""><strong>Hosted (FeatureServer) layers have no geometry field in <code>fields[]</code>; MapServer layers do.</strong> The generator adds a
+synthetic <code>Shape</code> field when none is listed; otherwise Tableau reports "(Shape) does not exist in the database"
+until the first refresh.</li>
+<li class=""><strong>Joined layers</strong> carry prefixed field names (<code>schema.table.Field</code>). The joins are server-side; keep the names
+verbatim. GeoJSON <code>properties</code> use the same prefixed keys.</li>
+<li class=""><strong>Attribute quoting</strong>: Tableau writes single-quoted attributes; the generator matches that.</li>
+<li class=""><strong>Duplicate layer names.</strong> Tableau rejects two datasources with the same caption, so captions are
+<code>&lt;layer> (&lt;host/path>)</code>, with <code> [layer N]</code> added for duplicates. The Esri connector resolves layers by name only,
+so a duplicate-named layer can receive the first match's data.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=layer-order-and-visibility>Layer order and visibility<a href=#layer-order-and-visibility class=hash-link aria-label="Direct link to Layer order and visibility" title="Direct link to Layer order and visibility" translate=no>​</a></h2>
+<ul>
+<li class="">The order of <code>&lt;pane></code> elements inside <code>&lt;panes customization-axis='layer'></code> <strong>is the draw order, first =
+bottom</strong> (after the empty <code>id='1'</code> "All" pane). The bottom pane's datasource drives the lat/long axes.</li>
+<li class="">Esri draws a higher layer id underneath a lower one, so the default <code>--order esri</code> sorts by descending id.
+<code>--order geometry</code> puts polygons, then lines, then points. Users can reorder on the Marks card.</li>
+<li class="">A hidden layer is <code>hidden='true'</code> on its <code>&lt;pane></code>; datasource, columns, and encodings stay so the user can switch
+it back on. The generator maps Esri <code>defaultVisibility</code> (a layer is hidden if it or any parent group is hidden).
+If every layer is hidden by default, the top-drawn layer is shown so the map isn't blank.</li>
+<li class="">Do not confuse this with <code>map-layer</code> / <code>map-data-layer</code> style rules; those are Tableau's built-in background
+and demographic layers.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=basemaps-wmts>Basemaps (WMTS)<a href=#basemaps-wmts class=hash-link aria-label="Direct link to Basemaps (WMTS)" title="Direct link to Basemaps (WMTS)" translate=no>​</a></h2>
+<ul>
+<li class="">A basemap is one inline <code>&lt;mapsource></code> with <code>&lt;connection class='OGC-WMTS' ...></code>, plus <code>mapsource-defaults</code> with a
+<code>map-layer</code> style rule; the worksheet references it by <code>&lt;mapsource name=.../></code>.</li>
+<li class=""><strong>Tableau saves only the mapsource the sheet uses</strong>, so the generator writes one. One basemap per sheet.</li>
+<li class="">WMTS exists only for <strong>cached</strong> MapServers (<code>singleFusedMapCache: true</code>). <code>--discover-basemaps</code> walks
+<code>/rest/services</code> and its folders and keeps cached services whose <code>.../MapServer/WMTS/1.0.0/WMTSCapabilities.xml</code>
+returns 200.</li>
+<li class="">Attribution defaults to <code>© &lt;host></code>.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=service-and-server-behavior>Service and server behavior<a href=#service-and-server-behavior class=hash-link aria-label="Direct link to Service and server behavior" title="Direct link to Service and server behavior" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>MapServer and FeatureServer URLs both work.</strong> ArcGIS Online (<code>services*.arcgis.com/&lt;orgid>/arcgis/rest/services</code>)
+is flat: every FeatureServer is a service with one or many layers, and the root reports no folders. Give the
+generator the FeatureServer, not the org root. Path case doesn't matter.</li>
+<li class=""><strong>Group layers</strong> (no geometry, <code>subLayerIds</code> lists children) are organizers; the generator skips them and imports
+their sublayers. Group nesting is not carried into the workbook.</li>
+<li class=""><strong>Tables</strong> (layers without geometry) become datasources with no <code>Shape</code> column and are left off the map. A layer
+typed polygon/line/point whose sampled features all lack geometry is also added as a table.</li>
+<li class=""><strong>Raster and image layers</strong> cannot be imported and are skipped with a <code>NOTE</code>.</li>
+<li class=""><strong>Spatial reference:</strong> <code>f=geojson</code> returns WGS84, so no reprojection is needed for the placeholders.</li>
+<li class=""><strong>Some servers block Python's default User-Agent</strong> (HTTP 403); the scripts send a browser-style one.</li>
+<li class=""><strong>Some layers reject <code>resultRecordCount</code></strong> ("Pagination is not supported"). The sample-row fetch falls back to
+<code>returnIdsOnly</code> plus <code>where OBJECTID=&lt;min id></code>.</li>
+<li class=""><strong>Restricted or slow layers</strong> on public-looking servers fail or time out. Probes use <code>--probe-timeout</code>, retry
+once, then <code>SKIP</code> the layer; the run ends with <code>All N selected layers imported.</code> or <code>WARNING: N layer(s) NOT imported: ...</code>.</li>
+<li class=""><strong>Names with spaces or parentheses</strong> are percent-encoded once in both scripts; the relation keeps the decoded name.</li>
+<li class="">Two selected services with the same last path segment print a WARNING, because the connector finds a service by
+that name alone.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=files-extracts-and-refresh>Files, extracts, and refresh<a href=#files-extracts-and-refresh class=hash-link aria-label="Direct link to Files, extracts, and refresh" title="Direct link to Files, extracts, and refresh" translate=no>​</a></h2>
+<ul>
+<li class="">The skill writes <code>&lt;Repository>/Workbooks/&lt;name>.twb</code> and <code>&lt;Repository>/Datasources/&lt;name>/NN_&lt;layer>.hyper</code>
+(<code>&lt;service>_NN_&lt;layer>.hyper</code> with several services). One subfolder per import keeps names from colliding.</li>
+<li class="">The script refuses to overwrite an existing <code>.twb</code> or any existing <code>.hyper</code> it would write, because an earlier
+import's refreshed extracts would be replaced by one-row placeholders. Use a new <code>--name</code> / <code>--hyper-dir</code>.</li>
+<li class="">Placeholders stay at one row on purpose, so users don't think they already have the data. The final message must
+say: placeholder, run Extract > Refresh All Extracts, then Save.</li>
+<li class=""><strong>Refreshed data is not on disk until you save.</strong> While the workbook is open, refreshed extracts live in Tableau's
+temp storage. Saving writes them to the absolute <code>dbname</code> paths, so a plain <code>.twb</code> works. Never delete or rewrite
+the output folder of an open workbook.</li>
+<li class="">Hyper files have a 64 KB minimum, so small refreshed layers look the same size as placeholders.</li>
+<li class=""><strong>Big or slow layers</strong> (hundreds of thousands of features, slow servers) should be refreshed individually; small
+municipalities can Refresh All. A 50-layer service can take about 20 minutes and a few hundred MB.</li>
+<li class=""><strong>Canceling during a refresh</strong> can leave a bad session ("Missing connection name in relation"). Reopen the saved
+file.</li>
+<li class=""><strong>Features with no geometry</strong> can crash Tableau Studio on Refresh with Esri driver 3.2.0. Detect them by comparing
+<code>returnCountOnly</code> with and without a whole-world envelope filter (<code>geometry=-180,-90,180,90</code>). Refresh such a
+layer on its own, or skip it.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=choosing-layers-list_layerspy-and-several-services>Choosing layers (list_layers.py) and several services<a href=#choosing-layers-list_layerspy-and-several-services class=hash-link aria-label="Direct link to Choosing layers (list_layers.py) and several services" title="Direct link to Choosing layers (list_layers.py) and several services" translate=no>​</a></h2>
+<ul>
+<li class="">ArcGIS Online owners organize by name prefix (<code>NDFD_...</code>, <code>Tax_Parcels_...</code>); on-prem servers also have folders
+and group layers (<code>--group</code>). Layer descriptions and web maps (Portal API) are not used.</li>
+<li class=""><code>list_layers.py</code> prints, per service, <code>id, name, geometry, group path, flags</code> (<code>hidden</code>, <code>table</code>, <code>group</code>) and
+name-prefix clusters. A folder with more than <code>--max-services</code> (12) services prints only a name index; <code>--open REGEX</code> opens matches (up to <code>--open-limit</code>, 40). Clusters are hints; read the whole name list.</li>
+<li class=""><code>gen_workbook.py</code> takes several <code>SERVICE_URL[#id,id]</code> arguments (first = bottom of the map). <code>--layers</code> and
+<code>--group</code> work only with a single service.</li>
+<li class=""><strong>Display names vs relation names.</strong> The relation must keep the real layer name. Only display text changes:
+<code>--label-service dups</code> (default) prefixes <code>&lt;service label> - </code> when a layer name occurs in more than one selected
+service; <code>all</code> always; <code>none</code> never.</li>
+<li class="">The sheet is named <code>&lt;service> - refresh extracts to load data</code> (or after <code>--name</code> with several services);
+<code>--sheet-name</code> overrides it, for example with a translation.</li>
+<li class="">Each pane's tooltip is a bold <code>&lt;Layer Name></code>, a line break, and <code>&lt;All Fields></code>, so dragged fields appear at once.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=esri-driver>Esri driver<a href=#esri-driver class=hash-link aria-label="Direct link to Esri driver" title="Direct link to Esri driver" translate=no>​</a></h2>
+<p>The connector needs the Esri JDBC driver jar in the Tableau Drivers folder (macOS <code>~/Library/Tableau/Drivers</code>;
+Windows <code>%ProgramFiles%\Tableau\Drivers</code>; Linux <code>/opt/tableau/tableau_driver/jdbc</code>, unverified). Tableau scans
+every jar there, so the filename doesn't matter; <code>check_driver.py</code> recognizes it by
+<code>Implementation-Title: esri-jdbc-driver</code> and otherwise prints the download page and target folder. The skill never
+downloads, copies, or bundles the jar; the user installs it and the agent checks again. No restart is needed.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=known-limits>Known limits<a href=#known-limits class=hash-link aria-label="Direct link to Known limits" title="Direct link to Known limits" translate=no>​</a></h2>
+<ul>
+<li class="">Esri renderer colors and scale ranges are not applied (layers cycle the Tableau 10 palette).</li>
+<li class="">Output is a <code>.twb</code> with absolute <code>.hyper</code> paths; <code>.twbx</code> packaging is not implemented.</li>
+<li class="">Sign-in services (<code>auth-none</code> only), MultiPoint, and ImageServer URLs are not supported or untested.</li>
+<li class="">Probing is serial, so a service with very many layers is slow before the refresh starts.</li>
+<li class="">The generator must stay compatible with Python 3.9.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/ESRI-MAPSERVER-TO-TWB.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/SKILL><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>SKILL.md</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/esri-map-builder/resources/check_driver.py><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>check_driver.py</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#run-it class="table-of-contents__link toc-highlight">Run it</a><li><a href=#the-approach class="table-of-contents__link toc-highlight">The approach</a><li><a href=#type-mapping-esrifieldtype---tableau class="table-of-contents__link toc-highlight">Type mapping (esriFieldType -> Tableau)</a><li><a href=#xml-details-that-matter class="table-of-contents__link toc-highlight">XML details that matter</a><li><a href=#layer-order-and-visibility class="table-of-contents__link toc-highlight">Layer order and visibility</a><li><a href=#basemaps-wmts class="table-of-contents__link toc-highlight">Basemaps (WMTS)</a><li><a href=#service-and-server-behavior class="table-of-contents__link toc-highlight">Service and server behavior</a><li><a href=#files-extracts-and-refresh class="table-of-contents__link toc-highlight">Files, extracts, and refresh</a><li><a href=#choosing-layers-list_layerspy-and-several-services class="table-of-contents__link toc-highlight">Choosing layers (list_layers.py) and several services</a><li><a href=#esri-driver class="table-of-contents__link toc-highlight">Esri driver</a><li><a href=#known-limits class="table-of-contents__link toc-highlight">Known limits</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

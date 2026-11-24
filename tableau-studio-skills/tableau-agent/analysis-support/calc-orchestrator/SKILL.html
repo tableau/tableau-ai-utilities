@@ -1,0 +1,278 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.1"><title data-rh=true>Calc Orchestrator — SKILL.md | Tableau AI Utilities</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true name=twitter:image content=https://tableau.github.io/tableau-ai-utilities/img/docusaurus-social-card.jpg /><meta data-rh=true property=og:url content=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL /><meta data-rh=true property=og:locale content=en /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="Calc Orchestrator — SKILL.md | Tableau AI Utilities"/><meta data-rh=true name=description content="Use when the user says 'Help me with a calc', 'I have a calc question', 'which skill handles this calc?' Routes an unclear calculation request to the right calc skill (write, debug, optimize, lint, or inventory), asking one clarifying question if two could fit."/><meta data-rh=true property=og:description content="Use when the user says 'Help me with a calc', 'I have a calc question', 'which skill handles this calc?' Routes an unclear calculation request to the right calc skill (write, debug, optimize, lint, or inventory), asking one clarifying question if two could fit."/><link data-rh=true rel=icon href=/tableau-ai-utilities/img/logo.svg /><link data-rh=true rel=canonical href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL hreflang=en /><link data-rh=true rel=alternate href=https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/","name":"Calc Orchestrator","position":1},{"@type":"ListItem","item":"https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL","name":"SKILL.md","position":2}]}</script><link rel=stylesheet href=/tableau-ai-utilities/assets/css/styles.59e2178d.css /><script src=/tableau-ai-utilities/assets/js/runtime~main.7f0f288b.js defer></script><script src=/tableau-ai-utilities/assets/js/main.ed8bd7b5.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-abf")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><link rel=preload as=image href=/tableau-ai-utilities/img/logo.svg /><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/tableau-ai-utilities/><div class=navbar__logo><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/tableau-ai-utilities/img/logo.svg alt=Tableau class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Tableau AI Utilities</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/><span title=Overview class=linkLabel_WmDU>Overview</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/tableau-ai-utilities/skills><span title="Search Skills" class=linkLabel_WmDU>Search Skills</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Studio Skills" class=categoryLinkLabel_W154>Tableau Studio Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Tableau Agent" class=categoryLinkLabel_W154>Tableau Agent</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/data-and-model/data-quality-review><span title="Data and Model" class=categoryLinkLabel_W154>Data and Model</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Analysis Support" class=categoryLinkLabel_W154>Analysis Support</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer><span title="Logic Explainer" class=categoryLinkLabel_W154>Logic Explainer</span></a><button aria-label="Expand sidebar category 'Logic Explainer'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator><span title="Calc Orchestrator" class=categoryLinkLabel_W154>Calc Orchestrator</span></a><button aria-label="Collapse sidebar category 'Calc Orchestrator'" aria-expanded=true type=button class="clean-btn menu__caret"></button></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL><span title=SKILL.md class=linkLabel_WmDU>SKILL.md</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/resources/handoff_schema><span title="Skill Expertise" class=categoryLinkLabel_W154>Skill Expertise</span></a></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/dashboard-walkthrough-generator><span title="Tableau Dashboard Walkthrough Generator" class=categoryLinkLabel_W154>Tableau Dashboard Walkthrough Generator</span></a><button aria-label="Expand sidebar category 'Tableau Dashboard Walkthrough Generator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/inheritance-triage><span title="Tableau Inheritance Triage" class=categoryLinkLabel_W154>Tableau Inheritance Triage</span></a><button aria-label="Expand sidebar category 'Tableau Inheritance Triage'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/stakeholder-translator><span title="Tableau Stakeholder Translator" class=categoryLinkLabel_W154>Tableau Stakeholder Translator</span></a><button aria-label="Expand sidebar category 'Tableau Stakeholder Translator'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/what-if-advisor><span title="Tableau What-If Advisor" class=categoryLinkLabel_W154>Tableau What-If Advisor</span></a><button aria-label="Expand sidebar category 'Tableau What-If Advisor'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/workbook-summary-onepager><span title="Workbook Summary Onepager" class=categoryLinkLabel_W154>Workbook Summary Onepager</span></a><button aria-label="Expand sidebar category 'Workbook Summary Onepager'" aria-expanded=false type=button class="clean-btn menu__caret"></button></div></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/calc-family/calc-writer><span title="Calc Family" class=categoryLinkLabel_W154>Calc Family</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/build-and-design/data-model-documenter><span title="Build and Design" class=categoryLinkLabel_W154>Build and Design</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/content-quality/interaction-validator><span title="Content Quality" class=categoryLinkLabel_W154>Content Quality</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/publish-and-deploy/publish-readiness><span title="Publish and Deploy" class=categoryLinkLabel_W154>Publish and Deploy</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/studio-utilities/testing-matrix><span title="Studio Utilities" class=categoryLinkLabel_W154>Studio Utilities</span></a></div></ul></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-installable-skills"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title="Tableau MCP Skills" class=categoryLinkLabel_W154>Tableau MCP Skills</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory><span title=General class=categoryLinkLabel_W154>General</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/claude-format/tableau-insights-service><span title="Claude Format" class=categoryLinkLabel_W154>Claude Format</span></a></div><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false tabindex=0 href=/tableau-ai-utilities/tableau-mcp-skills/codex-format/codex-calc-engine><span title="Codex Format" class=categoryLinkLabel_W154>Codex Format</span></a></div></ul></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/tableau-ai-utilities/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Studio Skills</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Tableau Agent</span><li class=breadcrumbs__item><span class=breadcrumbs__link>Analysis Support</span><li class=breadcrumbs__item><a class=breadcrumbs__link href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator><span>Calc Orchestrator</span></a><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>SKILL.md</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><aside class=banner_EDyZ aria-label="Calc Orchestrator catalog details"><div class=row_T3bp><code class=name_A6OT>calc-orchestrator</code><a class=download_DMmv href=/tableau-ai-utilities/downloads/calc-orchestrator.zip download=calc-orchestrator.zip><svg class=downloadIcon_DnB8 xmlns=http://www.w3.org/2000/svg width=1em height=1em viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round aria-hidden=true focusable=false><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1=12 y1=15 x2=12 y2=3 /></svg>Download this skill</a></div><p class=blurb_LJar>To customize the Tableau Studio agent behavior for this skill, download this skill to your My Tableau Repository/Tableau Agent/Skills directory and modify to suit your needs.</aside><div class="theme-doc-markdown markdown"><header><h1>Calc Orchestrator</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=when-to-use-full-trigger-detail>When to use (full trigger detail)<a href=#when-to-use-full-trigger-detail class=hash-link aria-label="Direct link to When to use (full trigger detail)" title="Direct link to When to use (full trigger detail)" translate=no>​</a></h2>
+<p>Classify a calc-related ask against the five shipped calc-family peers (calc-writer, calc-debugger, calc-optimizer, calc-linter, calc-inventory) and route to the correct peer by exact slug. Pure routing skill. Zero calc-family execution logic of its own. Fires HC#4 one-clarifier when the ask matches 2+ peers. Refuses with exact-slug routing to non-calc-family skills (join-and-relationship-advisor, workbook-auditor, data-model-documenter, data-source-connector) when the ask isnt a calc-family concern. Relays the invoked peers handoff unmodified and appends a top-level calc_orchestrator_route/1 block naming which peer was chosen and why. Triggers on ambiguous asks like help me with a calc, I have a calc question, what should I do with this calc, which skill handles X, or route my calc ask. Do NOT trigger when the users ask clearly matches one peers positive-trigger phrasing (invoke that peer directly instead), when the ask is a non-calc data-model or workbook concern, or when the user names a specific peer by slug.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=purpose>Purpose<a href=#purpose class=hash-link aria-label="Direct link to Purpose" title="Direct link to Purpose" translate=no>​</a></h2>
+<p>Pure router for calc-family asks. Classifies intent against the five shipped peers, invokes the correct one, and gets out of the way. Zero calc-family execution logic of its own.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=trigger-conditions>Trigger Conditions<a href=#trigger-conditions class=hash-link aria-label="Direct link to Trigger Conditions" title="Direct link to Trigger Conditions" translate=no>​</a></h2>
+<p>Positive triggers: help me with a calc, I have a calc question, what should I do with this calc, which skill handles X, route my calc ask, or any calc-related ask where the users phrasing does not clearly match one specific peers positive-trigger table.</p>
+<p>Do NOT trigger on the following. Route directly to the named peer or refuse per Non-Match Handling.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>User ask<th>Route to<tbody><tr><td>Write a new calc for...<td><code>calc-writer</code> directly, no orchestration needed<tr><td>This calc is broken / returns wrong values / errors.<td><code>calc-debugger</code> directly<tr><td>This calc is slow / optimize it / speed this up.<td><code>calc-optimizer</code> directly<tr><td>Lint this / check style / rewrite for readability.<td><code>calc-linter</code> directly<tr><td>Inventory / list all calcs / catalog my calculated fields.<td><code>calc-inventory</code> directly<tr><td>User names a specific peer by slug (e.g., use calc-writer for X).<td>The named peer directly<tr><td>Document the data model / tables and relationships.<td><code>data-model-documenter</code><tr><td>This dashboard is slow / audit the whole workbook.<td><code>workbook-auditor</code><tr><td>This join / relationship is slow.<td><code>join-and-relationship-advisor</code><tr><td>Connect a data source / set up a connection.<td><code>data-source-connector</code><tr><td>Why was this routed differently yesterday?<td>Scripted prior-turn-diagnosis refusal (no visibility).</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=scope-boundaries>Scope Boundaries<a href=#scope-boundaries class=hash-link aria-label="Direct link to Scope Boundaries" title="Direct link to Scope Boundaries" translate=no>​</a></h2>
+<ul>
+<li class="">IN: classifying calc-family asks against the five peers locked trigger tables, invoking the correct peer by exact slug, firing an HC#4 one-clarifier when 2+ peers match, refusing non-calc-family asks with exact-slug routing to the appropriate non-calc-family skill, emitting <code>calc_orchestrator_route/1</code> routing metadata alongside the invoked peers handoff.</li>
+<li class="">OUT: authoring, debugging, optimizing, linting, or inventorying calcs (each is the exclusive scope of the corresponding peer); running V-gates (only peers author, and each has its own gate); resolving field references (peers do this at their Phase 1); emitting any of the five peer schemas (<code>calc_write_handoff/1</code> through <code>calc_inventory_handoff/1</code>) directly; running multi-peer chains like write then debug then optimize as a single orchestrated pass (each peer runs standalone; if user wants a chain, they invoke each peer in turn or use each peers HC#1 sequential-mode).</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=edge-case-boundaries>Edge-Case Boundaries<a href=#edge-case-boundaries class=hash-link aria-label="Direct link to Edge-Case Boundaries" title="Direct link to Edge-Case Boundaries" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Edge Case<th>Handling<tbody><tr><td>Ask clearly matches one peers positive-trigger phrasing<td>Route immediately to that peer by exact slug. No clarifier. <code>calc_orchestrator_route/1</code> records the single-match rationale.<tr><td>Ask matches 2+ peers positive-trigger phrasing<td>HC#2 one-clarifier: name the candidate peers explicitly (e.g., This could be <code>calc-debugger</code> for correctness or <code>calc-optimizer</code> for perf. Which is it?). Never pick silently.<tr><td>Ask contains no calc-family signal but is data-model or workbook-level<td>Refuse and route to the appropriate non-calc-family peer by exact slug (<code>join-and-relationship-advisor</code>, <code>workbook-auditor</code>, <code>data-model-documenter</code>, <code>data-source-connector</code>).<tr><td>Ask is ambiguous between help me with a calc (orchestrator) and a specific peer (e.g., user pastes a formula but doesnt say what they want)<td>Fire the HC#2 clarifier naming the most likely 2-3 peers. Never assume intent.<tr><td>User names a peer explicitly (use calc-writer for X)<td>Route to that peer directly per HC#5. Do not second-guess the users routing choice.<tr><td>Peers handoff arrives with an error state (peer refused per its own HC)<td>Relay the refusal unmodified per HC#4. Append <code>calc_orchestrator_route/1</code> with <code>outcome: peer_refused</code> and the peers refusal reason. Do not attempt fallback to another peer.<tr><td>User asks for a multi-peer chain in one message (e.g., write, then lint, then inventory it)<td>Fire an HC#2 clarifier: each peer runs standalone; want me to route to <code>calc-writer</code> first, then you re-invoke <code>calc-linter</code> and <code>calc-inventory</code> afterward on the resulting calc? Never orchestrate a chain internally per HC#6.<tr><td>User asks a question about the calc family itself (what does calc-linter do?)<td>Answer briefly from the calc-family portfolio, no peer invoked. Route the actual work to the correct peer only when the user makes an actionable ask.<tr><td>Non-calc-family ask arrives (e.g., make this dashboard prettier)<td>Refuse with exact-slug routing to the non-calc-family peer per HC#3. Never absorb.<tr><td>The invoked peer emits an unknown schema version<td>Route back to the user: Downstream peer emitted schema version X, which I cannot relay. Verify peer version compatibility. Never fake a schema translation.<tr><td>The invoked peer errors mid-run (a tool-level failure, distinct from a refusal per its own HC)<td>Summarize the error in one plain sentence (which step failed, whether anything changed, what to try next); put the raw error only in the route metadata <code>notes</code>. Set <code>peer_outcome: error</code> in <code>calc_orchestrator_route/1</code>, <code>peer_response_relayed: false</code>. Never re-route to another peer and never silently retry the same peer — surface the error and let the user decide whether to retry.<tr><td>Target peers SKILL.md not found at expected path<td>Refuse per HC#9. Report the missing peer to the user; ask them to install or verify path. Never route to a peer that isnt available.<tr><td>Users answer to an HC#2 clarifier does not disambiguate (e.g., both / either / not sure / an answer that names a peer NOT in the clarifiers candidate list)<td>Fire exactly one follow-up clarifier that either narrows to a single peer OR asks the user to pick the closest fit from the original candidate list. Never route silently to a default. Never chain more than one follow-up clarifier per session. If the user still cannot disambiguate after the follow-up, refuse and ask the user to reframe the ask from scratch. Record in handoff <code>notes: clarifier follow-up fired; user response was [x]; resolved to [peer] OR refused.</code></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=hard-constraints>Hard Constraints<a href=#hard-constraints class=hash-link aria-label="Direct link to Hard Constraints" title="Direct link to Hard Constraints" translate=no>​</a></h2>
+<ul>
+<li class="">HC#1: Pure routing. Zero calc-family execution logic of its own. Never authors, debugs, optimizes, lints, or inventories a calc. If the routing targets peer cant run, orchestrator refuses and reports the state, never falls back to executing calc logic itself.</li>
+<li class="">HC#2: One-clarifier discipline. Ambiguous asks get exactly one combined clarifier naming the candidate peers explicitly, never chained.</li>
+<li class="">HC#3: Exact-slug refusals for non-calc-family asks. Route to <code>join-and-relationship-advisor</code>, <code>workbook-auditor</code>, <code>data-model-documenter</code>, or <code>data-source-connector</code> by name when the ask isnt a calc-family concern. Never absorb.</li>
+<li class="">HC#4: No silent fallback. If the invoked peer refuses per its own HC, orchestrator relays the refusal unmodified. Never re-route silently to a different peer.</li>
+<li class="">HC#5: Trust the users explicit peer choice. If the user names a peer by slug, route to that peer, do not second-guess.</li>
+<li class="">HC#6: No chain orchestration. Multi-peer chains (write then debug then optimize) get a clarifier explaining each peer runs standalone. Orchestrator does not run internal loops across peers.</li>
+<li class="">HC#7: Emit <code>calc_orchestrator_route/1</code> metadata alongside every routing decision, including refusals and clarifiers. Never route silently without leaving an audit trail.</li>
+<li class="">HC#8: Trigger-table alignment. Peer trigger tables in <code>skill-expertise/peer_routing.md</code> MUST match each peers shipped SKILL.md verbatim.</li>
+<li class="">HC#9: Runtime peer availability check. Before routing, confirm the target peers SKILL.md exists at its expected path. If not, refuse and route to the user for peer installation. Never route to a peer that isnt available.</li>
+<li class="">HC#10: No prior-turn diagnosis. Why did you route this differently yesterday? gets the scripted refusal. Orchestrator has no session memory.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=tools-used>Tools Used<a href=#tools-used class=hash-link aria-label="Direct link to Tools Used" title="Direct link to Tools Used" translate=no>​</a></h2>
+<p>Orchestrator itself uses NO Tableau-specific tools. It reads the users ask, classifies intent, and invokes a peer. The peer runs its own tool sequence.</p>
+<p>Orchestrator does use:</p>
+<ul>
+<li class=""><code>Read</code> — Phase 1 (peer availability check; confirm target peers SKILL.md is at the expected path per HC#9).</li>
+<li class="">No file writes. Skill is compute-only; the invoked peer writes if desired.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=peer-routing-table-locked>Peer Routing Table (Locked)<a href=#peer-routing-table-locked class=hash-link aria-label="Direct link to Peer Routing Table (Locked)" title="Direct link to Peer Routing Table (Locked)" translate=no>​</a></h2>
+<p>Full table in <code>skill-expertise/peer_routing.md</code>. Summary of positive-trigger classification per peer:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Peer<th>Primary triggers<th>Route when the ask is about...<tbody><tr><td><code>calc-writer</code><td>write a new calc, author a calc, create a calculated field, I need a calc that...<td>Authoring new calcs from a natural-language spec.<tr><td><code>calc-debugger</code><td>this calc is broken, returns wrong values, returns NULL when it shouldnt, debug this calc<td>Correctness bugs in an existing calc.<tr><td><code>calc-optimizer</code><td>this calc is slow, make this calc faster, speed up this calculation, perf-tune this<td>Performance rewrites that preserve returned values.<tr><td><code>calc-linter</code><td>lint this calc, check style, rewrite for readability, does this follow our house style<td>Style, naming, comment, or formatting violations.<tr><td><code>calc-inventory</code><td>list all calcs, inventory the calcs, catalog my calculated fields<td>Data-source-wide cataloging (not single-calc work). Quality or hygiene audits ("audit my calcs") go to <code>calc-hygiene-scan</code>.<tr><td><code>calc-translator</code><td>translate SQL to Tableau, port this DAX, convert Excel formula, translate this expression, SQL to Tableau calc<td>Single-expression translation from SQL / Excel / DAX into a Tableau calculated field.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=non-calc-family-routing-table-locked>Non-Calc-Family Routing Table (Locked)<a href=#non-calc-family-routing-table-locked class=hash-link aria-label="Direct link to Non-Calc-Family Routing Table (Locked)" title="Direct link to Non-Calc-Family Routing Table (Locked)" translate=no>​</a></h2>
+<p>For asks that arrive at orchestrator but arent calc-family concerns:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Non-calc-family peer<th>Route when the ask is about...<tbody><tr><td><code>data-model-documenter</code><td>Data model, tables, relationships, join conditions, cardinality, calc-dependency graph at the data-source level.<tr><td><code>workbook-auditor</code><td>Dashboard-level or workbook-level concerns (dashboard slowness, mark counts, extract config, workbook-wide style consistency).<tr><td><code>join-and-relationship-advisor</code><td>Join type, relationship type, cardinality issues, fanning, grain issues at the model level.<tr><td><code>data-source-connector</code><td>Connecting a new data source, authenticating to a database, setting up a Tableau connection.</table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=maintenance-adding-a-new-peer>Maintenance: Adding a New Peer<a href=#maintenance-adding-a-new-peer class=hash-link aria-label="Direct link to Maintenance: Adding a New Peer" title="Direct link to Maintenance: Adding a New Peer" translate=no>​</a></h2>
+<p>Adding a 6th+ calc-family peer requires updating three files in lockstep, in this order: (1) <code>skill-expertise/peer_routing.md</code> — add the peers expected path, verbatim positive triggers, and anti-triggers; (2) <code>SKILL.md</code>s Peer Routing Table summary and Non-Match Handling table; (3) <code>skill-expertise/handoff_schema.md</code>s <code>target_peer</code> enum. A peer added to only one of these three files is an alignment-drift risk per HC#8 — flag it the same way as any other trigger-table drift.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=phase-sequence>Phase Sequence<a href=#phase-sequence class=hash-link aria-label="Direct link to Phase Sequence" title="Direct link to Phase Sequence" translate=no>​</a></h2>
+<ul>
+<li class=""><strong>Phase 0.</strong> Read the users ask. Extract calc-family signals (formula pasted, calc name mentioned, verb like debug / optimize / lint / inventory / write).</li>
+<li class=""><strong>Phase 1.</strong> Peer availability check per HC#9. Confirm target peer(s) SKILL.md exist at expected paths. If any candidate peer is missing, exclude it from consideration and note in routing metadata.</li>
+<li class=""><strong>Phase 2.</strong> Classify against the peer routing table. Cases:
+<ul>
+<li class=""><strong>Single match:</strong> route immediately. Skip to Phase 4.</li>
+<li class=""><strong>Multi-match (2+ peers):</strong> fire HC#2 one-clarifier naming the candidate peers explicitly. Wait for user response.</li>
+<li class=""><strong>No calc-family match, but non-calc-family match:</strong> route to the non-calc-family peer per HC#3.</li>
+<li class=""><strong>No match anywhere:</strong> refuse. Ask user to clarify their intent.</li>
+</ul>
+</li>
+<li class=""><strong>Phase 3.</strong> (Only if clarifier was fired.) Re-classify based on users clarifier response.</li>
+<li class=""><strong>Phase 4.</strong> Invoke the target peer by exact slug. Relay the peers full response unmodified to the user.</li>
+<li class=""><strong>Phase 5.</strong> Emit <code>calc_orchestrator_route/1</code> metadata block alongside the peers handoff, naming the routing decision, alternative candidates considered, and the reason.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=handoff-contract>Handoff Contract<a href=#handoff-contract class=hash-link aria-label="Direct link to Handoff Contract" title="Direct link to Handoff Contract" translate=no>​</a></h2>
+<p>Orchestrator does NOT emit any of the five peer schemas (<code>calc_write_handoff/1</code>, <code>calc_debug_handoff/1</code>, <code>calc_optimize_handoff/1</code>, <code>calc_lint_handoff/1</code>, <code>calc_inventory_handoff/1</code>). Those are the peers exclusive scope.</p>
+<p>Orchestrator emits <code>calc_orchestrator_route/1</code> alongside every routing decision (including refusals and clarifiers). Full schema in <code>skill-expertise/handoff_schema.md</code>. Required non-blank fields:</p>
+<ul>
+<li class=""><code>schema_version</code>, <code>user_ask</code> (verbatim), <code>routing_decision</code> (<code>routed_to_peer</code> / <code>clarifier_fired</code> / <code>refused_non_calc_family</code> / <code>refused_no_match</code> / <code>refused_peer_unavailable</code>)</li>
+<li class=""><code>target_peer</code> (only if <code>routing_decision == routed_to_peer</code>; else <code>null</code>)</li>
+<li class=""><code>candidate_peers</code> (list of peers considered before routing)</li>
+<li class=""><code>routing_rationale</code> (short string explaining the decision)</li>
+<li class=""><code>peer_response_relayed</code> (true / false; false if clarifier fired or refusal)</li>
+</ul>
+<p>The peers own handoff (whichever <code>calc_*_handoff/1</code> it emits) travels alongside <code>calc_orchestrator_route/1</code>, unmodified.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=report-structure-locked>Report Structure (Locked)<a href=#report-structure-locked class=hash-link aria-label="Direct link to Report Structure (Locked)" title="Direct link to Report Structure (Locked)" translate=no>​</a></h2>
+<p>Every routing decision renders this exact structure:</p>
+<ul>
+<li class=""><strong>Routing decision:</strong> one line naming the target peer or the refusal reason.</li>
+<li class=""><strong>Rationale:</strong> why this peer, or why the ask doesnt fit any peer.</li>
+<li class=""><strong>Candidate peers considered:</strong> list of peers evaluated during classification.</li>
+<li class=""><strong>Peers response</strong> (if routed and peer ran successfully): the peers full delivery, unmodified.</li>
+<li class=""><strong><code>calc_orchestrator_route/1</code> YAML</strong> with structured routing metadata.</li>
+</ul>
+<p>For clarifier fires, only the first three sections render; the peers response is deferred until the user answers.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=refuse-to-fabricate>Refuse to Fabricate<a href=#refuse-to-fabricate class=hash-link aria-label="Direct link to Refuse to Fabricate" title="Direct link to Refuse to Fabricate" translate=no>​</a></h2>
+<p>Never route silently without emitting <code>calc_orchestrator_route/1</code>. Never invoke a peer that isnt available at its expected path. Never re-route to a different peer after the first peer refuses per its own HC. Never orchestrate a multi-peer chain internally, always route each peer standalone.</p>
+<p>Never invoke calc-family logic directly. If a users ask cant be routed to a peer, refuse with a clear explanation, never fall back to executing calc work as the orchestrator.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=graceful-degradation>Graceful Degradation<a href=#graceful-degradation class=hash-link aria-label="Direct link to Graceful Degradation" title="Direct link to Graceful Degradation" translate=no>​</a></h2>
+<p>These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.</p>
+<ul>
+<li class=""><strong>Nothing to work on.</strong> If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.</li>
+<li class=""><strong>Tool call fails, times out, or returns empty.</strong> Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.</li>
+<li class=""><strong>Partial results.</strong> If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.</li>
+<li class=""><strong>Reference file won't open.</strong> Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.</li>
+<li class=""><strong>Peer skill not installed.</strong> If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.</li>
+<li class=""><strong>Platform gap.</strong> If no tool can do something, say so plainly and give the manual Desktop path.</li>
+<li class=""><strong>Failure messages.</strong> Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.</li>
+<li class=""><strong>No fabrication.</strong> Never invent fields, values, findings, or results to fill a gap left by a failed read.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href=https://github.com/tableau/tableau-ai-utilities/tree/main/docs/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL.md target=_blank rel="noopener noreferrer" class=theme-edit-this-page><svg fill=currentColor height=20 width=20 viewBox="0 0 40 40" class=iconEdit_Z9Sw aria-hidden=true><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"/></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>Calc Orchestrator</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/resources/handoff_schema><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>handoff_schema.md</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#when-to-use-full-trigger-detail class="table-of-contents__link toc-highlight">When to use (full trigger detail)</a><li><a href=#purpose class="table-of-contents__link toc-highlight">Purpose</a><li><a href=#trigger-conditions class="table-of-contents__link toc-highlight">Trigger Conditions</a><li><a href=#scope-boundaries class="table-of-contents__link toc-highlight">Scope Boundaries</a><ul><li><a href=#edge-case-boundaries class="table-of-contents__link toc-highlight">Edge-Case Boundaries</a></ul><li><a href=#hard-constraints class="table-of-contents__link toc-highlight">Hard Constraints</a><li><a href=#tools-used class="table-of-contents__link toc-highlight">Tools Used</a><li><a href=#peer-routing-table-locked class="table-of-contents__link toc-highlight">Peer Routing Table (Locked)</a><li><a href=#non-calc-family-routing-table-locked class="table-of-contents__link toc-highlight">Non-Calc-Family Routing Table (Locked)</a><li><a href=#maintenance-adding-a-new-peer class="table-of-contents__link toc-highlight">Maintenance: Adding a New Peer</a><li><a href=#phase-sequence class="table-of-contents__link toc-highlight">Phase Sequence</a><li><a href=#handoff-contract class="table-of-contents__link toc-highlight">Handoff Contract</a><li><a href=#report-structure-locked class="table-of-contents__link toc-highlight">Report Structure (Locked)</a><li><a href=#refuse-to-fabricate class="table-of-contents__link toc-highlight">Refuse to Fabricate</a><li><a href=#graceful-degradation class="table-of-contents__link toc-highlight">Graceful Degradation</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class=footer__title>Catalog</div><ul class="footer__items clean-list"><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/>Overview</a><li class=footer__item><a class=footer__link-item href=/tableau-ai-utilities/skills>Search Skills</a></ul></div><div class="theme-layout-footer-column col footer__col"><div class=footer__title>More</div><ul class="footer__items clean-list"><li class=footer__item><a href=https://github.com/tableau/tableau-ai-utilities target=_blank rel="noopener noreferrer" class=footer__link-item>GitHub<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><li class=footer__item><a href=https://tableau.github.io/tableau-mcp/ target=_blank rel="noopener noreferrer" class=footer__link-item>Tableau MCP<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></ul></div></div><div class="footer__bottom text--center"><div class=footer__copyright>Copyright ©2026 Salesforce, Inc. Built with Docusaurus.</div></div></div></footer></div></body>

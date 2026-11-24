@@ -1,0 +1,1436 @@
+# Tableau AI Utilities — Analysis Support
+
+> Analysis Support skills for Tableau Agent in Tableau Studio: README when-to-use sections and SKILL.md.
+
+Family corpus for Analysis Support. Index: [tableau-ai-utilities-llms.txt](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms.txt). Combined corpus: [tableau-ai-utilities-llms-full.txt](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full.txt). Generated from `tableau-studio-skills/` and `tableau-mcp-skills/`; do not edit by hand.
+
+---
+
+# Logic Explainer — when to use
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer
+
+## What it does
+
+Reads a worksheet or dashboard and explains how the pieces work together. You get one line per construct: what it is, and a plain-English "why" tied to the actual fields on the view. Read-only — never mutates anything, never offers to fix a broken calc.
+
+Built for the situation where you inherit or open someone else's workbook and see a FIXED LOD, a context filter, and a parameter action wired together with no comments and no idea how they interact.
+
+## When to use it
+
+- "I inherited this dashboard and have no idea what it's doing"
+- "I need to understand why this LOD is here before I touch it"
+- "I'm about to modify this sheet and want to know what the filters are actually doing"
+- "There's a hidden filter somewhere breaking my numbers, find it"
+- "Explain the action wiring on this dashboard"
+
+## When NOT to use it
+
+- Not for what a single field means in isolation (use data-scribe instead)
+- Not for what changed in a workbook over time (use workbook-auditor instead)
+- Not for data quality issues like nulls or type mismatches (use data-quality-review instead)
+- Not for building or editing anything — this skill is strictly read-only. Hand off to an authoring skill for changes.
+
+## How to trigger it
+
+- "Explain this dashboard's logic"
+- "Why does this work this way"
+- "Walk me through this worksheet's logic"
+- "Help me understand this build"
+- "Explain the wiring on this sheet"
+
+---
+
+# Logic Explainer — SKILL.md
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/logic-explainer/SKILL
+
+# Logic Explainer
+
+You explain the construction logic of a worksheet or dashboard: whats on it,
+how the pieces interact, and why its built that way. Read-only — never
+mutate a calc, filter, action, parameter, or shelf.
+
+**Why this shape:** inheriting or extending someone elses build means seeing
+a LOD, a filter, and a parameter and having no idea why theyre wired that
+way. `data-scribe` tells you what a field IS; this skill tells you what a
+*sheets construction* is DOING and why — the connective tissue between
+fields that data-scribe documents individually.
+
+**File structure:** SKILL.md (this file) + `skill-expertise/output_template.md`
+(long-form file template, used only when the user requests one) +
+`skill-expertise/construct_pattern_library.md` (two sections: **Section A —
+Chart-Shape Idioms** with Layer 0 foundational chart types, Layer 1
+composite modifiers, and Layer 2 KPI base+variants; **Section B —
+Construct Patterns** with common LOD, table-calc, filter, action, set,
+and zone-visibility shapes. Consult Section A first to identify the
+chart backbone, then Section B for construct mechanics) +
+`skill-expertise/worked_examples.md` (three canonical outputs — worksheet brief,
+dashboard brief, dashboard long-form — read this before writing your first
+response of a session to lock voice and structure).
+
+***
+
+## When to use (full trigger detail)
+
+Explain the construction logic behind a worksheet or dashboard — not just which filters, calcs, LODs, parameters, sets, table calcs, and actions are present, but WHY theyre built that way and what each one is doing for this specific view. Trigger on explain this dashboards logic, why does this work this way, walk me through this worksheets logic, help me understand this build, what is this dashboard actually doing, explain the wiring on this sheet. Do NOT trigger for. what a field MEANS in isolation (defer to data-scribe), whether something CHANGED over time (defer to workbook-auditor), data quality issues (defer to data-quality-review), or building/editing anything (defer to an authoring skill). Disambiguation from data-scribe. that skill documents field meaning once, standalone; this skill documents how the fields/calcs/filters/actions on ONE sheet or dashboard work together and why.
+
+## Tools You Use
+
+| Tool | Purpose |
+|------|---------|
+| `get-workbook-inventory` | Confirm target sheet/dashboard exists; workbook file location if a file output is requested. |
+| `get-worksheet-xml` | Shelves, encodings, filters, sorts, mark type for a worksheet. |
+| `get-dashboard-xml` | Zones, member worksheets, actions, parameters exposed at the dashboard level, dynamic zone visibility. |
+| `list-available-fields` (verbosity: full) | Calc `formula` text — primary source for explaining LOD/table-calc/conditional logic. Reuse this over XML parsing, same as `data-scribe`. |
+| `search-workbook-fields` | Trace where a field/calc is used elsewhere, to explain cross-sheet dependencies on a dashboard. |
+| Write | Only if the user asks for a saved file (see Output Modes). |
+
+**Sequencing and batching:** For a worksheet: `get-worksheet-xml` and `list-available-fields` are independent — issue together. For a dashboard: call `get-dashboard-xml` first (its the prerequisite for knowing which member sheets exist), then issue each member sheets `get-worksheet-xml`/`list-available-fields` pair together, since member sheets are independent of each other.
+
+***
+
+## Hard Constraints
+
+1. **Read-only, always.** Never call `author-calc`, `add-field`, `apply-worksheet`, `apply-dashboard`, or any mutating tool. If something looks broken while explaining it, say so and defer the fix to an authoring skill — dont offer to fix it yourself.
+2. **Explain purpose, not just presence.** Uses a FIXED LOD is not an explanation. Fixes at Customer ID so the repeat-purchase flag doesnt get diluted by the date filter on this view is. Every construct you name gets a one-line WHY tied to what it does for this specific sheet, not a generic textbook definition.
+3. **Flag inferred purpose with a three-tier confidence tag.** You cannot know intent with certainty — youre reading structure and inferring reasoning. Tag every non-trivial inference with a confidence tier:
+   - **`[Confidence: High]`** — an author-chosen descriptive name (`Keep Companies`, `Show Trellis`) AND a matched structural idiom AND a legible formula all agree.
+   - **`[Confidence: Medium]`** — only one signal is present (descriptive name OR matched idiom OR legible formula), or the name is descriptive but the formula is complex.
+   - **`[Confidence: Low]`** — none of the three: generic field names (`Calculation4`), no matched idiom, opaque formula. State the guess is closer to a cleaned-up mechanical description than a true inference.
+   Never state a Low or Medium inference as settled fact. High-confidence claims can be stated plainly without a tag.
+4. **Scope is one worksheet or one dashboard per run.** For a dashboard, explain the dashboard-level layer (actions, parameters shared across sheets, dynamic zone visibility) plus a condensed pass over each member worksheets own logic — not a full standalone report per member sheet (thats this skill run once per sheet, on request).
+5. **Formula source priority:** use `list-available-fields`s `formula` field first. Only fall back to `get-worksheet-xml`/`get-dashboard-xml` parsing if a formula comes back blank.
+6. **Dont re-explain field meaning.** If a metric dictionary from `data-scribe` exists next to the workbook (`[datasource]_metric_dictionary.md/.txt`), you may reference it for a fields meaning rather than re-deriving it — but your job is still the *construction logic*, not the field glossary.
+7. **`get-worksheet-xml` is unreliable on populated, dashboard-bound sheets (documented 500/`operation-failed` gap).** When explaining a dashboards member worksheets in Phase 1, if a member sheets `get-worksheet-xml` call fails, do not treat this as a generic tool error: fall back to `list-available-fields` formula text plus whatever shelf/action hints the dashboard XML itself exposes, and say plainly in the output that shelf/filter detail for that specific sheet is incomplete due to a known tool reliability gap — dont retry it more than once.
+8. **Sets are invisible to every field-resolution tool in this environment.** If a filter or action appears to reference a Set, you cannot enumerate its members or confirm its condition logic via any tool — explain what a Set of that shape typically does (per the pattern library) but state plainly that its actual membership/condition cannot be verified from here, rather than asserting it as fact.
+
+***
+
+## Common Mistakes
+
+Scan this block before delivering. These are the failure modes most likely to slip through when the workflow feels routine:
+
+- **Pasting a pattern-library rationale verbatim.** The library is a starting shape, not the answer. If your why line reads like the library tables Typical Why column with no field names or view-specific reasoning, rewrite it.
+- **Asserting Set membership or condition logic as fact.** Sets are invisible here (Hard Constraint #8). This set contains customers over $10k is a fabrication unless the user told you; the correct phrasing is typically a condition-based set, membership not verifiable from here.
+- **Dropping a construct from the count during assembly.** Phase 4s pre-delivery validation exists because it is easy to explain 5 of 7 filters in brief mode and forget the last 2. Every construct identified in Phase 1 must appear in the output, be grouped per the scale bands, or be marked not extractable — never silently omitted.
+- **Stating an inference as settled fact.** Any non-trivial inference needs a three-tier confidence tag (Hard Constraint #3): `[Confidence: High]` when name AND idiom AND formula agree, `[Confidence: Medium]` when only one signal is present, `[Confidence: Low]` when none. This LOD prevents double-counting without evidence is a guess dressed as truth.
+- **Silence on hidden filters.** Silence reads as nothing is hidden. Every explanation must include a hidden-filter line, either disclosing whats hidden (context filter, data source filter, extract filter, hardcoded True/False gate) or stating explicitly no hidden filters — every scope narrowing on this view has a visible control. Phase 2 requires this.
+- **Re-explaining what a field MEANS instead of what the construction is DOING.** If your explanation reads like a field glossary entry, you have drifted into data-scribes job. Reroute to the connective tissue: how this field, filter, calc, and action work together on this specific sheet.
+- **Retrying a failing dashboard-bound `get-worksheet-xml` more than once.** Known platform gap (Hard Constraint #7). Fall back to `list-available-fields` plus dashboard-XML hints and note the incomplete detail; do not burn calls on the same failing read.
+- **Offering to fix something.** Read-only, always (Hard Constraint #1). If something looks broken, flag it and defer to an authoring skill. Never propose the calc rewrite yourself.
+
+***
+
+## Output Modes — Brevity by Default
+
+**Default: chat, short.** Unless the user explicitly asks for a file, a deep-dive, or everything, respond in chat with a compact structure:
+
+1. **One-sentence summary** of what the sheet/dashboard is built to show or do.
+2. **3-6 bullets max**, each one construct + its one-line why. Prioritize: filters/parameters that shape scope → calcs/LODs/table calcs that drive the metric → actions/interactions (dashboard only) → anything unusual or fragile-looking.
+3. If theres more worth explaining than fits in that budget, say so explicitly and offer: *Theres more depth here — want the full breakdown in chat, or should I save it as a file?* Never silently truncate without flagging that you did.
+
+**Long-form: offer, dont default.** Trigger a full breakdown only when the user asks for the full explanation, everything, walk me through all of it, or accepts the offer above. Before writing a file, ask **plain text (.txt) or Markdown (.md)** — same convention as `data-scribe`; dont default silently to one.
+
+- If they want the long version **in chat**, use the full structure from `skill-expertise/output_template.md` inline, still ordered by reading priority (marks/KPIs first, then filters, then calc logic, then interactions).
+- If they want a **file**, assemble the same template, write it next to the workbook (path from `get-workbook-inventory`), default filename `[sheet-or-dashboard-name]_logic_explainer.md` (or `.txt`), and report the path plus a one-line summary — dont also paste the full content into chat once its saved.
+
+**Never produce the long-form output unprompted.** The chat-brief version is always the first response; length is opt-in.
+
+***
+
+## Workflow
+
+### Phase 0 — Scope
+1. Identify the target from context (active sheet/dashboard) or ask if ambiguous which sheet/dashboard.
+2. Confirm it exists via `get-workbook-inventory` or `list-worksheets`/`list-dashboards`. **If `get-workbook-inventory` was already called earlier in this session (e.g., by data-scribe or workbook-auditor), reuse its output rather than re-calling — the workbook shape does not change mid-session unless the user has been authoring.**
+
+### Phase 1 — Inventory
+For a worksheet: read `get-worksheet-xml` for shelves (Rows/Cols), encodings (color/size/text/detail/tooltip), filters, sorts, mark type. Pull calc formulas for anything calc-backed via `list-available-fields`.
+
+For a dashboard: read `get-dashboard-xml` for zones/member sheets, actions (filter/highlight/parameter/URL), parameters surfaced at the dashboard level, dynamic zone visibility rules. Then run a condensed Phase 1 on each member worksheet: `get-worksheet-xml` for shelves/mark, and `list-available-fields` for every calc-backed field on that sheets shelves — always, not only when `get-worksheet-xml` fails (per Hard Constraint #7 for the failure case specifically).
+
+**Multi-datasource dashboards:** if member sheets pull from more than one datasource, group constructs by source datasource in the inventory and note any cross-datasource actions (parameter or filter actions bridging sheets on different sources) as first-class interactions in Phase 3 — they are the most common source of why isnt this filtering confusion on inherited dashboards.
+
+**Scale bands (worksheet or per-member-sheet):**
+- **≤ 10 constructs total** (filters+calcs+LODs+table calcs+params+sets+actions combined): no special handling.
+- **11-25 constructs:** group by construct type (Filters / Calcs & LODs / Table Calcs / Parameters & Sets / Actions) in the long-form output; brief mode still caps at 3-6 bullets, prioritizing per the existing order.
+- **26+ constructs, or a dashboard with 8+ member sheets:** in brief mode, summarize each member sheets logic in one line rather than a condensed multi-line pass; in long-form, lead with a one-line count-by-type summary before the detail (e.g. 12 filters, 4 LODs, 3 actions) before expanding, same pattern as data-scribes overflow handling.
+
+### Phase 2 — Explain Each Construct
+For each filter, calc, LOD, table calc, parameter, set, and action found: check `skill-expertise/construct_pattern_library.md` for a matching shape first (Section A for the chart-shape idiom, Section B for construct mechanics), then write one line of what it is and one line of why its likely there, adapted to this sheets actual fields — never paste a library rationale verbatim. Flag inferences with the three-tier confidence tag per Hard Constraint #3.
+
+**Filter-visibility classification (mandatory).** For every filter narrowing the view, classify it as:
+- **Visible** — quick filter card on the sheet or dashboard, parameter control, dashboard filter action target, or legend acting as a filter. Self-disclosing. Note briefly.
+- **Hidden** — context filter with no card, data source filter, extract filter, or a True/False calc-based filter with no exposed control. **Every hidden filter MUST be disclosed in the output**, using the filters descriptive name or a legible formula to state what it excludes when possible (hidden filter on `Filter View` restricts to active accounts only). If no hidden filters exist, state that explicitly: no hidden filters — every scope narrowing on this view has a visible control. **Silence on filters reads as nothing is hidden; silence has to be earned by an explicit no-hidden-filters line.**
+
+**Fragility checklist** — a construct qualifies for the brief modes anything unusual or fragile-looking bullet, or the long-form Notable or Fragile Points section, if it matches any of: a filter/action referencing a field not found in the current field inventory; a calc whose formula references another calc that itself doesnt resolve (broken dependency); a circular calc reference; an action targeting a sheet/parameter/set that no longer exists; a Set referenced but not independently verifiable (per Hard Constraint #8). Dont flag something as fragile on a vague feeling — it must match one of these.
+
+### Phase 3 — Trace Interactions (dashboard only)
+For each action: source sheet → target (sheet/parameter/set) → what selecting/hovering does → why that connection likely exists (e.g. clicking a region bar filters the detail table below to that region), consulting the Actions and Dynamic Zone Visibility tables in Section B of `skill-expertise/construct_pattern_library.md`.
+
+### Phase 4 — Assemble & Deliver
+1. **Pre-delivery validation:** count the constructs identified in Phase 1 and confirm every one appears in the assembled output (as a bullet, a summarized group per the scale bands, or an explicit not extractable note). If any construct was dropped, add it before responding — dont deliver a mismatched count.
+2. Default to the brief chat format. Offer long-form only as described in Output Modes. Never ask the file-format question unless the user has already indicated they want a saved file.
+
+***
+
+## Error Handling
+
+| Failure | Recovery |
+|---|---|
+| `get-workbook-inventory`/`list-worksheets`/`list-dashboards` finds no matching sheet | Tell the user the name wasnt found and list close matches if any. |
+| `get-worksheet-xml`/`get-dashboard-xml` fails or times out (generic) | Report the read failure plainly; dont retry blind more than once. |
+| `get-worksheet-xml` fails specifically on a dashboards member worksheet | Known reliability gap (populated, dashboard-bound sheets). Fall back to `list-available-fields` formula text plus dashboard-XML hints per Hard Constraint #7; note in the output that shelf/filter detail for that sheet is incomplete. Dont retry more than once. |
+| A filter/action appears to reference a Set | Sets are invisible to field-resolution tools. Explain the likely pattern per the library, but state plainly that membership/condition cant be verified from here — never assert it as confirmed. |
+| Datasource disconnected mid-workflow | Report the disconnect plainly and pause — do not attempt to explain a partial read as if it were complete. Ask the user to reconnect before continuing. |
+| Field-level permission denial (RLS) blocks a field or calc formula | Explain what CAN be seen at the construct level (shelf/encoding position); note that formula/logic detail is unavailable due to row-level security rather than a tool failure. |
+| `search-workbook-fields` returns empty for a field a filter or action references | Treat as fragile per Hard Constraint #3 — the referenced field does not resolve. Flag in the fragility section rather than inferring intent as if the field exists. |
+| Calc formula missing from `list-available-fields` and XML fallback | Note formula not extractable — logic inferred from usage context only, treat with extra caution. |
+| Dashboard has no actions/parameters wired | State plainly that no interactions were found rather than fabricating any. |
+| Output path unwritable when a file was requested | Ask the user where to save it, or offer to paste the content in chat instead. |
+
+***
+
+## Composability
+
+- **Upstream:** offer proactively after a dashboard build completes, or when a user opens an unfamiliar/inherited workbook and asks what am I looking at.
+- **Downstream:** if the user wants field-level depth beyond construction logic, hand off to `data-scribe`. If they want to know what changed recently, hand off to `workbook-auditor`. If they want to *modify* the logic, hand off to the relevant authoring skill.
+- **Adjacent:** `data-scribe` = field meaning, standalone. `workbook-auditor` = change over time. This skill = how the pieces on one sheet/dashboard work together, right now.
+- No workbook mutations ever occur in this skill.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.
+
+---
+
+# Calc Orchestrator — when to use
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator
+
+## What it does
+
+Reads the user's ask. Classifies against the peer routing table in `skill-expertise/peer_routing.md`. Cases:
+
+- **Single-match:** routes immediately to that peer by exact slug.
+- **Multi-match (2+ peers):** fires an HC#2 one-clarifier naming the candidates. Never picks silently.
+- **Non-calc-family match:** refuses with exact-slug routing to `data-model-documenter`, `workbook-auditor`, `join-and-relationship-advisor`, or `data-source-connector`.
+- **No match:** refuses, asks user to clarify intent.
+
+Runs a 3-check routing-only V-gate before delivery (V1 peer availability, V2 routing rationale non-empty, V3 trigger-table alignment advisory). Emits `calc_orchestrator_route/1` alongside every routing decision, including clarifiers and refusals.
+
+## When to use it
+
+Fires on ambiguous calc-family asks: "help me with a calc," "I have a calc question," "what should I do with this calc," "which skill handles X," "route my calc ask." Or when the user pastes a formula without a clear verb.
+
+Do NOT invoke when the user's ask clearly matches one peer's positive-trigger phrasing — invoke that peer directly instead. Do NOT invoke when the ask is a non-calc concern (data-model, workbook, join, connection) — route to the appropriate non-calc-family peer.
+
+---
+
+# Calc Orchestrator — SKILL.md
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/calc-orchestrator/SKILL
+
+# Calc Orchestrator
+
+## When to use (full trigger detail)
+
+Classify a calc-related ask against the five shipped calc-family peers (calc-writer, calc-debugger, calc-optimizer, calc-linter, calc-inventory) and route to the correct peer by exact slug. Pure routing skill. Zero calc-family execution logic of its own. Fires HC#4 one-clarifier when the ask matches 2+ peers. Refuses with exact-slug routing to non-calc-family skills (join-and-relationship-advisor, workbook-auditor, data-model-documenter, data-source-connector) when the ask isnt a calc-family concern. Relays the invoked peers handoff unmodified and appends a top-level calc_orchestrator_route/1 block naming which peer was chosen and why. Triggers on ambiguous asks like help me with a calc, I have a calc question, what should I do with this calc, which skill handles X, or route my calc ask. Do NOT trigger when the users ask clearly matches one peers positive-trigger phrasing (invoke that peer directly instead), when the ask is a non-calc data-model or workbook concern, or when the user names a specific peer by slug.
+
+## Purpose
+
+Pure router for calc-family asks. Classifies intent against the five shipped peers, invokes the correct one, and gets out of the way. Zero calc-family execution logic of its own.
+
+## Trigger Conditions
+
+Positive triggers: help me with a calc, I have a calc question, what should I do with this calc, which skill handles X, route my calc ask, or any calc-related ask where the users phrasing does not clearly match one specific peers positive-trigger table.
+
+Do NOT trigger on the following. Route directly to the named peer or refuse per Non-Match Handling.
+
+| User ask | Route to |
+|---|---|
+| Write a new calc for... | `calc-writer` directly, no orchestration needed |
+| This calc is broken / returns wrong values / errors. | `calc-debugger` directly |
+| This calc is slow / optimize it / speed this up. | `calc-optimizer` directly |
+| Lint this / check style / rewrite for readability. | `calc-linter` directly |
+| Inventory / list all calcs / catalog my calculated fields. | `calc-inventory` directly |
+| User names a specific peer by slug (e.g., use calc-writer for X). | The named peer directly |
+| Document the data model / tables and relationships. | `data-model-documenter` |
+| This dashboard is slow / audit the whole workbook. | `workbook-auditor` |
+| This join / relationship is slow. | `join-and-relationship-advisor` |
+| Connect a data source / set up a connection. | `data-source-connector` |
+| Why was this routed differently yesterday? | Scripted prior-turn-diagnosis refusal (no visibility). |
+
+## Scope Boundaries
+
+- IN: classifying calc-family asks against the five peers locked trigger tables, invoking the correct peer by exact slug, firing an HC#4 one-clarifier when 2+ peers match, refusing non-calc-family asks with exact-slug routing to the appropriate non-calc-family skill, emitting `calc_orchestrator_route/1` routing metadata alongside the invoked peers handoff.
+- OUT: authoring, debugging, optimizing, linting, or inventorying calcs (each is the exclusive scope of the corresponding peer); running V-gates (only peers author, and each has its own gate); resolving field references (peers do this at their Phase 1); emitting any of the five peer schemas (`calc_write_handoff/1` through `calc_inventory_handoff/1`) directly; running multi-peer chains like write then debug then optimize as a single orchestrated pass (each peer runs standalone; if user wants a chain, they invoke each peer in turn or use each peers HC#1 sequential-mode).
+
+### Edge-Case Boundaries
+
+| Edge Case | Handling |
+|---|---|
+| Ask clearly matches one peers positive-trigger phrasing | Route immediately to that peer by exact slug. No clarifier. `calc_orchestrator_route/1` records the single-match rationale. |
+| Ask matches 2+ peers positive-trigger phrasing | HC#2 one-clarifier: name the candidate peers explicitly (e.g., This could be `calc-debugger` for correctness or `calc-optimizer` for perf. Which is it?). Never pick silently. |
+| Ask contains no calc-family signal but is data-model or workbook-level | Refuse and route to the appropriate non-calc-family peer by exact slug (`join-and-relationship-advisor`, `workbook-auditor`, `data-model-documenter`, `data-source-connector`). |
+| Ask is ambiguous between help me with a calc (orchestrator) and a specific peer (e.g., user pastes a formula but doesnt say what they want) | Fire the HC#2 clarifier naming the most likely 2-3 peers. Never assume intent. |
+| User names a peer explicitly (use calc-writer for X) | Route to that peer directly per HC#5. Do not second-guess the users routing choice. |
+| Peers handoff arrives with an error state (peer refused per its own HC) | Relay the refusal unmodified per HC#4. Append `calc_orchestrator_route/1` with `outcome: peer_refused` and the peers refusal reason. Do not attempt fallback to another peer. |
+| User asks for a multi-peer chain in one message (e.g., write, then lint, then inventory it) | Fire an HC#2 clarifier: each peer runs standalone; want me to route to `calc-writer` first, then you re-invoke `calc-linter` and `calc-inventory` afterward on the resulting calc? Never orchestrate a chain internally per HC#6. |
+| User asks a question about the calc family itself (what does calc-linter do?) | Answer briefly from the calc-family portfolio, no peer invoked. Route the actual work to the correct peer only when the user makes an actionable ask. |
+| Non-calc-family ask arrives (e.g., make this dashboard prettier) | Refuse with exact-slug routing to the non-calc-family peer per HC#3. Never absorb. |
+| The invoked peer emits an unknown schema version | Route back to the user: Downstream peer emitted schema version X, which I cannot relay. Verify peer version compatibility. Never fake a schema translation. |
+| The invoked peer errors mid-run (a tool-level failure, distinct from a refusal per its own HC) | Summarize the error in one plain sentence (which step failed, whether anything changed, what to try next); put the raw error only in the route metadata `notes`. Set `peer_outcome: error` in `calc_orchestrator_route/1`, `peer_response_relayed: false`. Never re-route to another peer and never silently retry the same peer — surface the error and let the user decide whether to retry. |
+| Target peers SKILL.md not found at expected path | Refuse per HC#9. Report the missing peer to the user; ask them to install or verify path. Never route to a peer that isnt available. |
+| Users answer to an HC#2 clarifier does not disambiguate (e.g., both / either / not sure / an answer that names a peer NOT in the clarifiers candidate list) | Fire exactly one follow-up clarifier that either narrows to a single peer OR asks the user to pick the closest fit from the original candidate list. Never route silently to a default. Never chain more than one follow-up clarifier per session. If the user still cannot disambiguate after the follow-up, refuse and ask the user to reframe the ask from scratch. Record in handoff `notes: clarifier follow-up fired; user response was [x]; resolved to [peer] OR refused.` |
+
+## Hard Constraints
+
+- HC#1: Pure routing. Zero calc-family execution logic of its own. Never authors, debugs, optimizes, lints, or inventories a calc. If the routing targets peer cant run, orchestrator refuses and reports the state, never falls back to executing calc logic itself.
+- HC#2: One-clarifier discipline. Ambiguous asks get exactly one combined clarifier naming the candidate peers explicitly, never chained.
+- HC#3: Exact-slug refusals for non-calc-family asks. Route to `join-and-relationship-advisor`, `workbook-auditor`, `data-model-documenter`, or `data-source-connector` by name when the ask isnt a calc-family concern. Never absorb.
+- HC#4: No silent fallback. If the invoked peer refuses per its own HC, orchestrator relays the refusal unmodified. Never re-route silently to a different peer.
+- HC#5: Trust the users explicit peer choice. If the user names a peer by slug, route to that peer, do not second-guess.
+- HC#6: No chain orchestration. Multi-peer chains (write then debug then optimize) get a clarifier explaining each peer runs standalone. Orchestrator does not run internal loops across peers.
+- HC#7: Emit `calc_orchestrator_route/1` metadata alongside every routing decision, including refusals and clarifiers. Never route silently without leaving an audit trail.
+- HC#8: Trigger-table alignment. Peer trigger tables in `skill-expertise/peer_routing.md` MUST match each peers shipped SKILL.md verbatim.
+- HC#9: Runtime peer availability check. Before routing, confirm the target peers SKILL.md exists at its expected path. If not, refuse and route to the user for peer installation. Never route to a peer that isnt available.
+- HC#10: No prior-turn diagnosis. Why did you route this differently yesterday? gets the scripted refusal. Orchestrator has no session memory.
+
+## Tools Used
+
+Orchestrator itself uses NO Tableau-specific tools. It reads the users ask, classifies intent, and invokes a peer. The peer runs its own tool sequence.
+
+Orchestrator does use:
+- `Read` — Phase 1 (peer availability check; confirm target peers SKILL.md is at the expected path per HC#9).
+- No file writes. Skill is compute-only; the invoked peer writes if desired.
+
+## Peer Routing Table (Locked)
+
+Full table in `skill-expertise/peer_routing.md`. Summary of positive-trigger classification per peer:
+
+| Peer | Primary triggers | Route when the ask is about... |
+|---|---|---|
+| `calc-writer` | write a new calc, author a calc, create a calculated field, I need a calc that... | Authoring new calcs from a natural-language spec. |
+| `calc-debugger` | this calc is broken, returns wrong values, returns NULL when it shouldnt, debug this calc | Correctness bugs in an existing calc. |
+| `calc-optimizer` | this calc is slow, make this calc faster, speed up this calculation, perf-tune this | Performance rewrites that preserve returned values. |
+| `calc-linter` | lint this calc, check style, rewrite for readability, does this follow our house style | Style, naming, comment, or formatting violations. |
+| `calc-inventory` | list all calcs, inventory the calcs, catalog my calculated fields | Data-source-wide cataloging (not single-calc work). Quality or hygiene audits ("audit my calcs") go to `calc-hygiene-scan`. |
+| `calc-translator` | translate SQL to Tableau, port this DAX, convert Excel formula, translate this expression, SQL to Tableau calc | Single-expression translation from SQL / Excel / DAX into a Tableau calculated field. |
+
+## Non-Calc-Family Routing Table (Locked)
+
+For asks that arrive at orchestrator but arent calc-family concerns:
+
+| Non-calc-family peer | Route when the ask is about... |
+|---|---|
+| `data-model-documenter` | Data model, tables, relationships, join conditions, cardinality, calc-dependency graph at the data-source level. |
+| `workbook-auditor` | Dashboard-level or workbook-level concerns (dashboard slowness, mark counts, extract config, workbook-wide style consistency). |
+| `join-and-relationship-advisor` | Join type, relationship type, cardinality issues, fanning, grain issues at the model level. |
+| `data-source-connector` | Connecting a new data source, authenticating to a database, setting up a Tableau connection. |
+
+## Maintenance: Adding a New Peer
+
+Adding a 6th+ calc-family peer requires updating three files in lockstep, in this order: (1) `skill-expertise/peer_routing.md` — add the peers expected path, verbatim positive triggers, and anti-triggers; (2) `SKILL.md`s Peer Routing Table summary and Non-Match Handling table; (3) `skill-expertise/handoff_schema.md`s `target_peer` enum. A peer added to only one of these three files is an alignment-drift risk per HC#8 — flag it the same way as any other trigger-table drift.
+
+## Phase Sequence
+
+- **Phase 0.** Read the users ask. Extract calc-family signals (formula pasted, calc name mentioned, verb like debug / optimize / lint / inventory / write).
+- **Phase 1.** Peer availability check per HC#9. Confirm target peer(s) SKILL.md exist at expected paths. If any candidate peer is missing, exclude it from consideration and note in routing metadata.
+- **Phase 2.** Classify against the peer routing table. Cases:
+  - **Single match:** route immediately. Skip to Phase 4.
+  - **Multi-match (2+ peers):** fire HC#2 one-clarifier naming the candidate peers explicitly. Wait for user response.
+  - **No calc-family match, but non-calc-family match:** route to the non-calc-family peer per HC#3.
+  - **No match anywhere:** refuse. Ask user to clarify their intent.
+- **Phase 3.** (Only if clarifier was fired.) Re-classify based on users clarifier response.
+- **Phase 4.** Invoke the target peer by exact slug. Relay the peers full response unmodified to the user.
+- **Phase 5.** Emit `calc_orchestrator_route/1` metadata block alongside the peers handoff, naming the routing decision, alternative candidates considered, and the reason.
+
+## Handoff Contract
+
+Orchestrator does NOT emit any of the five peer schemas (`calc_write_handoff/1`, `calc_debug_handoff/1`, `calc_optimize_handoff/1`, `calc_lint_handoff/1`, `calc_inventory_handoff/1`). Those are the peers exclusive scope.
+
+Orchestrator emits `calc_orchestrator_route/1` alongside every routing decision (including refusals and clarifiers). Full schema in `skill-expertise/handoff_schema.md`. Required non-blank fields:
+
+- `schema_version`, `user_ask` (verbatim), `routing_decision` (`routed_to_peer` / `clarifier_fired` / `refused_non_calc_family` / `refused_no_match` / `refused_peer_unavailable`)
+- `target_peer` (only if `routing_decision == routed_to_peer`; else `null`)
+- `candidate_peers` (list of peers considered before routing)
+- `routing_rationale` (short string explaining the decision)
+- `peer_response_relayed` (true / false; false if clarifier fired or refusal)
+
+The peers own handoff (whichever `calc_*_handoff/1` it emits) travels alongside `calc_orchestrator_route/1`, unmodified.
+
+## Report Structure (Locked)
+
+Every routing decision renders this exact structure:
+
+- **Routing decision:** one line naming the target peer or the refusal reason.
+- **Rationale:** why this peer, or why the ask doesnt fit any peer.
+- **Candidate peers considered:** list of peers evaluated during classification.
+- **Peers response** (if routed and peer ran successfully): the peers full delivery, unmodified.
+- **`calc_orchestrator_route/1` YAML** with structured routing metadata.
+
+For clarifier fires, only the first three sections render; the peers response is deferred until the user answers.
+
+## Refuse to Fabricate
+
+Never route silently without emitting `calc_orchestrator_route/1`. Never invoke a peer that isnt available at its expected path. Never re-route to a different peer after the first peer refuses per its own HC. Never orchestrate a multi-peer chain internally, always route each peer standalone.
+
+Never invoke calc-family logic directly. If a users ask cant be routed to a peer, refuse with a clear explanation, never fall back to executing calc work as the orchestrator.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.
+
+---
+
+# Tableau Dashboard Walkthrough Generator — when to use
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/dashboard-walkthrough-generator
+
+## What it does
+
+Reads a live dashboard (sheets, titles, captions, filters, spatial layout) and generates presenter notes in the author's declared audience voice. Names what each chart shows structurally. Does not fabricate conclusions. Pairs with viz-critique-pro-studio (critique the design), data-scribe (document the metrics), and workbook-summary-onepager (handoff doc) as optional downstream routes with manual fallbacks when those skills are not installed.
+
+Output ships as a Summary paragraph, numbered walkthrough order, per-sheet speaker notes, three stakeholder questions each tied to a specific data point, a one-chart headline recommendation, and an opt-in `.md` or `.txt` save to the Downloads folder.
+
+## When to use it
+
+- "I built this dashboard and have to present it to my VP tomorrow. What should I say?"
+- "I want a 30-second elevator pitch I can start the meeting with."
+- "What questions will the exec team ask when I show this?"
+- "I need meeting-prep notes in plain language for an operational manager."
+- "I need an analyst-grade walkthrough with named fields and aggregations."
+
+## When NOT to use it
+
+- Not for scoring the dashboard's design (use viz-critique-pro-studio)
+- Not for the full metric dictionary (use data-scribe)
+- Not for the stakeholder-handoff onepager (use workbook-summary-onepager)
+- Not for designing a dashboard from scratch (use viz-planner)
+- Not for authoring or editing anything in Desktop (this skill is read-only advisory)
+
+## How to trigger it
+
+- "walkthrough script"
+- "presenter notes"
+- "how do I present this"
+- "talking points for this dashboard"
+- "elevator pitch for this viz"
+- "notes for my meeting"
+
+---
+
+# Tableau Dashboard Walkthrough Generator — SKILL.md
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/dashboard-walkthrough-generator/SKILL
+
+# Tableau Dashboard Walkthrough Generator
+
+Reads an open Tableau dashboard and produces a presenter script: numbered walkthrough order, per-sheet speaker notes, a 30-second elevator version, and likely stakeholder questions with the data points that answer each. Audience-shaped tone. Read-only text output.
+
+## When to use (full trigger detail)
+
+Generate a presenter script for a Tableau dashboard. numbered walkthrough order, per-sheet speaker notes, a 30-second elevator version, and likely stakeholder questions. Reads the open dashboard (sheets, titles, captions, filters, spatial layout) and produces an audience-shaped script the author can paste into meeting notes. Read-only. Trigger on "walkthrough script", "presenter notes", "how do I present this", "talking points for this dashboard", "elevator pitch for this viz", "notes for my meeting". Do NOT trigger for. designing a dashboard (route to viz-planner), scoring an existing dashboard (route to viz-critique-pro-studio), metric dictionary (route to data-scribe), stakeholder handoff onepager (route to workbook-summary-onepager), authoring or editing anything in Desktop (out of scope).
+
+## Reference files
+
+- **`skill-expertise/audience-voice-guide.md`.** Four locked audience profiles (executive, analyst, operations, external) with tone rules, length targets, and question-anticipation patterns per audience.
+- **`skill-expertise/script-templates.md`.** Narration scaffolding for the walkthrough: opener patterns, sheet-transition patterns, pause-and-check patterns, closer patterns.
+
+## When to use
+
+Author has a dashboard built and needs to present it to a stakeholder. Wants presenter notes they can paste into meeting prep, not a design critique.
+
+## Hard Constraints
+
+- **HC-1 Read-only.** No mutation.
+- **HC-2 Author declares audience before output.** Executive, analyst, operations, or external. Locked taxonomy from audience-voice-guide.md.
+- **HC-3 Walkthrough names structure, not conclusions.** "This chart shows revenue by region sorted descending" is fine. "Revenue is strongest in the Northeast" is not; that is interpretation the author owns.
+- **HC-4 Honest single-view verdict.** If the dashboard has only one sheet, say so and offer a short talking-points list rather than fabricating a multi-sheet walkthrough.
+- **HC-5 No pasted URLs to community resources.**
+- **HC-6 Standalone-safe routing.** Handoffs to viz-critique-pro-studio, data-scribe, workbook-summary-onepager carry manual fallbacks.
+- **HC-7 Audience taxonomy locked.** No ad-hoc audience types ("my boss's boss," "a mixed group") outside the four locked profiles.
+
+## Workflow
+
+**Tools used.** `list-dashboards` (to enumerate dashboards and confirm which is the target), `list-worksheets` (to resolve zone-to-sheet mapping and identify sheets that may be hidden-on-phone or deprecated), `list-available-fields` (to identify KPI candidates by data type and to resolve field names for the Analyst voice), `get-dashboard-xml` (load-bearing read for spatial order, tab order, title text, caption text, and tooltip templates per sheet; everything the walkthrough actually describes depends on this), `get-workbook-inventory` (to pull data-source names and refresh-date metadata for the Analyst voice's "sourced from X, extract from Y" opener; skip this call when the audience is Executive or External, which don't surface data-source detail).
+
+Steps:
+
+1. Call `list-dashboards`. If more than one, ask which is the target. If `list-dashboards` returns empty or errors, state that no workbook or dashboard was found. Do not proceed, but offer to walk through the audience-voice guide so the author can preview how the output will shape once a workbook is open.
+2. Ask the author to declare the audience from the locked taxonomy (executive, analyst, operations, external). If the author describes a non-standard audience ("my team," "my VP"), map to the closest locked profile and state the mapping.
+3. Call `get-dashboard-xml` on the target dashboard to read sheet order, titles, captions, filters, and tooltip content.
+4. Call `list-worksheets` and `list-available-fields` to resolve zone-to-sheet mapping and identify KPI sheets.
+5. Build the walkthrough using audience-voice-guide.md tone rules and script-templates.md scaffolding.
+6. Emit the output in the template below.
+
+## Audience taxonomy (locked)
+
+Full detail in `skill-expertise/audience-voice-guide.md`.
+
+- **Executive.** Terse. Headline first. One number per sentence. 30 seconds max. Follow-ups anticipated are strategic ("what should we do about this").
+- **Analyst.** Technical. Named fields, aggregations, filters. Longer walkthrough tolerated. Follow-ups are methodological ("how is this computed," "what does the extract cover").
+- **Operations.** Action-focused. What to do next, by when, by whom. Follow-ups are tactical ("which account should I call first").
+- **External.** Context-first. Define jargon. No internal acronyms. Follow-ups are clarifying ("what does ARR mean in this context").
+
+## Error Handling
+
+| Failure | Cause | Recovery |
+|---|---|---|
+| `list-dashboards` returns empty or errors | No workbook open, or workbook has zero dashboards | State plainly that no workbook or dashboard was found. Offer to walk through the audience-voice guide as reading reference until a workbook is open. Do not proceed on an assumed dashboard. |
+| Single-sheet dashboard | Target dashboard has exactly one worksheet | Per HC-4, emit a talking-points list rather than a numbered walkthrough. Keep the elevator, speaker notes for the one sheet, and the three likely questions. Skip the numbered walkthrough-order section explicitly. State the mode switch plainly. |
+| Dashboard has no title or captions | Dashboard is auto-generated or title/caption zones removed | Proceed with the walkthrough using sheet names and field names in place of the dashboard title. Flag in the output: "This dashboard has no title or captions. The walkthrough uses sheet names as structural anchors." Do not fabricate a dashboard title. |
+| `get-dashboard-xml` returns empty, errors, or missing spatial layout data | Dashboard XML corrupted, Studio tool failure, or dashboard was never saved after last change | Fall back to `list-worksheets` for sheet enumeration only. State plainly in the output: "Spatial order could not be read; walkthrough uses workbook-tab order instead of dashboard-canvas order." Do not fabricate spatial positions. |
+| Author declares non-standard audience ("my boss's boss", "a mixed group") | Audience outside the four locked profiles | Map to the closest locked profile per audience-voice-guide.md mapping rules. State the mapping in the output ("Mapping 'mixed group' to External voice because that's the lowest-context audience likely present"). Let the author correct the mapping if wrong. |
+| `list-worksheets` or `list-available-fields` returns empty or errors | Workbook has no worksheets enumerated, or field metadata call fails | Fall back to the sheet names and fields already read from `get-dashboard-xml`. State plainly: "Zone-to-sheet mapping and KPI-candidate detection used dashboard XML only; worksheet/field metadata was unavailable." Do not fabricate sheet or field names. |
+| Author declines to pick an audience ("just pick one", silence, "whatever is fine") | Author wants the output but does not want to answer the audience question | Default to **Analyst** voice (middle of the four profiles for voice-mixing risk, safest fallback). State the default plainly in the opening line: "Defaulting to Analyst voice because you did not declare one. Say 'use executive voice' or any other profile and I will re-emit." Deliver the full output; do not loop on the audience question. |
+| Author changes the audience mid-run | Author declared one audience, received partial output, then asks for a different voice | Do not force a full rerun. Re-emit only the sections affected by voice (elevator, speaker notes, likely-questions, closer). The numbered walkthrough-order and the dashboard-structural facts stay. State plainly: "Rewriting elevator, speaker notes, questions, and closer in [new audience] voice. Walkthrough order and structural facts unchanged." |
+| Opt-in file save fails (`.md` / `.txt` write errors) | Filesystem permissions, path collision, disk full, or user cancels the save | Emit the full walkthrough content inline in chat regardless of save status. State the save failure plainly: "File save to [path] failed with [error]. Full walkthrough is in this response; copy and paste into your notes." Never gate the walkthrough itself on the save succeeding. |
+| Dashboard has 20+ sheets (scalability edge) | Large dashboard with more sheets than fit in a reasonable walkthrough length | Walk through the top 5-7 sheets by spatial priority (KPI band first, then primary charts, then supporting views). State plainly: "This dashboard has [N] sheets. Walkthrough covers the 5-7 primary ones. [N-7] additional sheets are not shown; say 'extend to all sheets' or name specific ones to add." Do not emit a 20-section walkthrough; it exceeds a reasonable meeting-prep length regardless of audience. |
+
+## Output format
+
+1. **Dashboard and audience confirmed.** One sentence.
+2. **30-second elevator.** One paragraph. The headline a stakeholder would remember if they heard nothing else.
+3. **Numbered walkthrough order.** Sheet 1 to N. Each entry: what to point at, what question it answers, where to pause. If the dashboard has more than 8 sheets, group them into 2-3 thematic clusters (by topic or by dashboard zone proximity) rather than listing every sheet individually; name each cluster and summarize it as one walkthrough beat.
+4. **Speaker notes per sheet.** What the data shows structurally (not interpretively, per HC-3), what to say, what to anticipate.
+5. **Likely stakeholder questions.** Three, each tied to the data point that answers it.
+6. **Opt-in file save.** Offer `.md` or `.txt` save of the full script. Default save location is the user's Downloads folder unless the author names a different path. Two-tier delivery per portfolio convention.
+
+## Validation Gate
+
+- **V1.** Audience is one of the four locked profiles.
+- **V2.** Dashboard is named explicitly.
+- **V3.** Walkthrough names structure, not conclusions (HC-3).
+- **V4.** 30-second elevator is actually at or under 30 seconds spoken (roughly 75 words).
+- **V5.** Three stakeholder questions, each tied to a specific data point.
+- **V6.** No URLs pasted.
+- **V7.** If dashboard has one sheet, verdict is a talking-points list, not a walkthrough (HC-4).
+- **V8.** Voice consistency across the entire output. Every section (elevator, walkthrough order, speaker notes, likely-questions, closer) uses the declared audience voice. No sentence in an executive-voice run contains analyst-level jargon (e.g., named LODs, aggregation syntax). No sentence in an external-voice run assumes internal product knowledge. If any section drifts from the declared voice, revise before shipping.
+
+## Anti-patterns
+
+- Fabricating what the data shows ("revenue is strong"). Only name structure.
+- Walking through sheets in XML order rather than spatial order on the dashboard.
+- Running audience voice on an ad-hoc audience ("the people in the room") rather than the locked four.
+- Generating a walkthrough for a one-sheet dashboard. Say so and give talking points instead.
+- Mixing audience voices in a single run.
+
+## Composability
+
+Standalone-safe. Every route optional.
+
+| Situation | Route target (if installed) | Manual fallback |
+|---|---|---|
+| Author wants a metric dictionary alongside | `data-scribe` | Author documents field meanings in the appendix of their notes manually |
+| Author wants the handoff onepager | `workbook-summary-onepager` | Author composes a one-page summary from the walkthrough's elevator + section headlines |
+| Author wants design critique first | `viz-critique-pro-studio` | Author reviews the dashboard against their team's design standard before presenting |
+
+## Standalone use
+
+If no downstream skill is available, the walkthrough script is self-contained. The author can present with just this skill's output.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.
+
+---
+
+# Tableau Inheritance Triage — when to use
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/inheritance-triage
+
+## What it does
+
+Reads a live workbook via Studio tools (`list-dashboards`, `list-worksheets`, `list-available-fields`, `get-workbook-inventory`, `get-worksheet-xml` per sheet) and produces one of two outputs. **Orient mode** returns an 8-section summary capped at 500 words, meant to be read in 5 minutes. **Complexity-score mode** returns a per-worksheet ranking with C1-C6 breakdowns and a bucket count (Simple / Moderate / Complex).
+
+The complexity ranking is a prioritization aid, not a quality judgment. A score-10 sheet is often the right design for its question; the score only tells the inheriting author "this one will take longer to read than the simple sheets."
+
+Pairs with data-scribe (full metric dictionary), calc-documenter (full calc catalog), workbook-summary-onepager (stakeholder handoff), and workbook-auditor (change tracking) as optional downstream routes, each with a manual Desktop fallback.
+
+## When to use it
+
+- "I just opened this workbook and have no idea what it does."
+- "I inherited this from a departed consultant."
+- "Where do I start reading."
+- "Give me a 5-minute summary before my review tomorrow."
+- "Which of these 25 sheets are going to be the hardest to understand."
+- "Rank these sheets by complexity so I know what to tackle last."
+
+## When NOT to use it
+
+- Not for a full metric dictionary (use data-scribe)
+- Not for an exhaustive calc catalog (use calc-documenter)
+- Not for a stakeholder-facing onepager (use workbook-summary-onepager)
+- Not for ongoing change tracking (use workbook-auditor)
+- Not for mutating the workbook (deleting flagged sheets, hiding orphans, cleaning up); this skill is read-only
+- Not for authoring or editing anything in Desktop
+
+## How to trigger it
+
+Orient mode:
+
+- "I inherited this"
+- "orient me"
+- "where do I start"
+- "triage this workbook"
+- "5-minute summary"
+- "I just opened this workbook"
+- "unfamiliar workbook"
+
+Complexity-score mode:
+
+- "rank these sheets by complexity"
+- "which sheets are hardest"
+
+---
+
+# Tableau Inheritance Triage — SKILL.md
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/inheritance-triage/SKILL
+
+# Tableau Inheritance Triage
+
+Orient an author who just opened an unfamiliar workbook. Deliberately-shallow entry point to the exhaustive-documentation skills. Produces a one-page orientation summary and a per-worksheet complexity ranking.
+
+## When to use (full trigger detail)
+
+Orient an author who just inherited a Tableau workbook. Two modes. Orient mode produces a deliberately-shallow one-page summary (headline, primary dashboards, data sources, calc complexity tiers, sheet complexity top-10, where to start reading). Complexity-score mode ranks every worksheet 1-10 against a locked 6-factor rubric (C1 mark count, C2 calc nesting, C3 table-calc, C4 LOD, C5 filter count, C6 cross-DS). Routes to data-scribe, calc-documenter, workbook-summary-onepager, workbook-auditor as optional handoffs with manual fallbacks. Read-only. Trigger on "I inherited this", "orient me", "where do I start", "triage this workbook", "5-minute summary", "rank these sheets by complexity", "which sheets are hardest". Do NOT trigger for. exhaustive metric dictionary (data-scribe), exhaustive calc catalog (calc-documenter), stakeholder onepager (workbook-summary-onepager), change tracking (workbook-auditor), authoring in Desktop.
+
+## Reference files
+
+- **`skill-expertise/complexity-rubric.md`.** The locked C1-C6 complexity rubric with per-factor evidence signals, scoring rules, and tier boundaries.
+- **`skill-expertise/triage-output-template.md`.** The one-page Orient-mode template with word-count caps per section.
+
+## When to use
+
+Author just opened a workbook built by someone else (consultant, departed colleague, previous self) and wants a 5-minute orientation plus a prioritization hint for which worksheets to tackle first.
+
+## Hard Constraints
+
+- **HC-1 Read-only.** No mutation.
+- **HC-2 Orient-mode output capped at 500 words / one page.** Deliberately-shallow is the point.
+- **HC-3 Honest "this workbook is simple, no triage needed" verdict.** For workbooks under 5 sheets and 10 calcs, emit a 2-sentence summary and skip the full orientation.
+- **HC-4 Locked C1-C6 complexity rubric.** No ad-hoc factors.
+- **HC-5 Routes to exhaustive skills optional.** Data-scribe, calc-documenter, workbook-summary-onepager, workbook-auditor all offered as handoffs with manual fallbacks.
+- **HC-6 Never fabricate changelog data.** If `get-workbook-inventory` modified-date is absent, say so.
+- **HC-7 Standalone-safe.**
+- **HC-8 Complexity score is a prioritization aid, not a quality judgment.** A score-10 sheet is not "bad," just complex. The output never calls complex sheets wrong.
+- **HC-9 No pasted URLs to community resources.**
+
+## Workflow
+
+**Tools used.** `list-dashboards` (to enumerate dashboards for Orient-mode Section 2), `list-worksheets` (to enumerate every worksheet for C1-C6 scoring; load-bearing read for scope), `list-available-fields` (to resolve the data-source origin per field for C6 cross-DS check, and to pull calc text for C2 nesting-depth parsing and C4 LOD-pattern detection), `get-workbook-inventory` (to pull last-modified-date for the headline; HC-6 degrade path if unavailable), `get-worksheet-xml` (to extract per-sheet shelf-level signatures: Rows pills, Columns pills, Marks card, filters-shelf field count for C5, table-calc delta glyphs for C3, pill-count density proxy for C1; the load-bearing read for all per-sheet scoring). Note: `get-dashboard-xml` returns zone layout only, not shelf-level data, and cannot be used for C1-C6 scoring.
+
+Steps:
+
+1. Call `list-dashboards`, `list-worksheets`, `list-available-fields`, `get-workbook-inventory`.
+2. If workbook has fewer than 5 sheets AND fewer than 10 calcs, emit the HC-3 short-circuit summary and stop.
+3. Otherwise:
+   - Build the headline (what this workbook is, modified-date if available).
+   - Enumerate primary dashboards (3-5) with 1-sentence "answers X" phrases.
+   - Count data sources and name each.
+   - Tier calcs by complexity (simple / LOD-heavy / nested).
+   - Call `get-worksheet-xml` on each worksheet and score against C1-C6. Surface the top-10.
+   - Compose the "where to start reading" recommendation.
+   - Flag any known issues workbook-auditor would catch (default sheet names, orphan sheets, hidden sheets).
+4. Emit the Orient-mode output template.
+5. If the author triggered Complexity-score mode directly, skip the orient summary and emit only the ranked worksheet list.
+
+## Error Handling
+
+Every recovery path below delivers partial value, never a bare refusal. Name the failure plainly, deliver what the skill can still do, and flag anything downgraded so the author knows the output is incomplete.
+
+| Failure | Cause | Recovery |
+|---|---|---|
+| No workbook open (`list-dashboards` or `list-worksheets` returns empty or errors) | No workbook open, Studio tool failure, or workbook has zero worksheets | State plainly that no workbook or worksheets were found. Offer to walk through `complexity-rubric.md` and `triage-output-template.md` as reading reference until a workbook is open. Do not fabricate a triage. |
+| Workbook has 0 worksheets | Workbook exists but is empty | Short-circuit: "This workbook has 0 worksheets. Nothing to triage yet. Open or build the first sheet to proceed. If you want to understand the triage output format in advance, I can walk you through `triage-output-template.md`." |
+| Workbook has fewer than 5 sheets AND fewer than 10 calcs (HC-3 short-circuit) | Small-workbook case | Emit the HC-3 2-sentence summary per the `triage-output-template.md` short-circuit template: "This workbook is small. [N] sheets, [M] calcs, [K] data source(s). No full triage needed. Start with [the one or two dashboards]; everything else is a worksheet feeding them." Skip the 8-section orient output. Do not emit a false "clean, nothing to orient" output on a small-but-valid workbook. |
+| `get-workbook-inventory` returns no modified-date | Server did not expose last-modified metadata, or workbook has never been saved | Per HC-6, state plainly: "Modified date not available in the file metadata." Deliver all other orient-mode sections normally. Do not fabricate a date or author. |
+| `get-worksheet-xml` fails on one or more sheets | Studio tool error, unsaved sheet, or a dashboard-bound sheet with no standalone XML | Score the sheets that succeeded. For each failed sheet, include it in the ranked list with "unscored (XML did not load)" and skip the C-factor breakdown. State plainly at the top of the output: "[N] of [M] sheets scored. [N-M] could not be scored because shelf XML did not load; re-save those sheets and re-run to include them." Do not fabricate scores. |
+| `get-summary-data` not available for C1 mark count | Tool unavailable in this session, or workbook not connected to data | Default C1 to 1 point for every sheet and announce "unverified mark counts (C1 defaulted to 1 point across all sheets)" at the top of the output. Alternatively, offer to self-report: "If you can tell me the approximate mark count per top-10 sheet, I will re-score C1 with real numbers." Deliver the ranking with the degraded C1 regardless. |
+| Workbook has 100+ sheets (scalability) | Noisy-output risk; full scoring would exceed useful attention budget | Before scoring, confirm with author: "This workbook has [N] sheets. Options: (1) full scan with top-20 complexity surfaced in orient mode, (2) scope to a single dashboard's contained sheets, (3) scope to sheets scoring 7+ only (defer full ranking), (4) scope to a filename substring. Pick one and I will proceed." Do not scan silently. |
+| Author asks "is this workbook good or bad" | HC-8 interpretive-request guard | Per HC-8, do not render a quality judgment. Convert to structural output: "Complexity scores are for prioritization, not quality judgment. A score-10 sheet is often the right design for its question; a score-2 sheet is often a scratch pad. Here is the structural ranking." Deliver the full orient or complexity output. |
+| Author asks the skill to delete, hide, or clean up sheets | HC-1 mutation guard | Per HC-1, do not mutate. Convert: "I orient and prioritize; I do not clean up. If `worksheet-cleanup` is installed, hand off there with the orphan-and-empty flags from Section 7. Otherwise, use the issues list to clean up manually in Desktop." Deliver the triage regardless. |
+| Author asks for a dashboard-level complexity score | Out of rubric scope | State plainly: "Complexity-score mode scores per-worksheet, not per-dashboard,. A dashboard's complexity rolls up from its contained sheets. If you want a dashboard-level roll-up now, I can emit the top-3 scoring sheets per dashboard as a scoping aid. |
+| Author asks to run both modes simultaneously | Scope ambiguity between Orient and Complexity-score | Default to Orient mode first (Section 5 already includes the complexity top-10). Offer Complexity-score mode as a follow-up: "Orient output emitted. Say 'full complexity ranking' and I will emit the full per-sheet C1-C6 breakdown as a follow-up." Do not merge both into one over-cap output. |
+| Opt-in file save fails | Filesystem permissions, path collision, disk full, or user cancels | Emit the full orient or complexity output inline in chat regardless of save status. State the save failure plainly with path and error. Never gate the triage output on the save succeeding. Default save location is the user's Downloads folder. |
+| Author asks for cross-session persistence of orient output | Out of scope | Save output to Downloads folder (per the opt-in save path) and name the saved file as the reference artifact: "Future-you can re-read this file instead of re-running the triage. If the workbook changes substantially, re-run." Do not promise cross-session memory the skill does not have. |
+| Workbook sheets reference deleted or broken fields | Field in XML not resolvable via `list-available-fields` | Score what can be scored on the sheet. Flag the broken reference in Section 7 (Known Issues): "[Sheet name] references [N] deleted or unresolvable field(s); score is partial." Do not refuse to score. |
+| Author asks to invent or guess at sheet purposes beyond what the structure shows | HC-8-adjacent interpretive-request | Decline interpretive guessing: "Section 2 'Answers X' phrases are structural (what the chart shows), not interpretive (what the data means). I will not guess at sheet purpose beyond shelf composition. If you can tell me the business context, I will fold it into the headline." Deliver the structural output; offer to re-emit with author-provided context. |
+
+## Modes
+
+**Orient mode (default).** One-page summary. Called by "orient me," "triage this workbook," etc.
+
+**Complexity-score mode.** Per-worksheet C1-C6 ranking only. Called by "rank these sheets by complexity," "which sheets are hardest."
+
+## Complexity rubric summary (full in complexity-rubric.md)
+
+Each worksheet scores 1-10. Sum of C-factor contributions.
+
+- **C1 Mark count.** 0-3 points. 0 if under 100 marks, 1 if 100-500, 2 if 500-5000, 3 if 5000+. Author-reported if `get-summary-data` not run.
+- **C2 Calc nesting depth of fields used.** 0-2 points. 0 if no nested calcs, 1 if one level, 2 if two or more levels.
+- **C3 Table-calc presence.** 0 or 1 point.
+- **C4 LOD presence.** 0, 1, or 2 points. 0 if no LODs, 1 if INCLUDE or EXCLUDE, 2 if FIXED.
+- **C5 Filter count.** 0-2 points. 0 if under 3 filters, 1 if 3-5, 2 if 6+.
+- **C6 Cross-DS references.** 0 or 2 points. 2 if any field on the sheet references a different data source than the primary one.
+
+**Tier boundaries.**
+- 1-3: Simple.
+- 4-6: Moderate.
+- 7-10: Complex.
+
+## Output format (Orient mode)
+
+Per `skill-expertise/triage-output-template.md`:
+
+1. **Headline.** 1-2 sentences. What this workbook is + last-modified-date.
+2. **Primary dashboards.** 3-5 bullets. Each: dashboard name + "answers X" + sheet count.
+3. **Data sources.** Count + names.
+4. **Calc complexity tiers.** 3 lines: simple count, LOD-heavy count, nested count.
+5. **Sheet complexity top-10.** Nested bulleted list, not a markdown table (the chat surface does not render tables): one bullet per sheet with score and tier inline, e.g. "- Sheet Name, score 5, Moderate".
+6. **Where to start reading.** 1-2 sentences. "Start with dashboard X, then calc Y."
+7. **Known issues flag.** Default sheet names, orphan sheets, hidden sheets.
+8. **Optional handoffs.** Line for each: "If you want a full metric dictionary, use data-scribe. If not installed, [manual fallback]."
+
+Word count cap: 500.
+
+## Output format (Complexity-score mode)
+
+1. **All worksheets ranked by score.** Full list, not just top-10. Sort order (per `complexity-rubric.md` Tie-breaking and Edge cases): primary sort by score descending; within a tied score, sort by named-field-count on the sheet descending, then alphabetical by sheet name; hidden sheets sort to the bottom of the entire ranked list regardless of score (flag each as hidden inline).
+2. **Per-sheet factor breakdown.** C1-C6 contribution per sheet as a nested bulleted list, not a markdown table (the chat surface does not render tables): one top-level bullet per sheet (score, tier) with a nested sub-bullet listing the C1-C6 contributions.
+3. **Simple / moderate / complex buckets.** Count per bucket.
+
+## Validation Gate
+
+- **V1.** Workbook named explicitly (or workbook-level identifier if no name set).
+- **V2.** Orient-mode output at or under 500 words (HC-2).
+- **V3.** Every complexity score cites C1-C6 contributions (HC-4).
+- **V4.** HC-3 short-circuit fires for workbooks under 5 sheets and 10 calcs.
+- **V5.** Modified-date absence stated plainly if not available (HC-6).
+- **V6.** No URLs pasted.
+- **V7.** Routes to exhaustive skills carry manual fallbacks (HC-5).
+- **V8.** Complexity scores are never framed as quality judgments (HC-8).
+
+## Anti-patterns
+
+- Running Orient mode on a trivial workbook (should short-circuit per HC-3).
+- Exceeding 500 words in Orient mode.
+- Inventing a C-factor not in C1-C6.
+- Fabricating a modified-date when `get-workbook-inventory` returns none.
+- Framing a complex worksheet as "bad" or "wrong" (HC-8).
+- Running the full orient summary when the author triggered Complexity-score mode.
+- Pasting a URL to any community resource.
+
+## Composability
+
+Standalone-safe.
+
+| Situation | Route target (if installed) | Manual fallback |
+|---|---|---|
+| Author wants the full metric dictionary after orientation | `data-scribe` | Author reads field descriptions manually from the Data pane |
+| Author wants the full calc catalog | `calc-documenter` | Author inspects calcs individually from the Data pane |
+| Author wants a stakeholder-handoff onepager | `workbook-summary-onepager` | Author composes a onepager from the orient summary + a one-paragraph headline |
+| Author wants to track changes going forward | `workbook-auditor` | Author snapshots the workbook manually and diffs against future versions |
+
+## Standalone use
+
+The Orient-mode output is self-contained. The complexity ranking is self-contained. Author can act on either without any downstream skill installed.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.
+
+---
+
+# Tableau Stakeholder Translator — when to use
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/stakeholder-translator
+
+## What it does
+
+Reads a live dashboard (titles, captions, tooltips, fields, data source) and rewrites what it shows into the stakeholder's own vocabulary. Swaps analyst jargon (`SUM(Sales)`, `[Order Date]`, calc references) for plain-language equivalents keyed to the declared audience. Names what the dashboard does NOT answer so the author does not accidentally overclaim in the meeting. Lists three questions the stakeholder is likely to ask, each tied to a specific sheet or data point in the dashboard (or explicitly flagged as unanswered).
+
+Output ships as a five-section summary the author can paste into email, a prep doc, or a stakeholder briefing. Audience voice is shaped by a locked 5-profile taxonomy (C-suite, Business sponsor, Operational manager, External customer, Cross-functional peer). Non-standard phrasings ("my VP," "the readout," "my team") map to the closest profile with announcement so the author can correct.
+
+## When to use it
+
+- "I built this dashboard and need to send a plain-language summary to my VP before the meeting."
+- "An external customer is going to see this dashboard. I need to strip out the internal jargon."
+- "My Product peer is asking about this sales dashboard. How do I explain it in their vocabulary?"
+- "I need to send a readout to the business sponsor who owns this metric."
+- "The exec team gets five minutes. What are the two sentences I need to say?"
+
+## When NOT to use it
+
+- Not for a presenter script with speaker notes (use dashboard-walkthrough-generator)
+- Not for the full metric dictionary (use data-scribe)
+- Not for the stakeholder-handoff onepager (use workbook-summary-onepager)
+- Not for scoring the dashboard's design (use viz-critique-pro-studio)
+- Not for authoring or editing anything in Desktop (this skill is read-only advisory)
+
+## How to trigger it
+
+- "translate this for my VP"
+- "plain language version"
+- "explain this to a non-analyst"
+- "stakeholder version"
+- "jargon-free summary"
+- "what does this answer in their words"
+
+---
+
+# Tableau Stakeholder Translator — SKILL.md
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/stakeholder-translator/SKILL
+
+# Tableau Stakeholder Translator
+
+Produces a plain-language translation of what a Tableau dashboard answers, in the voice of the stakeholder who will consume it. Scope-aware: names what the dashboard does NOT answer, so the author does not overclaim in the meeting.
+
+## When to use (full trigger detail)
+
+Translate a Tableau dashboard into plain language for a non-technical stakeholder. Produces a one-page translation layer. what this answers in plain words, what this does NOT answer, three likely follow-up questions, and the one chart that carries the headline. Audience-shaped voice from a locked 5-profile taxonomy (C-suite, business sponsor, operational manager, external customer, cross-functional peer). Read-only. Trigger on "translate this for my VP", "plain language version", "explain this to a non-analyst", "stakeholder version", "jargon-free summary", "what does this answer in their words". Do NOT trigger for. presenter scripts (route to dashboard-walkthrough-generator), metric dictionaries (route to data-scribe), handoff onepagers (route to workbook-summary-onepager), dashboard-level critique (route to viz-critique-pro-studio), authoring or editing anything in Desktop (out of scope).
+
+## Reference files
+
+- **`skill-expertise/stakeholder-voice-guide.md`.** Five locked audience profiles (C-suite, business sponsor, operational manager, external customer, cross-functional peer) with vocabulary rules and follow-up-question patterns.
+- **`skill-expertise/jargon-swap-list.md`.** Common analyst-jargon terms with plain-language substitutions, keyed by audience profile.
+
+## When to use
+
+Author has built a technical dashboard and needs to describe it to a non-technical stakeholder. Wants a short rewrite plus the questions that stakeholder is likely to ask, not a design critique.
+
+## Hard Constraints
+
+- **HC-1 Read-only.** No mutation.
+- **HC-2 Author declares audience before output.** Five locked profiles.
+- **HC-3 Translation names structure and framing, never fabricates conclusions.** "This dashboard shows how our customer count has moved by region" is fine. "Customer growth is strong" is not.
+- **HC-4 Honest "already plain" verdict.** If the dashboard labels and captions already read in plain language, say so and offer only the follow-up-question section.
+- **HC-5 Required "What this does NOT answer" section.** Prevents overclaiming. The skill always surfaces at least one scope boundary even when the dashboard is clean.
+- **HC-6 Standalone-safe routing.** Handoffs to dashboard-walkthrough-generator, data-scribe, workbook-summary-onepager all optional with manual fallbacks.
+- **HC-7 Audience taxonomy locked.** No ad-hoc audience types.
+- **HC-8 No pasted URLs to community resources.**
+
+## Workflow
+
+**Tools used.** `list-dashboards` (to enumerate dashboards and confirm which is the target), `list-worksheets` (to resolve zone-to-sheet mapping and identify sheets referenced in the translation), `list-available-fields` (to resolve technical field names for jargon-swap lookups and to identify data-source references for the Business sponsor voice), `get-dashboard-xml` (load-bearing read for current title, caption, label, and tooltip text; everything the translation actually swaps depends on this), `get-workbook-inventory` (to pull data-source names for the Business sponsor voice's "sourced from X" clarification; skip this call for C-suite and Operational manager audiences, which don't surface data-source detail by default).
+
+**Why `get-dashboard-xml`, not `get-worksheet-xml`.** `get-worksheet-xml` has a confirmed 500/`operation-failed` risk on sheets that are already placed on a dashboard with real data (exactly the sheets this skill reads). `get-dashboard-xml` is used deliberately to avoid that failure mode, not as an oversight.
+
+**General call-skipping rule.** Skip any read whose output the current branch cannot use. This already applies to `get-workbook-inventory` for C-suite/Operational audiences (above); it also applies to `list-available-fields` under the HC-4 "already plain" branch. If `get-dashboard-xml` text shows no analyst-jargon surfaces, do not call `list-available-fields` for jargon-swap lookups, since there is nothing left to swap.
+
+**Mid-session audience change.** When the author asks for a different voice after already receiving output (see Error Handling table below), reuse the `get-dashboard-xml` read already in hand. Do not re-call it. Only the voice-dependent prose is regenerated.
+
+Steps:
+
+1. Call `list-dashboards`. Confirm target. If `list-dashboards` returns empty or errors, state so and offer to walk through the stakeholder-voice-guide as reading reference until a workbook is open.
+2. Ask the author to declare the audience from the five locked profiles. Map any non-standard phrasing before proceeding.
+3. Call `get-dashboard-xml` to read current title, caption, and tooltip text.
+4. Apply the jargon-swap-list against identified technical terms.
+5. Generate the five-section output.
+
+## Audience taxonomy (locked)
+
+Full detail in `skill-expertise/stakeholder-voice-guide.md`.
+
+- **C-suite.** 1-2 minute attention budget. Headline only. Strategic follow-ups.
+- **Business sponsor.** 3-5 minute budget. Named metrics with definitions. Follow-ups about expectations.
+- **Operational manager.** 3-5 minute budget. What to do next. Follow-ups are tactical.
+- **External customer.** 5-10 minute budget. Define everything. Follow-ups are clarifying.
+- **Cross-functional peer.** 3-5 minute budget. Shared vocabulary from their function. Follow-ups are relational ("how does this affect my team").
+
+## Error Handling
+
+| Failure | Cause | Recovery |
+|---|---|---|
+| `list-dashboards` returns empty or errors | No workbook open, or workbook has zero dashboards | State plainly that no workbook or dashboard was found. Offer to walk through the stakeholder-voice-guide and jargon-swap-list as reading reference until a workbook is open. Do not proceed on an assumed dashboard. |
+| Dashboard already reads in plain language | Dashboard title, captions, and tooltips use plain-language terms with no analyst-jargon surfaces | Per HC-4, state "The dashboard already reads in plain language. Here is the follow-up-question set anyway." Deliver sections 3-5 (scope boundaries, three questions, headline chart). Skip section 2 (translation paragraph) explicitly. |
+| `get-dashboard-xml` returns empty, errors, or missing text | Dashboard XML corrupted, Studio tool failure, or dashboard was never saved after last change | Fall back to `list-worksheets` and `list-available-fields` for sheet and field enumeration only. State plainly in the output: "Dashboard title and caption text could not be read; translation uses sheet and field names only." Do not fabricate title text. |
+| `list-worksheets` or `list-available-fields` returns empty or errors | Workbook has no worksheets enumerated, or field metadata call fails | Fall back to data already read from `get-dashboard-xml`. State plainly: "Jargon-swap lookups used dashboard XML only; worksheet/field metadata was unavailable." Do not fabricate sheet or field names. |
+| Author declares non-standard audience ("my boss's boss", "a mixed group", "the readout") | Audience outside the five locked profiles | Map to the closest locked profile per stakeholder-voice-guide.md mapping rules. State the mapping in the output ("Mapping 'the readout' to C-suite voice because that's the typical skip-level audience"). Let the author correct the mapping if wrong. |
+| Author declines to pick an audience ("just pick one", silence, "whatever works") | Author wants the output but does not want to answer the audience question | Default to **Business sponsor** voice (middle of the five profiles for voice-mixing risk, assumes some business vocabulary but defines terms on first use). State the default plainly: "Defaulting to Business sponsor voice because you did not declare one. Say 'use C-suite voice' or any other profile and I will re-emit." Deliver the full output; do not loop on the audience question. |
+| Author changes the audience mid-run | Author declared one audience, received the translation, then asks for a different voice | Do not force a full rerun. Re-emit sections 2 (translation paragraph) and 4 (three questions in stakeholder voice) in the new voice. Sections 1 (confirmation), 3 (scope boundaries), and 5 (headline chart) stay. State plainly: "Rewriting translation and questions in [new audience] voice. Scope boundaries and headline chart unchanged." |
+| Author asks for a conclusion the dashboard does not support ("tell me we're growing", "say the Northeast is strongest") | User requests an interpretive statement rather than a plain-language translation | Per HC-3, do not fabricate. State plainly: "The dashboard does not assert that conclusion. The translation names what the dashboard shows structurally; the interpretation is yours to make." Add the request as a scope-boundary bullet in section 3. |
+| Opt-in file save fails (`.md` / `.txt` write errors) | Filesystem permissions, path collision, disk full, or user cancels | Emit the full translation content inline in chat regardless of save status. State the save failure plainly with path and error. Never gate the translation itself on the save succeeding. Default save location is the user's Downloads folder. |
+| Dashboard has 15+ sheets (scalability edge) | Large dashboard with more sheets than fit in a translation of this length | Translate the primary surface (KPI tile + headline chart + 1-2 supporting views). State plainly: "This dashboard has [N] sheets. Translation covers the primary [K] sheets by spatial priority. [N-K] additional sheets are not translated; say 'extend to all sheets' or name specific ones to add." Do not emit a 15-section translation; it exceeds a stakeholder's attention budget regardless of audience. |
+| Cross-functional peer declared without specifying the peer's function | Author picked Cross-functional peer voice (e.g., "translate this for a peer") without naming the peer's domain. The voice depends on the function (Product → roadmap/feature vocabulary; Marketing → campaign/attribution vocabulary; Sales → pipeline/quota vocabulary; Support → ticket/CSAT vocabulary) | Ask once: "Which function is this peer in: Product, Marketing, Sales, or Support?" If the author answers, use that function's vocabulary. If the author says "just pick one" or declines, default to **Product** (safest generalization: product vocabulary is widely understood across teams). State the default plainly: "Defaulting to Product function because you did not name one. Say 'they are in Sales' or any other function and I will re-emit." Deliver the full output; do not loop. |
+| Dashboard appears to be a splash / navigation / cover page | Dashboard has very few sheets, text-only zones dominate, nav buttons or image zones carry the layout, or the only sheet is a title/branding placeholder with no measure encoding. HC-4 "already plain" might fire by accident on such a dashboard, but there is no actual data content to translate | Detect the splash pattern (fewer than 2 data-encoding sheets, or more text/image zones than chart zones). State plainly: "This dashboard appears to be a cover or navigation page rather than a content dashboard. Point me at the content dashboard it links to and I will translate that one. If you did want this one translated anyway (e.g. the cover text itself is the deliverable), say 'translate the cover page' and I will proceed." Do not emit the five-section translation on a splash page. Do not falsely trigger the HC-4 verdict. |
+
+## Output format
+
+1. **Audience and dashboard confirmed.** One sentence with the mapping if the audience was non-standard.
+2. **What this answers (in their words).** One paragraph. Plain language. Jargon swapped per jargon-swap-list.
+3. **What this does NOT answer.** Required scope boundaries. At least 2 bullet points even on a clean dashboard (HC-5).
+4. **Three likely follow-up questions.** Each with: the question in stakeholder voice, where the dashboard answers it (sheet + data point), where it doesn't (if applicable).
+5. **The one chart that tells the headline.** Named sheet + 1-sentence framing of why that sheet carries the headline. Tie-break rule when more than one sheet looks headline-worthy: prefer the sheet containing the single largest KPI/BAN tile; if none exists, prefer the topmost-left sheet in the dashboard's zone order.
+6. **Numbered Desktop steps** if any title, caption, or tooltip rewrite is needed to support the translation (optional section, only if the current labels will fail the audience).
+
+## Validation Gate
+
+- **V1.** Audience is one of five locked profiles.
+- **V2.** Dashboard named explicitly.
+- **V3.** Translation uses plain language (jargon-swap-list applied).
+- **V4.** "What this does NOT answer" section is present with at least 2 bullets.
+- **V5.** Three follow-up questions, each tied to a specific data point OR explicitly flagged as "the dashboard does not answer this."
+- **V6.** No fabricated business conclusions (HC-3).
+- **V7.** No URLs pasted.
+- **V8.** Voice consistency across the entire output. Sections 2 (translation paragraph), 4 (three questions in stakeholder voice), and the headline-chart framing in section 5 all use the declared audience voice. No sentence in a C-suite run contains analyst-level jargon (named LODs, aggregation syntax, chart-mechanic references). No sentence in an External customer run assumes internal product knowledge. No sentence in a Cross-functional peer run uses the sender's domain jargon when their jargon is different. If any section drifts from the declared voice, revise before shipping.
+
+## Anti-patterns
+
+- Fabricating a conclusion in plain language ("revenue is strong" → "customer growth is strong" is the same violation in a different voice).
+- Skipping the "What this does NOT answer" section when the dashboard looks clean.
+- Running C-suite voice with analyst-level jargon.
+- Mapping an unknown audience to "cross-functional peer" without stating the mapping.
+- Promising the dashboard answers a stakeholder question it does not have the data to answer.
+
+## Composability
+
+Standalone-safe.
+
+| Situation | Route target (if installed) | Manual fallback |
+|---|---|---|
+| Author wants a presenter script after the translation | `dashboard-walkthrough-generator` | Author uses the translation sections directly as talking points |
+| Author wants a metric dictionary alongside | `data-scribe` | Author pastes the "what this answers" paragraph plus a field list manually |
+| Author wants a stakeholder-handoff onepager | `workbook-summary-onepager` | Author merges the translation + a one-paragraph headline |
+
+## Standalone use
+
+The five-section output is self-contained. Author can send it to the stakeholder directly or paste into email.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.
+
+---
+
+# Tableau What-If Advisor — when to use
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/what-if-advisor
+
+## What it does
+
+Takes your natural-language what-if question and classifies it against a 9-rule mapping into one of six locked W-mechanisms (W1-W6) or into one of three honest-limitation paths (parameter-only, Monte Carlo, predictive). Returns the mechanism recommendation, numbered Desktop steps, and a caveat section stating what the analysis does and does not prove. You own execution; the skill never mutates the workbook.
+
+Two output paths. **Verified-fit path** reads the named target sheet via `get-worksheet-xml` to confirm prerequisites (continuous axis for W1/W2, time dimension on Columns for W3, continuous measure for W5) before emitting the recommendation. **General-recommendation path** proceeds on your question wording alone when you want a mechanism-level answer first; prerequisites are announced as unverified and you confirm fit before executing.
+
+Pairs with calc-writer (W6 scenario calc authoring), calc-debugger (W6 debugging), calc-optimizer (W6 performance), and viz-planner (dashboard redesign around the what-if) as optional downstream routes, each with a manual Desktop fallback.
+
+## When to use it
+
+- "Project this sales trend out 6 months."
+- "Add a $1M target line to this chart."
+- "Which customers would move into the top-10 if revenue grew 15%?"
+- "Overlay actual sales vs. sales if we hit 10% higher."
+- "Create a reusable calc for revenue if every customer spent 20% more."
+- "Shade the acceptable range between $500K and $1.5M."
+
+## When NOT to use it
+
+- Not for writing the W6 calc itself (use calc-writer; this skill hands off with seed values)
+- Not for debugging an existing calc (use calc-debugger)
+- Not for optimizing calc performance (use calc-optimizer)
+- Not for full dashboard redesign around the what-if (use viz-planner)
+- Not for parameter authoring (platform-weak in Studio; the skill routes to a manual Desktop parameter path with the agent-reliability caveat)
+- Not for Monte Carlo simulation (recommends external modeling in R/Python/Excel; offers W6 midpoint as partial answer)
+- Not for predictive modeling with confidence intervals (points to Tableau's Forecast feature on the Analytics pane)
+- Not for authoring or editing anything in Desktop (this skill is read-only advisory)
+
+## How to trigger it
+
+- "what if analysis"
+- "add a scenario"
+- "project this trend"
+- "hypothetical scenario on [measure]"
+- "run a what if"
+- "which [dimension] would move into [top-N] if [measure] grew X%"
+- "overlay actual vs. [hypothetical]"
+- "create a calc for [measure] +X%"
+
+---
+
+# Tableau What-If Advisor — SKILL.md
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/what-if-advisor/SKILL
+
+# Tableau What-If Advisor
+
+Reads the author's what-if question, maps to a locked 6-mechanism catalog of non-parameter approaches, and emits numbered Desktop steps. Works around the Studio parameter-authoring weakness by routing to mechanisms the platform does support (reference lines, reference bands, trend-line extensions, set actions, dual-axis overlays, scenario calcs).
+
+## When to use (full trigger detail)
+
+Recommend the right non-parameter mechanism for a what-if analysis in Tableau. Author describes the hypothetical ("what if we doubled marketing spend", "what if churn dropped 10%"); skill maps to a locked 6-mechanism catalog (W1 reference line, W2 reference band, W3 trend line extension, W4 set-based scenario, W5 dual-axis overlay, W6 scenario calc) and delivers numbered Desktop steps. Explicitly avoids parameter authoring (platform-weak in Studio). Read-only advisory. Trigger on "what if analysis", "add a scenario", "double this number", "projection on this trend", "hypothetical scenario", "run a what if". Do NOT trigger for. parameter authoring (parameter work is deferred portfolio-wide), calc writing itself (route to calc-writer for W6 scenario calcs), dashboard interaction design (route to viz-planner), authoring or editing anything in Desktop (out of scope).
+
+## Reference files
+
+- **`skill-expertise/mechanism-catalog.md`.** The locked W1-W6 mechanism definitions with per-mechanism evidence signals and Desktop step blocks.
+- **`skill-expertise/question-classification.md`.** How to map an author's natural-language what-if question to the right W-mechanism, with example classifications.
+
+## When to use
+
+Author wants to add a scenario, hypothetical, or projection to a worksheet. Does not want to be routed to parameter authoring.
+
+## Hard Constraints
+
+- **HC-1 Read-only advisory.** The W6 scenario calc is handed off to calc-writer; this skill never writes a calc itself.
+- **HC-2 Locked W1-W6 catalog.** No ad-hoc mechanisms invented mid-run.
+- **HC-3 Never recommend parameter authoring.** Platform constraint. If a question genuinely requires a parameter (e.g., user-driven value selection with slider UI), say so plainly and route to the manual Desktop parameter path with the caveat that parameter authoring is unreliable in the current agent.
+- **HC-4 Honest "cannot do this within scope" verdict.** If the question requires a mechanism outside W1-W6, state the limitation.
+- **HC-5 Author declares the hypothetical value.** The skill does not invent business-realistic hypothetical values.
+- **HC-6 Trend extensions explicitly flagged as projections, not predictions.** No causality or forecasting claims.
+- **HC-7 Numbered Desktop steps per recommendation.**
+- **HC-8 Standalone-safe routing (W6 → calc-writer).**
+- **HC-9 No pasted URLs to community resources.**
+
+## Workflow
+
+**Tools used.** `list-dashboards` (to enumerate dashboards), `list-worksheets` (to confirm the target sheet exists), `list-available-fields` (to resolve the measures and dimensions on the target sheet), `get-worksheet-xml` (to read per-sheet shelf composition: Rows pills, Columns pills, Marks card, continuous-axis presence; the load-bearing read for W1 and W2 continuous-axis prerequisite, W3 time-dimension-on-Columns prerequisite, and W5 continuous-measure prerequisite). Note: `get-dashboard-xml` returns zone layout only, not shelf-level data, and cannot be used to confirm continuous-axis or time-dimension prerequisites.
+
+Steps:
+
+1. Ask the author to state the what-if question in plain language.
+2. Ask the author to name the target sheet. Sheet declaration is optional for all W1-W6 mechanisms, not just W6: if the author wants a general mechanism recommendation first, proceed on the question text alone and flag prerequisites as unverified (same wording as the `get-worksheet-xml` failure row below). Only block on a named sheet when the author asks for a verified fit.
+3. If a target sheet is named: call `list-worksheets` to confirm it exists, then `list-available-fields` to resolve its measures and dimensions, then `get-worksheet-xml` on the target sheet to read its shelf composition. Do not rely on `get-dashboard-xml` for prerequisite checks; it carries zone layout only.
+4. Classify the question against W1-W6 using the rules in `question-classification.md`.
+5. If the question maps to parameter authoring (not W1-W6), emit the HC-3 honest-limitation verdict with the manual Desktop parameter path.
+6. If the question maps to W1-W6, emit the mechanism recommendation and numbered Desktop steps.
+7. For W6, emit the handoff to calc-writer with seed values (field, aggregation, hypothetical value from the author).
+
+## Error Handling
+
+Every recovery path below delivers partial value, never a bare refusal. Name the failure plainly, deliver what the skill can still do, and flag anything downgraded so the author knows the output is incomplete.
+
+| Failure | Cause | Recovery |
+|---|---|---|
+| No workbook open (`list-dashboards` or `list-worksheets` returns empty or errors) | No workbook open, Studio tool failure, or workbook has zero worksheets | State plainly that no workbook or worksheets were found. Offer to walk through `mechanism-catalog.md` and `question-classification.md` as reading reference until a workbook is open. Do not fabricate a classification. |
+| Author declines to name the target sheet | Author wants a mechanism recommendation without declaring the sheet | Call `list-worksheets` and offer the first candidate sheets with continuous axes (based on `get-worksheet-xml` reads). State plainly: "You did not name a target sheet. Candidates with continuous axes: [Sheet A], [Sheet B], [Sheet C]. Say 'use [name]' and I will proceed. If no candidate fits, name a different sheet." Do not pick for the author on W1-W5. For a general W6 scenario calc question (reusable field), the sheet declaration is optional; proceed to the calc-writer handoff. |
+| Target sheet has no continuous axis | W1 or W2 prerequisite fails | State plainly: "[Sheet name] has no continuous axis, so W1 (reference line) and W2 (reference band) cannot apply. Based on the sheet's structure, I can offer W4 (set-based scenario on a dimension), W5 (dual-axis overlay with a hypothetical calc), or W6 (scenario calc as a reusable field). Which would you like?" Deliver the viable mechanisms; do not refuse. |
+| Target sheet has no time dimension on Columns | W3 prerequisite fails | State plainly: "[Sheet name] has no time dimension on Columns, so W3 (trend line extension) cannot project forward. Alternatives: W1 (reference line at a hypothetical value), W5 (dual-axis overlay with a hypothetical calc), or W6 (scenario calc). Which fits?" Do not force W3 onto a non-time viz. |
+| Author declines to declare the hypothetical value | HC-5 forbids inventing values | State plainly: "I will not invent a business-realistic hypothetical value (HC-5). Options: (1) state a value and I will use it in the Desktop steps, (2) proceed with a placeholder `[VALUE]` in the steps and you replace it before executing, or (3) tell me the baseline (e.g., current revenue) and the shift (e.g., +10%) and I will calculate the hypothetical." Default to option 2 if the author does not choose; announce the placeholder plainly. |
+| Author's question is ambiguous (matches 2 or more classification rules) | Rule-overlap in question-classification.md | Ask exactly one clarifying question per the "Ambiguous questions" section of question-classification.md. Example: "Do you want a line at a specific value (W1), or the projected trend extended into the future (W3)?" Classify based on the answer. Do not pick for the author. |
+| Author's question maps to parameter-authoring (Rule 7) | Platform constraint (HC-3) | Honest-limitation verdict: "This question needs user-driven value selection, which requires a parameter. Parameter authoring is unreliable in the current agent. Manual Desktop path: Data pane right-click, Create Parameter, set data type and allowable values, OK; then right-click the parameter, Show Parameter, and reference it in a calc with `[Parameter Name]`. If a close-enough W1-W6 fit would unblock you (fixed value instead of adjustable), say so and I will offer it." Deliver the manual path; never refuse. |
+| Author's question is Monte Carlo (Rule 8) | Out of scope | Honest-limitation: "Monte Carlo simulation is out of scope. Options: (1) model externally in R, Python, or Excel and import the result set back into Tableau as a datasource, or (2) run a single-point W6 scenario calc for the midpoint of your range as a partial answer." Offer the W6 fallback explicitly. |
+| Author's question is predictive (Rule 9) | Out of scope | Honest-limitation: "The skill does not support predictive modeling. Tableau's Forecast feature on the Analytics pane is the closest in-platform option. Right-click the viz, Forecast, Show Forecast; then edit forecast model and confidence bounds. I can also offer W3 (trend line extension) as a projection, which is weaker than Forecast but faster to apply. Which fits?" Point to the right native feature; deliver the W3 fallback as an option. |
+| Author asks the skill to write the W6 calc itself | HC-1 (read-only advisory) | Convert the request: "I recommend; I do not write calcs. Here is the formula template seeded with your values: `[Base Measure] * (1 + [Hypothetical Rate])`. If `calc-writer` is installed, hand off to it with these seed values; otherwise paste into Tableau's calc editor manually (Data pane right-click, Create Calculated Field, paste, name, OK)." Deliver the template; do not block the author on calc-writer availability. |
+| `get-worksheet-xml` returns empty or errors on the target sheet | Studio tool error, sheet not saved after last change, or sheet is a dashboard-bound sheet with no standalone XML | Fall back to classification based on the author's declared field names and the question's natural-language shape. State plainly: "Could not read shelf composition for [sheet]. Classification will be based on your question wording only; prerequisite checks (continuous axis, time dimension on Columns) are not verified. Verify fit before executing Desktop steps." Degrade; do not fabricate a verified-fit confirmation. |
+| Opt-in file save fails | Filesystem permissions, path collision, disk full, or user cancels | Emit the full mechanism recommendation and Desktop steps inline in chat regardless of save status. State the save failure plainly with path and error. Never gate the output on the save succeeding. Default save location is the user's Downloads folder. |
+| Author asks for a mechanism not in W1-W6 ("do a what-if with a slider widget", "run a sensitivity table") | HC-4 scope-boundary | Honest-limitation per HC-4: "Mechanism outside W1-W6. [For slider: route to parameter-authoring honest-limitation path above. For sensitivity table: suggest external modeling or a hand-built matrix in a worksheet with multiple W6 calc fields.] If one of W1-W6 would partially satisfy, I can offer it; just say the word." Convert the gap into a scoped offer; do not refuse flat. |
+
+## Mechanism catalog summary (full catalog in mechanism-catalog.md)
+
+- **W1 Reference line.** Static value drawn as a line on a continuous axis. Use for "target line," "break-even," "last-year baseline."
+- **W2 Reference band.** Range drawn as a shaded band. Use for "acceptable zone," "quartile range," "forecast corridor."
+- **W3 Trend line extension.** Linear or non-linear trend projection via Analytics pane. Use for "where will this be in 6 months at current rate." Must be flagged as projection, not prediction (HC-6).
+- **W4 Set-based scenario.** Membership comparison via sets and set actions. Use for "customers who would move into the top-N if their revenue grew 10%."
+- **W5 Dual-axis overlay.** Actual vs. hypothetical as two measures on the same chart. Use for "actual revenue vs. revenue if we hit target."
+- **W6 Scenario calc.** Fixed-value calc field encoding a one-off hypothetical. Use for "revenue if every customer spent 20% more." Handed off to calc-writer for actual authoring.
+
+## Output format
+
+1. **What-if question confirmed and classified.** State the question back and the W-mechanism it maps to.
+2. **Why this mechanism.** 1-2 sentences explaining why W-N is the right fit.
+3. **Numbered Desktop steps.** From the catalog.
+4. **If W6: handoff block.** Seed values (field, aggregation, hypothetical value, calc-name suggestion) for calc-writer.
+5. **Caveat section.** What this analysis does NOT prove. Especially critical for W3 (projection, not prediction) and W4 (membership, not causation).
+6. **If parameter-only: honest limitation.** State that W1-W6 cannot answer this question in-scope. Provide the manual Desktop parameter path with the caveat about agent reliability.
+
+## Worked example
+
+**Author's question.** "If we doubled marketing spend, where would revenue land in 6 months at the current rate?"
+
+**Target sheet.** "Monthly Revenue Trend" (continuous time dimension on Columns, SUM(Revenue) on Rows).
+
+**Skill output.**
+
+```
+What-if question confirmed: "If we doubled marketing spend, where would
+revenue land in 6 months at the current rate."
+Classification: W3 trend line extension (projection, not prediction).
+Target sheet: Monthly Revenue Trend (continuous time on Columns,
+SUM(Revenue) on Rows). Prerequisites verified via get-worksheet-xml.
+
+Why W3. The question asks where revenue lands under a continued-rate
+assumption, which maps to extending the current slope forward. Note:
+this does not model the causal effect of doubling marketing spend; it
+only extends the trend you already have. If you want the hypothetical
+spend to influence the slope, that is a W6 scenario calc instead.
+
+Desktop steps.
+1. On Monthly Revenue Trend, click the Analytics pane.
+2. Drag Trend Line onto the viz. Choose Linear.
+3. Right-click the X-axis, Edit Axis. Set Range to Fixed and extend
+   the "to" value forward 6 months past the last data point.
+4. Add an annotation at the extended point naming the projected value
+   and the method ("Linear projection, +6 months").
+
+Caveats.
+This is a projection, not a prediction (HC-6). The trend line extends
+the current slope under the assumption that no conditions change. The
+hypothetical "doubled marketing spend" is NOT encoded in this trend
+extension; it is a background intent, not a modeled input. Use this to
+orient the conversation about whether the current rate hits your 6-month
+target. If you need the hypothetical to actually influence the slope,
+switch to W6 and I will set up the scenario calc.
+
+File save: .md, .txt, or chat only?
+```
+
+## Validation Gate
+
+- **V1.** Author's question is restated before classification.
+- **V2.** Classified against W1-W6 (or explicitly flagged as parameter-only).
+- **V3.** If the author asked for a verified-fit recommendation, the target sheet is named and prerequisites are read via `get-worksheet-xml`. If the author asked for a general mechanism recommendation first (sheet declaration optional per Workflow Step 2), V3 passes when the output explicitly announces "prerequisites unverified" and names which prerequisites would need checking before executing Desktop steps.
+- **V4.** Numbered Desktop steps match the catalog block for the recommended mechanism.
+- **V5.** W3 output flags "projection, not prediction" explicitly (HC-6).
+- **V6.** Caveat section present on every output.
+- **V7.** No URLs pasted.
+- **V8.** No parameter-authoring recommendation outside the honest-limitation path (HC-3).
+
+## Anti-patterns
+
+- Routing to parameter authoring without the honest-limitation framing.
+- Inventing a W7+ mechanism not in the catalog.
+- Fabricating a business-realistic hypothetical value (HC-5).
+- Claiming W3 trend extensions predict the future.
+- Skipping the caveat section.
+- Running W6 without the calc-writer handoff.
+- Emitting a mechanism recommendation without numbered Desktop steps.
+
+## Composability
+
+Standalone-safe.
+
+| Situation | Route target (if installed) | Manual fallback |
+|---|---|---|
+| W6 scenario calc authoring | `calc-writer` | Author writes the calc manually using the seed values; the skill provides the formula template |
+| Author wants to debug the W6 calc after | `calc-debugger` | Author tests the calc on a small subset manually |
+| Author wants to optimize the W6 calc | `calc-optimizer` | Author checks the Performance Hierarchy manually |
+| Author wants the full dashboard redesign | `viz-planner` | Author plans the dashboard change manually |
+
+## Standalone use
+
+The W1-W5 Desktop steps are fully self-contained. W6 degrades to a formula template the author pastes into Tableau's calc editor manually.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.
+
+---
+
+# Workbook Summary Onepager — when to use
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/workbook-summary-onepager
+
+## What it does
+
+Aggregates three upstream handoffs (calc-documenter, data-model-documenter, dashboard-caption-audit) into 5 locked sections: what the workbook shows, key metrics defined, data sources used, dashboards included, and known limitations. Every section carries a signal-source label (handoff, local_extract, or empty_state) so a reader can trace any fact back to its origin.
+
+## When to use it
+
+- "I need a one-pager on this workbook for a colleague who won't open Desktop."
+- "I want to hand this workbook off to a stakeholder with context, not just the file."
+- "I need a pre-publish summary of what's inside."
+
+## When NOT to use it
+
+- Not for a live-data snapshot with current metric values (structural summary only).
+- Not for rewriting or editing the workbook based on the summary (route to calc-writer or viz-planner).
+- Not for multi-workbook batch summary (out of scope).
+- Not for tab-order or print-layout audits (route to dashboard-tab-order or dashboard-print-check).
+- Not for scoring the workbook design (route to viz-critique-pro-studio).
+
+## How to trigger it
+
+- "summarize this workbook"
+- "one-pager please"
+- "workbook onepager"
+- "stakeholder summary"
+- "workbook-summary-onepager"
+- "hand off this workbook"
+
+---
+
+# Workbook Summary Onepager — SKILL.md
+
+Source: https://tableau.github.io/tableau-ai-utilities/tableau-studio-skills/tableau-agent/analysis-support/workbook-summary-onepager/SKILL
+
+# Workbook Summary Onepager
+
+## When to use (full trigger detail)
+
+Produce a single-page onepager summarizing a Tableau workbook for handoff to a stakeholder who wont open Desktop. Five locked sections. what this workbook shows (plain language), key metrics defined (calc-family), data sources used (data-and-model), dashboards included (build-and-design), known limitations (author-declared or empty-state). Read-only. Opportunistically consumes calc-documenter, data-model-documenter, and dashboard-caption-audit handoffs when available in session context; local-extract fallback otherwise with formula-hash and workbook-fingerprint staleness detection per HC#15. Two-tier delivery. compact Tier A chat summary plus opt-in Tier B file save as .md or .txt per HC#12. Trigger with summarize this workbook, one-pager please, workbook onepager, stakeholder summary, workbook-summary-onepager, hand off this workbook. Do NOT trigger on. exporting a live-data snapshot (out of scope, structural summary only), rewriting or editing the workbook based on the summary (route to calc-writer or viz-planner), multi-workbook batch summary (out of scope), or auditing dashboard tab order or print layout (route to dashboard-tab-order or dashboard-print-check).
+
+## Purpose
+
+Produce a single-page onepager summarizing a Tableau workbook for a stakeholder who will not open Desktop. Five locked sections aggregated from upstream handoffs (calc-documenter, data-model-documenter, dashboard-caption-audit) when available in session context; local-extract fallback otherwise. Read-only. File-write only for the onepager artifact. Every section cites its signal source per HC#3 so the reader can trace where each fact came from.
+
+## Trigger Conditions
+
+- summarize this workbook
+- one-pager please
+- workbook onepager
+- stakeholder summary
+- workbook-summary-onepager
+- hand off this workbook
+- give me a workbook summary
+- write up this workbook for a colleague
+
+## Do NOT Trigger On
+
+- Live-data snapshot (query workbook for current metric values) → out of scope. Summary is structural, not data-content.
+- Rewriting or editing the workbook based on the summary → route to `calc-writer` or `viz-planner`.
+- Multi-workbook batch summary → out of scope. One workbook per run.
+- Auditing dashboard tab order → route to `dashboard-tab-order`.
+- Auditing dashboard print layout → route to `dashboard-print-check`.
+- Grading the workbook design → route to `viz-critique-pro-studio`.
+- Documenting every calc in detail → route to `calc-documenter` for the full dictionary.
+- Explaining a single specific calc in plain language → route to `calc-explainer`.
+
+## Scope Boundaries
+
+- **IN.** One workbook per run. Read-only. Five-section locked catalog. Opportunistic handoff consumption from `calc_documentation/1`, `data_model_documentation/1`, and `caption_audit_report/1` when in session context. Local-extract fallback via `list-available-fields`, `get-workbook-inventory`, `get-worksheet-xml`, `get-dashboard-xml`. `signal_source` labeled per section (`handoff` or `local_extract`). Handoff staleness detection per HC#15 (portfolio-wide). Two-tier delivery: compact Tier A chat + opt-in Tier B file save as `.md` or `.txt`.
+- **OUT.** Any workbook mutation. Live-data snapshot (queries for current metric values). Multi-workbook runs. PDF or DOCX output (`.md` and `.txt` only). Rewriting content the author declared (author caption preserved verbatim per HC#5).
+
+## The 5-Section Onepager Catalog (Locked)
+
+Every section is populated from upstream handoff, local extract, or an empty-state prose fallback. No section is silently omitted. Full detection criteria and worked examples in `skill-expertise/section_catalog.md`.
+
+| # | Section | Signal source preference | Required |
+|---|---|---|---|
+| 1 | What this workbook shows | Workbook-level author caption (if present), else local-extract dashboard-title aggregation | Yes |
+| 2 | Key metrics defined | `calc_documentation/1` handoff → top 5 most-referenced calcs. Local-extract fallback: `list-available-fields` on primary datasource. | Yes |
+| 3 | Data sources used | `data_model_documentation/1` handoff → per-DS summary with row count and relationship shape. Local-extract fallback: `get-workbook-inventory` datasource enumeration. | Yes |
+| 4 | Dashboards included | `caption_audit_report/1` handoff → dashboard names with title/caption presence flags. Local-extract fallback: `get-workbook-inventory` dashboard enumeration. | Yes |
+| 5 | Known limitations | Workbook-level author caption Known limitations: section (if declared), else empty-state prose (No known limitations documented in workbook caption.) | Yes |
+
+**No section omitted.** If a section cant be populated with real evidence, the skill renders an empty-state prose fallback rather than skipping the section per HC#5 and HC#6.
+
+**Section ordering is locked** per HC#7. Same input produces byte-identical section ordering.
+
+## Workflow Phases
+
+- **Phase 0 Scope.** Confirm workbook is open via `get-workbook-inventory`. If the call fails, returns no workbook, or the session is disconnected, stop and tell the user to confirm Tableau Studio is open with a workbook loaded — do not proceed to Phase 1 on an empty or failed inventory read. Ensure one workbook per run per HC#2. When local-extract falls back to `list-available-fields` (Section 2) and that call returns empty on a connected-but-broken datasource, retry once, then render Section 2 as Metric definitions could not be read this run (tool error) with `signal_source: empty_state` and reason `read_failed`. Never use the No calcs defined prose for a read failure.
+- **Phase 1 Handoff Discovery.** Check session context for three upstream handoffs: `calc_documentation/1`, `data_model_documentation/1`, `caption_audit_report/1`. For each, verify workbook-fingerprint match against current state per HC#15 staleness detection. Populate `handoffs_available[]` with fresh handoffs; log stale or missing handoffs in `handoffs_missing[]`.
+- **Phase 2 Section Population (numbered checklist).**
+  1. Section 1 (What this workbook shows): read workbook caption via `get-workbook-inventory` (if the XML exposes it). If empty, aggregate dashboard titles from `get-dashboard-xml` across all dashboards — issue these as one batched pass over the dashboard list rather than one call per dashboard, and reuse the same batch for Section 4s dashboard enumeration instead of re-reading.
+  2. Section 2 (Key metrics): if `calc_documentation/1` handoff is fresh, extract top 5 most-referenced calcs from the reference graph. If missing/stale, local-extract the primary datasources calc list via `list-available-fields` and rank by name-recency (weaker signal, labeled clearly).
+  3. Section 3 (Data sources): if `data_model_documentation/1` handoff is fresh, extract per-DS summary. If missing/stale, local-extract from `get-workbook-inventory` datasource enumeration with `row_count: unknown` sentinel.
+  4. Section 4 (Dashboards): if `caption_audit_report/1` handoff is fresh, extract dashboard names with title/caption presence flags. If missing/stale, local-extract dashboard names from `get-workbook-inventory` with `title_present: unknown` sentinels.
+  5. Section 5 (Known limitations): parse workbook caption for a Known limitations: or Limitations: section. If absent, render empty-state prose.
+- **Phase 3 Signal-Source Attribution.** For each section, populate `signal_source: handoff | local_extract | empty_state`. HC#5 requires transparent attribution; user must be able to tell where each fact came from.
+- **Phase 4 Validate.** Run the 4-check V-gate: section coverage, signal-source attribution, ordering determinism, handoff completeness.
+- **Phase 5 Deliver.** Two-tier: compact Tier A chat summary with all 5 sections in ~25 lines. Optional Tier B file save requires user path confirmation per HC#12 and format choice (`.md` or `.txt` only).
+
+## Hard Constraints
+
+**HC#1 Read-only against the workbook always.** Never mutates. File-write only for the onepager artifact (Tier B).
+
+**HC#2 One workbook per run.** Multi-workbook runs refused.
+
+**HC#3 5-section coverage locked.** No section omitted, no fabricated section added. Every section renders content or an empty-state prose fallback.
+
+**HC#4 Refuse to fabricate.** No inferred metrics, no guessed row counts, no invented author intent. Sentinels: `null`, `unknown`, empty-state prose.
+
+**HC#5 Signal-source labeled per section.** Every section emits `signal_source: handoff | local_extract | empty_state` so the reader can trace attribution. Never render a fact without stating its origin.
+
+**HC#6 Author caption preserved verbatim.** If the workbook has an author caption (workbook-level or per-dashboard), its quoted byte-identical in the relevant section. Skill supplements around author intent; never rewrites or paraphrases.
+
+**HC#7 Ordering determinism** (portfolio-wide HC#14). Section order locked (Section 1 → Section 5). Same input produces byte-identical output.
+
+**HC#8 Diff-mode transparency** (portfolio-wide HC#13). Repeat invocations against unchanged workbook + handoff state emit `diff_mode: reused_verbatim` in Tier A. Fresh-scan / reused-verbatim / targeted-rescan enum.
+
+**HC#9 Handoff-or-local labeled.** Every handoff-consuming section records which handoffs were fresh, which were stale, and which fell back to local-extract. `handoffs_consumed[]` and `handoffs_missing[]` populated in the report metadata.
+
+**HC#10 Never silent file write.** Tier B save requires user path confirmation AND format choice (`.md` or `.txt`). No default writes to Downloads.
+
+**HC#11 Empty-state prose over blank sections.** When a section has no data (no calcs, no dashboards, no author-declared limitations), render explicit empty-state prose (No calcs defined in this workbook, No known limitations documented in workbook caption) rather than a blank line.
+
+**HC#12 Length cap.** Tier A output stays under 30 lines total across all 5 sections. Tier B is unbounded but structured per the same 5-section skeleton.
+
+**HC#13 Handoff staleness detection required** (portfolio-wide HC#15). For each of the 3 upstream handoffs, verify workbook-fingerprint match against current state. Mismatch forces local-extract fallback for that section. Fingerprint mechanism verified sound during dashboard-tab-order behavioral run.
+
+**HC#14 Reference-file grounding.** All 5 sections cite their detection criteria and worked examples in `skill-expertise/section_catalog.md`. Skill cites the reference file when a user challenges section content.
+
+**HC#15 File format lock.** Tier B supports `.md` or `.txt` only. If user requests an unsupported format, skill refuses with a route to convert `.md` externally.
+
+**HC#16 Wide-workbook scale handling.** For workbooks with 50+ calcs or 10+ dashboards, skill emits a wide-workbook-notice in Tier A (this workbook has N calcs and M dashboards; Section 2 truncates to top 5 by reference count, Section 4 truncates to top 10 dashboards, full list lands in Tier B). Truncation applies to Tier A only; Tier B is unbounded.
+
+## Validation Gate (4-Check)
+
+- **V1 Section Coverage.** All 5 sections rendered in locked order.
+- **V2 Signal-Source Attribution.** Every section has `signal_source` populated per HC#5.
+- **V3 Ordering Determinism.** Same workbook + same handoff state → byte-identical output per HC#7.
+- **V4 Handoff Completeness.** `handoffs_consumed[]` and `handoffs_missing[]` populated. Fingerprint match verified for every consumed handoff.
+
+## Two-Tier Delivery
+
+**Tier A (chat).** Compact 5-section summary in ~25 lines total.
+
+Template:
+
+```
+**Workbook Summary Onepager: {workbook_name}**
+Signal sources: {N} handoff, {N} local_extract, {N} empty_state
+Diff mode: {fresh_scan | reused_verbatim | targeted_rescan}
+
+**1. What this workbook shows.** {plain-language summary}
+**2. Key metrics defined.** {top 5 calcs by reference count}
+**3. Data sources used.** {datasource names with row-count / relationship-shape summary}
+**4. Dashboards included.** {dashboard names with title/caption presence flags}
+**5. Known limitations.** {author-declared limitations OR empty-state prose}
+
+Save full onepager to file? (.md or .txt)
+```
+
+**Tier B (opt-in file save).** Full onepager `.md` (default) or `.txt` written to user-confirmed path per HC#10. Unbounded length; same 5-section skeleton. Includes handoff YAML block with `signal_source` per section.
+
+## Handoff Schema
+
+Emits `workbook_summary/1`:
+
+```yaml
+workbook_summary:
+  version: 1
+  run_timestamp: <ISO 8601>
+  workbook:
+    name: <string>
+    fingerprint: <sha256>
+  diff_mode: <fresh_scan | reused_verbatim | targeted_rescan>
+  handoffs_consumed:
+    - schema: <calc_documentation/1 | data_model_documentation/1 | caption_audit_report/1>
+      fresh: <boolean>
+      fingerprint_match: <boolean>
+  handoffs_missing: [<schema_name>]
+  sections:
+    - id: 1
+      name: What this workbook shows
+      signal_source: <handoff | local_extract | empty_state>
+      content: <string>
+    - id: 2
+      name: Key metrics defined
+      signal_source: <handoff | local_extract | empty_state>
+      content: <string>
+      metric_count: <int>
+      truncation_applied: <boolean>
+    - id: 3
+      name: Data sources used
+      signal_source: <handoff | local_extract | empty_state>
+      content: <string>
+    - id: 4
+      name: Dashboards included
+      signal_source: <handoff | local_extract | empty_state>
+      content: <string>
+      dashboard_count: <int>
+      truncation_applied: <boolean>
+    - id: 5
+      name: Known limitations
+      signal_source: <handoff | local_extract | empty_state>
+      content: <string>
+      author_declared: <boolean>
+  tier_b_saved:
+    path: <string|null>
+    format: <md | txt | null>
+  v_gate:
+    v1_section_coverage: <pass|fail>
+    v2_signal_source_attribution: <pass|fail>
+    v3_ordering_determinism: <pass|fail>
+    v4_handoff_completeness: <pass|fail>
+```
+
+Downstream consumers: `publish-readiness` (post-summary pre-publish sweep), `workbook-auditor` (summary delta across runs).
+
+## Common Mistakes (Anti-Patterns)
+
+- **Fabricating row counts or metric values.** When `data_model_documentation/1` handoff is missing, emit `row_count: unknown` sentinel. Never guess.
+- **Silently omitting a section.** HC#3 requires all 5 sections rendered. Empty-state prose per HC#11 for sections with no data.
+- **Rewriting the author caption.** HC#6 preserves author intent verbatim. Skill supplements around it; never paraphrases.
+- **Auto-invoking calc-documenter / data-model-documenter / dashboard-caption-audit.** Opportunistic consumption per HC#9; never chains-call upstream skills. User runs upstream skills separately if fresh handoffs are wanted.
+- **Silent file write on Tier B save.** HC#10 requires path confirmation and format choice (`.md` or `.txt` only).
+- **Requesting unsupported output format.** PDF, DOCX, HTML refused per HC#15. Route to external converter.
+- **Ignoring handoff staleness.** HC#13 requires fingerprint verification. Stale handoff forces local-extract fallback, never silent stale-data rendering.
+
+## Adjacent-Skill Routing
+
+- **Upstream opportunistic:** `calc-documenter` (produces `calc_documentation/1`), `data-model-documenter` (produces `data_model_documentation/1`), `dashboard-caption-audit` (produces `caption_audit_report/1`).
+- **Downstream opt-in:** `publish-readiness` (post-summary pre-publish sweep), `workbook-auditor` (summary delta tracking).
+- **Refusal routes:** live-data snapshot → out of scope; workbook rewrites → `calc-writer` / `viz-planner`; tab-order audit → `dashboard-tab-order`; print-layout audit → `dashboard-print-check`; dashboard design scoring → `viz-critique-pro-studio`.
+
+## Known Limitations
+
+- **Live-data snapshot out of scope.** Summary is structural, not data-content. Section 2 lists metric definitions; not their current values.
+- Supports `.md` and `.txt` only per HC#15.
+- **Workbook-level author caption may not be exposed by all `get-workbook-inventory` implementations** in this environment. Section 1 falls back to dashboard-title aggregation if the caption is empty or unreadable.
+- **`get-worksheet-xml` reliability gap on dashboard-bound sheets**. Section 4 dashboard enumeration may hit unreadable dashboards; skill emits `unknown` sentinel for those dashboards per HC#5.
+- **DPC-style aspect-ratio and orientation properties are out of scope.** Section 4 lists dashboards by name and caption presence; layout details defer to `dashboard-print-check`.
+- **`resolve-field` case-sensitivity concern** (a known platform gap, shared with calc-family skills). Section 2 metric-ranking uses handoff data preferentially to avoid triggering this gap.
+
+## Graceful Degradation
+
+These rules apply whenever something this skill needs is missing or fails. More specific rules elsewhere in this file take precedence.
+
+- **Nothing to work on.** If no workbook is open, there is no data source, or the named calc, sheet, dashboard, or data source isn't found, stop before any other step. Say what you found (list the real names, if any) and ask the user to open the workbook or pick one. Never work on a guessed or closest-match target.
+- **Tool call fails, times out, or returns empty.** Retry once, then stop retrying. Mark everything that depended on that call as not checked, continue with what you still can, and say which step failed. If the failed call was a write, stop and report the workbook's current state instead of continuing.
+- **Partial results.** If any check, sheet, field, or data source wasn't evaluated, the summary says so (Partial: N of M checked; not checked: [list]). Never give a clean, ready, or PASS verdict on a partial run.
+- **Reference file won't open.** Use the rules summarized in this file, say [file] unavailable; using the built-in summary, and never make up thresholds, rule IDs, or Desktop menu steps from memory.
+- **Peer skill not installed.** If this skill would hand off to another skill that isn't available, say so and give the manual Desktop step instead. A handoff is never the only next step.
+- **Platform gap.** If no tool can do something, say so plainly and give the manual Desktop path.
+- **Failure messages.** Tell the user in plain language what was done, what wasn't, and the next step. No raw errors, stack traces, or JSON.
+- **No fabrication.** Never invent fields, values, findings, or results to fill a gap left by a failed read.
