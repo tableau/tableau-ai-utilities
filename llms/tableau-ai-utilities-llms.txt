@@ -196,7 +196,7 @@ This file is a curated index. Each corpus is SKILL.md plus the README when-to-us
 ## General
 
 - [General — full corpus](https://tableau.github.io/tableau-ai-utilities/llms/tableau-ai-utilities-llms-full-general.txt): SKILL.md plus when-to-use from the README for 1 skill
-- [Tableau Workbook Inventory](https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory): Overridable. List or count published Tableau workbooks accessible through the connected Tableau MCP site, optionally scoped to a named project. Use for workbook inventories, workbook lists, and workbook counts. Do not use for topic-based content recommendations, governance audits, rendering views, querying business data, or changing content.
+- [Tableau Workbook Inventory](https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory): Overridable. Use when listing or counting published Tableau workbooks on the connected Tableau MCP site, optionally for one project. Not for topic searches or recommendations (use a content search skill), showing a view (use tableau-content-viewer), governance audits, querying data, or editing content.
 - [Tableau Workbook Inventory — SKILL.md](https://tableau.github.io/tableau-ai-utilities/tableau-mcp-skills/general/tableau-workbook-inventory/SKILL): Agent instructions (when to fire, steps, verification)
 - [Tableau Workbook Inventory — download](https://tableau.github.io/tableau-ai-utilities/downloads/tableau-workbook-inventory.zip): Zip of tableau-workbook-inventory/ for the skills directory
 

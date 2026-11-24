@@ -28,4 +28,4 @@ Results depend on account permissions, server configuration, and the connected t
 
 ## Portability and validation status
 
-Designed to use the same files in Claude and Codex with an equivalent Tableau MCP connection. Live execution in those clients has not yet been verified. Repository consumption through MCP is separate downstream work; manually loading this skill does not prove that connection.
+The same host-independent instructions are intended for Claude, Codex, and Slackbot with equivalent Tableau MCP connections. Skill loading depends on the client; local or plugin installation does not establish native Skills over MCP support. Public-repository consumption and live execution of this skill remain unverified.
